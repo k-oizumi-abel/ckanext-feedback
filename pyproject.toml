@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "ckanext-feedback"
+version = "0.1.0"
+description = "The extension to feedback on CKAN datasets such as review, number of downloads,use-cases,resolved-problems, and way of use"
+authors = ["C3Lab <info.c3lab@gmail.com>"]
+license = "TBD"
+readme = "README.md"
+repository = "https://github.com/c-3lab/ckanext-feedback/"
+documentation = "https://github.com/c-3lab/ckanext-feedback/README.md"
+keywords = ["ckan", "ckan extension", "opendata", "open-data", "review"]
+classifiers = [
+"Programming Language :: Python :: 3.11",
+]
+
+[tool.poetry.dependencies]
+python = "3.11"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
