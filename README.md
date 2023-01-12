@@ -1,2 +1,9 @@
 # ckanext-feedback
-the function to feedback on opendata provider such as review, number of downloads,use-cases,resolved-problems, and way of use
+
+CKANのデータセットに対して以下のフィードバックを可能にする拡張機能
+
+* データのダウンロード数
+* データの利活用数
+* データによる課題解決数
+* データのレビュー
+* データの利活用方法
