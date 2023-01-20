@@ -9,12 +9,29 @@ repository = "https://github.com/c-3lab/ckanext-feedback/"
 documentation = "https://github.com/c-3lab/ckanext-feedback/README.md"
 keywords = ["ckan", "ckan extension", "opendata", "open-data", "review"]
 classifiers = [
-"Programming Language :: Python :: 3.11",
+"Programming Language :: Python :: 3.8",
 ]
 
 [tool.poetry.dependencies]
-python = "3.11"
+python = "3.8.16"
+black = "^22.12.0"
+isort = "^5.11.4"
+pytest = "^7.2.1"
+pytest-cov = "^4.0.0"
+mypy = "^0.991"
+
+[tool.poetry.group.dev.dependencies]
+pyproject-flake8 = "^6.0.0.post1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = "E203,W503,W504"
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
