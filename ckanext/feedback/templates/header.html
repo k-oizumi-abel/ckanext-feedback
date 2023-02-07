@@ -85,30 +85,30 @@
       {% block header_site_navigation %}
       <nav class="section navigation">
         <ul class="nav nav-pills">
-            {% block header_site_navigation_tabs %}
-    {% if c.userobj.sysadmin %}
-		  {{ h.build_nav_main(
-          ('home.index', _('Top')),
-          ('dataset.search', _('Dataset')),
-          ('organization.index', _('Organization')),
-          ('group.index', _('Group')),
-		      ('home.about', _('タグ')) ) }}
-      <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
-      {{ h.build_nav_main(
-        ('home.about', _('フィードバック一覧')),  
-        ('home.about', _('About')) ) }}
-    {% else %}
-      {{ h.build_nav_main(
-          ('home.index', _('Top')),
-          ('dataset.search', _('Dataset')),
-          ('organization.index', _('Organization')),
-          ('group.index', _('Group')),
-          ('home.about', _('タグ')) ) }}
-      <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
-      {{ h.build_nav_main(
-          ('home.about', _('About')) ) }}
-    {% endif %}
-	    {% endblock %}
+          {% block header_site_navigation_tabs %}
+            {% if c.userobj.sysadmin %}
+		          {{ h.build_nav_main(
+                ('home.index', _('Top')),
+                ('dataset.search', _('Dataset')),
+                ('organization.index', _('Organization')),
+                ('group.index', _('Group')),
+		            ('home.about', _('タグ')) ) }}
+              <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
+              {{ h.build_nav_main(
+                ('home.about', _('フィードバック一覧')),  
+                ('home.about', _('About')) ) }}
+            {% else %}
+              {{ h.build_nav_main(
+                ('home.index', _('Top')),
+                ('dataset.search', _('Dataset')),
+                ('organization.index', _('Organization')),
+                ('group.index', _('Group')),
+                ('home.about', _('タグ')) ) }}
+              <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
+              {{ h.build_nav_main(
+                ('home.about', _('About')) ) }}
+            {% endif %}
+	        {% endblock %}
         </ul>
       </nav>
       {% endblock %} {% block header_site_search %}
