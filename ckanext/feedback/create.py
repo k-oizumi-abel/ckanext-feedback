@@ -14,13 +14,13 @@ utilization = Table(
     "utilization",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("resource_id", Text, ForeignKey("resource_comment.resource_id"), nullable=False),
+    Column("resource_id", Text, ForeignKey("resource.id"), nullable=False),
     Column("title", Text),
     Column("description", Text),
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
     Column("approved", TIMESTAMP),
-    Column("approval_user_id", Text, ForeignKey("resource_comment.approval_user_id"))
+    Column("approval_user_id", Text, ForeignKey("user.id"))
 )
 
 # Declare the utilization_comment table
@@ -28,13 +28,13 @@ utilization_comment = Table(
     "utilization_comment",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("utilization_id", Text, ForeignKey("issue_resolution.utilization_id"), nullable=False),
+    Column("utilization_id", Text, ForeignKey("utilization.id"), nullable=False),
     Column("category", Enum("承認待ち", "承認済", name="category_enum"), nullable=False),
     Column("content", Text),
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
     Column("approved", TIMESTAMP),
-    Column("approval_user_id", Text, ForeignKey("issue_resolution.creator_user_id"), ForeignKey("resource_comment_reply.creator_user_id"))
+    Column("approval_user_id", Text, ForeignKey("user.id"))
 )
 
 # Declare the issue_resolution table
@@ -42,10 +42,10 @@ issue_resolution = Table(
     "issue_resolution",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("utilization_id", Text, ForeignKey("utilization_comment.utilization_id"), nullable=False),
+    Column("utilization_id", Text, ForeignKey("utilization.id"), nullable=False),
     Column("description", Text),
     Column("created", TIMESTAMP),
-    Column("creator_user_id", Text, ForeignKey("utilization_comment.approval_user_id"), ForeignKey("resource_comment_reply.creator_user_id"))
+    Column("creator_user_id", Text, ForeignKey("user.id"))
 )
 
 # Declare the issue_resolution_summary table
@@ -64,14 +64,14 @@ resource_comment = Table(
     "resource_comment",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("resource_id", Text, ForeignKey("utilization.resource_id"), nullable=False),
+    Column("resource_id", Text, ForeignKey("resource.id"), nullable=False),
     Column("category", Enum("承認待ち", "承認済", name="category_enum"), nullable=False),
     Column("content", Text),
     Column("rating", Integer),
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
     Column("approved", TIMESTAMP),
-    Column("approval_user_id", Text, ForeignKey("utilization.approval_user_id"))
+    Column("approval_user_id", Text, ForeignKey("user.id"))
 )
 
 # Declare the resource_comment_reply table
@@ -82,7 +82,7 @@ resource_comment_reply = Table(
     Column("resource_comment_id", Text, ForeignKey("resource_comment.id"), nullable=False),
     Column("content", Text),
     Column("created", TIMESTAMP),
-    Column("creator_user_id", Text, ForeignKey("utilization_comment.approval_user_id"), ForeignKey("issue_resolution.creator_user_id"))
+    Column("creator_user_id", Text, ForeignKey("user.id"))
 )
 
 # Declare the utilization_summary table
