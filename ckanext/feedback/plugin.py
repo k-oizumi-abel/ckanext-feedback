@@ -2,27 +2,12 @@ import ckan.plugins as p
 import ckan.plugins.toolkit as tk
 from flask import Blueprint
 from ckan.config.routing import SubMapper
+
+import ckanext.feedback.controllers.utilization as utilization
 import ckanext.feedback.services.utilization.search as searchService
 from ckan.common import config
 
 from ckanext.feedback.command import feedback
-
-# Render HTML pages
-# utilization/details.html
-def details():
-    return tk.render('utilization/details.html')
-# utilization/registration.html
-def registration():
-    return tk.render('utilization/registration.html')
-# utilization/comment_approval.html
-def comment_approval():
-    return tk.render('utilization/comment_approval.html')
-# utilization/recommentview.html
-def comment():
-    return tk.render('utilization/comment.html')
-# utilization/search.html
-def search():
-    return tk.render('utilization/search.html')
 
 class FeedbackPlugin(p.SingletonPlugin):
     # Declare class implements
@@ -50,11 +35,11 @@ class FeedbackPlugin(p.SingletonPlugin):
         blueprint = Blueprint('search', self.__module__)
         # Add target page URLs to rules and add each URL to the blueprint
         rules = [
-            ('/utilization/details', 'details', details),
-            ('/utilization/registration', 'registration', registration),
-            ('/utilization/comment_approval', 'comment_approval', comment_approval),
-            ('/utilization/comment', 'comment', comment),
-            ('/utilization/search', 'search', search), ]
+            ('/utilization/details', 'details', utilization.UtilizationController.details),
+            ('/utilization/registration', 'registration', utilization.UtilizationController.registration),
+            ('/utilization/comment_approval', 'comment_approval', utilization.UtilizationController.comment_approval),
+            ('/utilization/comment', 'comment', utilization.UtilizationController.comment),
+            ('/utilization/search', 'search', utilization.UtilizationController.search), ]
         for rule in rules:
             blueprint.add_url_rule(*rule)
 
