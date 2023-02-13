@@ -69,17 +69,15 @@
                         </span>
                       </div>
                       <br>
-                    </form>
                   {% endblock %}
                 {% endif %}
                 {% if h.show_status_selection() == True %}  
                   {% if c.userobj.sysadmin %}
                     {% block select_status %}
-                      <form class="section site-search top-centered-content">
                       <span class="status-label"><p>ステータス</p></span>
-                      <input type="checkbox" id="waiting_for_approval" name="waiting_for_approval" value="waiting">
+                      <input type="checkbox" id="waiting" name="waiting" value="False">
                       <label for="waiting_for_approval" class="normal-font-weight middle-vertical-aligned">承認待ち</label>
-                      <input class="spaced-left" type="checkbox" id="approved" name="approved" value="approved">
+                      <input class="spaced-left" type="checkbox" id="approval" name="approval" value="True">
                       <label for="approved" class="normal-font-weight middle-vertical-aligned">承認済</label>
                     </form>
                     {% endblock %}
