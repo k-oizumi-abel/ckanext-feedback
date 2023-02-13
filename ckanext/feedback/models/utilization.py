@@ -34,8 +34,10 @@ utilization_comment = Table(
     "utilization_comment",
     meta.metadata,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("utilization_id", Text, ForeignKey("utilization.id"), nullable=False),
-    Column("category", Enum("承認待ち", "承認済", name="category_enum"), nullable=False),
+    Column("utilization_id", Text, ForeignKey("utilization.id"),
+           nullable=False),
+    Column("category", Enum("承認待ち", "承認済", name="category_enum"),
+           nullable=False),
     Column("content", Text),
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
@@ -55,6 +57,7 @@ utilization_summary = Table(
     Column("updated", TIMESTAMP),
 )
 
+
 class Utilization(domain_object.DomainObject):
     id: str
     resource_id: str
@@ -64,6 +67,7 @@ class Utilization(domain_object.DomainObject):
     approval: bool
     approved: datetime.datetime
     approval_user_id: str
+
 
 class UtilizationComment(domain_object.DomainObject):
     id: str
@@ -75,6 +79,7 @@ class UtilizationComment(domain_object.DomainObject):
     approved: datetime.datetime
     approval_user_id: str
 
+
 class UtilizationSummary(domain_object.DomainObject):
     id: str
     resource_id: str
@@ -82,6 +87,7 @@ class UtilizationSummary(domain_object.DomainObject):
     comment: int
     created: datetime.datetime
     updated: datetime.datetime
+
 
 meta.mapper(Utilization, utilization)
 meta.mapper(UtilizationComment, utilization_comment)

@@ -31,7 +31,7 @@ utilization = Table(
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
     Column("approved", TIMESTAMP),
-    Column("approval_user_id", Text, ForeignKey("user.id"))
+    Column("approval_user_id", Text, ForeignKey("user.id")),
 )
 
 # Declare the utilization_comment table
@@ -39,13 +39,15 @@ utilization_comment = Table(
     "utilization_comment",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("utilization_id", Text, ForeignKey("utilization.id"), nullable=False),
-    Column("category", Enum("承認待ち", "承認済", name="category_enum"), nullable=False),
+    Column("utilization_id", Text, ForeignKey("utilization.id"),
+           nullable=False),
+    Column("category", Enum("承認待ち", "承認済", name="category_enum"),
+           nullable=False),
     Column("content", Text),
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
     Column("approved", TIMESTAMP),
-    Column("approval_user_id", Text, ForeignKey("user.id"))
+    Column("approval_user_id", Text, ForeignKey("user.id")),
 )
 
 # Declare the issue_resolution table
@@ -53,10 +55,11 @@ issue_resolution = Table(
     "issue_resolution",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("utilization_id", Text, ForeignKey("utilization.id"), nullable=False),
+    Column("utilization_id", Text, ForeignKey("utilization.id"),
+           nullable=False),
     Column("description", Text),
     Column("created", TIMESTAMP),
-    Column("creator_user_id", Text, ForeignKey("user.id"))
+    Column("creator_user_id", Text, ForeignKey("user.id")),
 )
 
 # Declare the issue_resolution_summary table
@@ -64,10 +67,11 @@ issue_resolution_summary = Table(
     "issue_resolution_summary",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("utilization_id", Text, ForeignKey("utilization.id"), nullable=False),
+    Column("utilization_id", Text, ForeignKey("utilization.id"),
+           nullable=False),
     Column("issue_resolution", Integer),
     Column("created", TIMESTAMP),
-    Column("updated", TIMESTAMP)
+    Column("updated", TIMESTAMP),
 )
 
 # Declare the resource_comment table
@@ -76,13 +80,14 @@ resource_comment = Table(
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
     Column("resource_id", Text, ForeignKey("resource.id"), nullable=False),
-    Column("category", Enum("承認待ち", "承認済", name="category_enum"), nullable=False),
+    Column("category", Enum("承認待ち", "承認済", name="category_enum"),
+           nullable=False),
     Column("content", Text),
     Column("rating", Integer),
     Column("created", TIMESTAMP),
     Column("approval", BOOLEAN, default=False),
     Column("approved", TIMESTAMP),
-    Column("approval_user_id", Text, ForeignKey("user.id"))
+    Column("approval_user_id", Text, ForeignKey("user.id")),
 )
 
 # Declare the resource_comment_reply table
@@ -90,10 +95,11 @@ resource_comment_reply = Table(
     "resource_comment_reply",
     metadata_obj,
     Column("id", Text, primary_key=True, nullable=False),
-    Column("resource_comment_id", Text, ForeignKey("resource_comment.id"), nullable=False),
+    Column("resource_comment_id", Text, ForeignKey("resource_comment.id"),
+           nullable=False),
     Column("content", Text),
     Column("created", TIMESTAMP),
-    Column("creator_user_id", Text, ForeignKey("user.id"))
+    Column("creator_user_id", Text, ForeignKey("user.id")),
 )
 
 # Declare the utilization_summary table
@@ -105,7 +111,7 @@ utilization_summary = Table(
     Column("utilization", Integer),
     Column("review", Integer),
     Column("created", TIMESTAMP),
-    Column("updated", TIMESTAMP)
+    Column("updated", TIMESTAMP),
 )
 
 # Declare the resource_comment_summary table
@@ -117,7 +123,7 @@ resource_comment_summary = Table(
     Column("comment", Integer),
     Column("rating", Integer),
     Column("created", TIMESTAMP),
-    Column("updated", TIMESTAMP)
+    Column("updated", TIMESTAMP),
 )
 
 # Declare the download_summary table
@@ -128,17 +134,18 @@ download_summary = Table(
     Column("resource_id", Text, ForeignKey("resource.id"), nullable=False),
     Column("download", Integer),
     Column("created", TIMESTAMP),
-    Column("updated", TIMESTAMP)
+    Column("updated", TIMESTAMP),
 )
 
-#@create.command(name=u'create', short_help=u'データベースにckanext-feedback用のテーブルを作成します。')
+# @create.command(name=u'create',
+# short_help=u'データベースにckanext-feedback用のテーブルを作成します。')
 # Method to show all tables currently recognized by SQLAlchemy
-def show_tables():
-    for t in metadata_obj.sorted_tables:
-        print(t.name)
+# def show_tables():
+# for t in metadata_obj.sorted_tables:
+# print(t.name)
 
 # Run show_tables()
-#show_tables()
+# show_tables()
 
 try:
     metadata_obj.create_all(engine)
