@@ -1,4 +1,15 @@
-from sqlalchemy import *
+from sqlalchemy import (  # type: ignore
+    BOOLEAN,
+    TIMESTAMP,
+    Column,
+    Enum,
+    ForeignKey,
+    Integer,
+    MetaData,
+    Table,
+    Text,
+    create_engine,
+)
 
 # Declare the target database connection string
 engine = create_engine("postgresql+psycopg2://ckan:ckan@db:5432/ckan")

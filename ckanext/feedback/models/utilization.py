@@ -1,7 +1,17 @@
-from sqlalchemy import *
-import ckan.model.meta as meta
-import ckan.model.domain_object as domain_object
 import datetime
+
+import ckan.model.domain_object as domain_object
+import ckan.model.meta as meta
+from sqlalchemy import (  # type: ignore
+    BOOLEAN,
+    TIMESTAMP,
+    Column,
+    Enum,
+    ForeignKey,
+    Integer,
+    Table,
+    Text,
+)
 
 __all__ = ["utilization", "utilization_comment", "utilization_summary"]
 
