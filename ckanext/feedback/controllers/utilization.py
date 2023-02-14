@@ -1,7 +1,7 @@
 import ckan.plugins.toolkit as tk
 
 
-class UtilizationController():
+class UtilizationController:
 
     # Render HTML pages
     # utilization/details.html
