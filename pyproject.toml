@@ -50,6 +50,7 @@ extend-ignore = "E203,W503,W504"
 inline-quotes = "single"
 multiline-quotes = "single"
 docstring-quotes = "single"
+exclude = "tmp, build"
 
 [tool.black]
 skip-string-normalization = true
