@@ -11,11 +11,11 @@ session = Session()
 # Get the count of records in the Utilization table
 def get_data_count():
     count = 0
-    keyword = request.args.get("keyword")
+    keyword = request.args.get('keyword')
     if keyword:
         rows = (
             session.query(Utilization)
-            .filter(Utilization.title.like(f"%{keyword}%"))
+            .filter(Utilization.title.like(f'%{keyword}%'))
             .all()
         )
     else:
@@ -27,11 +27,11 @@ def get_data_count():
 
 # Get data from the Utilization table
 def get_data():
-    keyword = request.args.get("keyword")
+    keyword = request.args.get('keyword')
     if keyword:
         rows = (
             session.query(Utilization)
-            .filter(Utilization.title.like(f"%{keyword}%"))
+            .filter(Utilization.title.like(f'%{keyword}%'))
             .all()
         )
     else:
@@ -42,10 +42,10 @@ def get_data():
 
 # If "keyword" exists show it in the search box upon page load
 def keep_keyword():
-    if request.args.get("keyword"):
-        return request.args.get("keyword")
+    if request.args.get('keyword'):
+        return request.args.get('keyword')
     else:
-        return ""
+        return ''
 
 
 # Get the resource item's package info

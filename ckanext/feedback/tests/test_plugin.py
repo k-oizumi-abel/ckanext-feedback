@@ -1,4 +1,4 @@
-"""
+'''
 Tests for plugin.py.
 
 Tests are written using the pytest library (https://docs.pytest.org), and you
@@ -47,7 +47,7 @@ test you can use:
     @pytest.mark.ckan_config("ckanext.myext.some_key", "some_value")
     def test_some_action():
         pass
-"""
+'''
 
 
 def test_plugin():
