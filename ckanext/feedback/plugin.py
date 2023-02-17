@@ -18,24 +18,12 @@ class FeedbackPlugin(p.SingletonPlugin):
 
     def update_config(self, config):
 
-        # Retrieve the value for the "ckan.feedback.substitute_templates"
-        # setting from the Config file (/etc/ckan/production.ini) and
-        # return it as a bool.
-        # If the "ckan.feedback.substitute_templates" setting doesn't exist
-        # return False
-        substitute_templates = tk.asbool(
-            config.get('ckan.feedback.substitute_templates', False)
-        )
-
-        # If substitute_templates is True, add the feedback directories below
-        # to CKAN's extra paths
-        if substitute_templates:
-            # Add this plugin's directories to CKAN's extra paths, so that
-            # CKAN will use this plugin's custom files.
-            # Paths are relative to this plugin.py file.
-            tk.add_template_directory(config, 'templates')
-            tk.add_public_directory(config, 'public')
-            tk.add_resource('assets', 'feedback')
+        # Add this plugin's directories to CKAN's extra paths, so that
+        # CKAN will use this plugin's custom files.
+        # Paths are relative to this plugin.py file.
+        tk.add_template_directory(config, 'templates')
+        tk.add_public_directory(config, 'public')
+        tk.add_resource('assets', 'feedback')
 
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
@@ -70,47 +58,25 @@ class FeedbackPlugin(p.SingletonPlugin):
         return [feedback.feedback]
 
     # Check production.ini settings
-    # Show/hide the main screen search bar
-    def show_search_bar(self):
-        return tk.asbool(config.get(
-            'ckan.feedback.utilization.show_search_bar', False))
-
-    # Show/hide the status selection checkboxes
-    def show_status_selection(self):
+    # Enable/disable the download module
+    def enable_downloads(self):
         return tk.asbool(
             config.get(
-                'ckan.feedback.utilization.show_status_selection', False)
+                'ckan.feedback.downloads.enable', False)
         )
 
-    # Show/hide the record count
-    def show_record_count(self):
+    # Enable/disable the resources module
+    def enable_resources(self):
         return tk.asbool(
             config.get(
-                'ckan.feedback.utilization.show_record_count', False)
+                'ckan.feedback.resources.enable', False)
         )
 
-    # Show/hide the record table
-    def show_record_table(self):
+    # Enable/disable the utilizations module
+    def enable_utilizations(self):
         return tk.asbool(
             config.get(
-                'ckan.feedback.utilization.show_record_table', False)
-        )
-
-    # Show/hide the record table issue resolution badge
-    def show_record_table_badge(self):
-        return tk.asbool(
-            config.get(
-                'ckan.feedback.utilization.show_record_table_badge', False)
-        )
-
-    # Show/hide the record table issue resolution count
-    def show_record_table_issue_resolution_count(self):
-        return tk.asbool(
-            config.get(
-                'ckan.feedback.utilization.'
-                'show_record_table_issue_resolution_count',
-                False,
-            )
+                'ckan.feedback.utilizations.enable', False)
         )
 
     def get_helpers(self):
@@ -122,13 +88,9 @@ class FeedbackPlugin(p.SingletonPlugin):
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
         return {
-            'show_search_bar': FeedbackPlugin.show_search_bar,
-            'show_status_selection': FeedbackPlugin.show_status_selection,
-            'show_record_count': FeedbackPlugin.show_record_count,
-            'show_record_table': FeedbackPlugin.show_record_table,
-            'show_record_table_badge': FeedbackPlugin.show_record_table_badge,
-            'show_record_table_issue_resolution_count':
-                FeedbackPlugin.show_record_table_issue_resolution_count,
+            'enable_downloads': FeedbackPlugin.enable_downloads,
+            'enable_resources': FeedbackPlugin.enable_resources,
+            'enable_utilizations': FeedbackPlugin.enable_utilizations,
             'get_utilizations': searchService.get_utilizations,
             'get_utilizations_count': searchService.get_utilizations_count,
             'keep_keyword': searchService.keep_keyword,
