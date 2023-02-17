@@ -1,5 +1,5 @@
-import ckan.plugins as p
-import ckan.plugins.toolkit as tk
+import ckan.plugins as plugins
+import ckan.plugins.toolkit as toolkit
 from ckan.common import config
 from flask import Blueprint
 
@@ -8,20 +8,20 @@ import ckanext.feedback.services.utilization.search as search_service
 from ckanext.feedback.command import feedback
 
 
-class FeedbackPlugin(p.SingletonPlugin):
+class FeedbackPlugin(plugins.SingletonPlugin):
     # Declare class implements
-    p.implements(p.IConfigurer)
-    p.implements(p.IClick)
-    p.implements(p.IBlueprint)
-    p.implements(p.ITemplateHelpers)
+    plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IClick)
+    plugins.implements(plugins.IBlueprint)
+    plugins.implements(plugins.ITemplateHelpers)
 
     def update_config(self, config):
         # Add this plugin's directories to CKAN's extra paths, so that
         # CKAN will use this plugin's custom files.
         # Paths are relative to this plugin.py file.
-        tk.add_template_directory(config, 'templates')
-        tk.add_public_directory(config, 'public')
-        tk.add_resource('assets', 'feedback')
+        toolkit.add_template_directory(config, 'templates')
+        toolkit.add_public_directory(config, 'public')
+        toolkit.add_resource('assets', 'feedback')
 
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
@@ -61,15 +61,15 @@ class FeedbackPlugin(p.SingletonPlugin):
     # Check production.ini settings
     # Enable/disable the download module
     def enable_downloads(self):
-        return tk.asbool(config.get('ckan.feedback.downloads.enable', False))
+        return toolkit.asbool(config.get('ckan.feedback.downloads.enable', False))
 
     # Enable/disable the resources module
     def enable_resources(self):
-        return tk.asbool(config.get('ckan.feedback.resources.enable', False))
+        return toolkit.asbool(config.get('ckan.feedback.resources.enable', False))
 
     # Enable/disable the utilizations module
     def enable_utilizations(self):
-        return tk.asbool(config.get('ckan.feedback.utilizations.enable', False))
+        return toolkit.asbool(config.get('ckan.feedback.utilizations.enable', False))
 
     def get_helpers(self):
         '''Register the most_popular_groups() function above as a template
