@@ -1,13 +1,11 @@
 import ckan.plugins as p
 import ckan.plugins.toolkit as tk
 from ckan.common import config
-from flask import Blueprint  # type: ignore
+from flask import Blueprint
 
 import ckanext.feedback.controllers.utilization as utilization
 import ckanext.feedback.services.utilization.search \
-    as searchService  # type: ignore
-
-
+    as searchService
 from ckanext.feedback.command import feedback
 
 

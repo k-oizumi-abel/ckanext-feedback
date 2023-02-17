@@ -1,7 +1,7 @@
 from ckan.common import request
 from ckan.model.package import Package
 from ckan.model.resource import Resource
-from sqlalchemy.orm import Session  # type: ignore
+from sqlalchemy.orm import Session
 
 from ckanext.feedback.models.utilization import Utilization
 

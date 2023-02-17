@@ -1,4 +1,4 @@
-from sqlalchemy import (  # type: ignore
+from sqlalchemy import (
     BOOLEAN,
     TIMESTAMP,
     Column,
