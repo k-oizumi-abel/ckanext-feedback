@@ -131,8 +131,8 @@ class FeedbackPlugin(p.SingletonPlugin):
             'show_record_table_badge': FeedbackPlugin.show_record_table_badge,
             'show_record_table_issue_resolution_count':
                 FeedbackPlugin.show_record_table_issue_resolution_count,
-            'get_data': searchService.get_data,
-            'get_data_count': searchService.get_data_count,
+            'get_utilizations': searchService.get_utilizations,
+            'get_utilizations_count': searchService.get_utilizations_count,
             'keep_keyword': searchService.keep_keyword,
             'get_package_info': searchService.get_package_info,
             'get_resource_info': searchService.get_resource_info,

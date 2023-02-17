@@ -86,7 +86,7 @@
                 <hr>
               {% endif %}
               {% if h.show_record_count(self) == True %} 
-                <p class="bottom-centered-content">検索結果：{{ h.get_data_count() }}件</p>
+                <p class="bottom-centered-content">検索結果：{{ h.get_utilizations_count() }}件</p>
               {% endif %}
               {% if h.show_record_table(self) == True %} 
                 {% block result_table %}
@@ -100,8 +100,8 @@
                       <th class="small-column">ステータス</th>
                     {% endif %}
                   </tr>
-                  {% if h.get_data_count() %}
-                    {% for row in h.get_data() %}
+                  {% if h.get_utilizations_count() %}
+                    {% for row in h.get_utilizations() %}
                     <tr>
                       <td class="left-aligned-text"><a href="http://localhost:5000/dataset/{{ h.get_package_info(row.resource_id).name }}/resource/{{ row.resource_id }}">{{ row.title }}</a>
                         {% if h.show_record_table_badge(self) == True %}

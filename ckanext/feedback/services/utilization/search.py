@@ -9,7 +9,7 @@ session = Session()
 
 
 # Get the count of records in the Utilization table
-def get_data_count():
+def get_utilizations_count():
     count = 0
     keyword = request.args.get('keyword')
     if keyword:
@@ -25,8 +25,8 @@ def get_data_count():
     return count
 
 
-# Get data from the Utilization table
-def get_data():
+# Get records from the Utilization table
+def get_utilizations():
     keyword = request.args.get('keyword')
     if keyword:
         rows = (
