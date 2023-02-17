@@ -16,7 +16,6 @@ class FeedbackPlugin(p.SingletonPlugin):
     p.implements(p.ITemplateHelpers)
 
     def update_config(self, config):
-
         # Add this plugin's directories to CKAN's extra paths, so that
         # CKAN will use this plugin's custom files.
         # Paths are relative to this plugin.py file.
