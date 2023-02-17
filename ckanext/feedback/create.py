@@ -12,7 +12,7 @@ from sqlalchemy import (  # type: ignore
 )
 
 # Declare the target database connection string
-engine = create_engine('postgresql+psycopg2://ckan:ckan@db:5432/ckan')
+engine = create_engine('postgresql://ckan:ckan@db:5432/ckan')
 # Create a metadata object
 metadata_obj = MetaData()
 # Bind the database-connected engine to the metadata object
