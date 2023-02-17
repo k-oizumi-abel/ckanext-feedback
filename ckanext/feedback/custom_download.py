@@ -1,8 +1,8 @@
 import inspect, imp
 
-from ckan.ckan.views import resource
+from ckan.views import resource
 from ckanext.feedback.services.download.summary import increase_resource_download_count
-from resource import download as alias
+from ckan.views.resource import download as alias
 
 def custom_download(package_type, id, resource_id, filename=None):
     increase_resource_download_count(resource_id)
@@ -22,5 +22,5 @@ class Importer(object):
         return self.old_import(*args, **kwargs)
 
 hooking()
-from ckan.ckna.views import resource
+from ckan.views import resource
 resource.__import__ = Importer().new_import
