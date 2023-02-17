@@ -50,10 +50,7 @@ def keep_keyword():
 
 # Get the resource item's package info
 def get_package_info(resource_id):
-    package_id = (
-        session.query(Resource.package_id)
-        .filter_by(id=resource_id).scalar()
-    )
+    package_id = session.query(Resource.package_id).filter_by(id=resource_id).scalar()
     package_info = session.query(Package).filter_by(id=package_id).scalar()
     return package_info
 
