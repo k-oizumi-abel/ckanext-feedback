@@ -4,8 +4,7 @@ from ckan.common import config
 from flask import Blueprint
 
 import ckanext.feedback.controllers.utilization as utilization
-import ckanext.feedback.services.utilization.search \
-    as searchService
+import ckanext.feedback.services.utilization.search as searchService
 from ckanext.feedback.command import feedback
 
 
@@ -30,24 +29,27 @@ class FeedbackPlugin(p.SingletonPlugin):
         blueprint = Blueprint('search', self.__module__)
         # Add target page URLs to rules and add each URL to the blueprint
         rules = [
-            ('/utilization/details', 'details',
-                utilization.UtilizationController.details),
             (
-                '/utilization/registration', 'registration',
+                '/utilization/details',
+                'details',
+                utilization.UtilizationController.details,
+            ),
+            (
+                '/utilization/registration',
+                'registration',
                 utilization.UtilizationController.registration,
             ),
             (
-                '/utilization/comment_approval', 'comment_approval',
-                utilization.UtilizationController.comment_approval
+                '/utilization/comment_approval',
+                'comment_approval',
+                utilization.UtilizationController.comment_approval,
             ),
             (
-                '/utilization/comment', 'comment',
-                utilization.UtilizationController.comment
+                '/utilization/comment',
+                'comment',
+                utilization.UtilizationController.comment,
             ),
-            (
-                '/utilization/search', 'search',
-                utilization.UtilizationController.search
-            ),
+            ('/utilization/search', 'search', utilization.UtilizationController.search),
         ]
         for rule in rules:
             blueprint.add_url_rule(*rule)
@@ -60,24 +62,15 @@ class FeedbackPlugin(p.SingletonPlugin):
     # Check production.ini settings
     # Enable/disable the download module
     def enable_downloads(self):
-        return tk.asbool(
-            config.get(
-                'ckan.feedback.downloads.enable', False)
-        )
+        return tk.asbool(config.get('ckan.feedback.downloads.enable', False))
 
     # Enable/disable the resources module
     def enable_resources(self):
-        return tk.asbool(
-            config.get(
-                'ckan.feedback.resources.enable', False)
-        )
+        return tk.asbool(config.get('ckan.feedback.resources.enable', False))
 
     # Enable/disable the utilizations module
     def enable_utilizations(self):
-        return tk.asbool(
-            config.get(
-                'ckan.feedback.utilizations.enable', False)
-        )
+        return tk.asbool(config.get('ckan.feedback.utilizations.enable', False))
 
     def get_helpers(self):
         '''Register the most_popular_groups() function above as a template
