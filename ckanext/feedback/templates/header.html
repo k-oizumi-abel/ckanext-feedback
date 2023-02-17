@@ -15,7 +15,7 @@
         <li>
           <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
             {{ h.user_image((c.user if c and c.user else ''), size=22) }}
-            <span class="username">{{ c.userobj.display_name }}</span>
+             <span class="username">{{ c.userobj.display_name }}</span>
           </a>
         </li>
         {% set new_activities = h.new_activities() %}
@@ -87,30 +87,34 @@
         <ul class="nav nav-pills">
           {% block header_site_navigation_tabs %}
             {% if c.userobj.sysadmin %}
-		      {{ h.build_nav_main(
+              {{ h.build_nav_main(
                 ('home.index', _('Top')),
                 ('dataset.search', _('Dataset')),
                 ('organization.index', _('Organization')),
-                ('group.index', _('Group')) ) }}
-                <!-- ToDo -->
-                <li><a href="#">タグ</a></li>
-                <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
-                <li><a href="#">フィードバック一覧</a></li> 
+                ('group.index', _('Group'))) 
+              }}
+              <!-- ToDo -->
+              <li><a href="#">タグ</a></li>
+              <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
+              <li><a href="#">フィードバック一覧</a></li> 
               {{ h.build_nav_main(
-                ('home.about', _('About')) ) }}
+                ('home.about', _('About'))) 
+              }}
             {% else %}
               {{ h.build_nav_main(
                 ('home.index', _('Top')),
                 ('dataset.search', _('Dataset')),
                 ('organization.index', _('Organization')),
-                ('group.index', _('Group')) ) }}
-                <!-- ToDo -->
-                <li><a href="#">タグ</a></li>
-                <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
+                ('group.index', _('Group'))) 
+              }}
+              <!-- ToDo -->
+              <li><a href="#">タグ</a></li>
+              <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
               {{ h.build_nav_main(
-                ('home.about', _('About')) ) }}
+                ('home.about', _('About'))) 
+              }}
             {% endif %}
-	      {% endblock %}
+          {% endblock %}
         </ul>
       </nav>
       {% endblock %} {% block header_site_search %}
