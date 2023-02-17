@@ -13,7 +13,7 @@
 }
 
 hr {
-  background: black;
+  background: #000000;
   height: 1px;
 }
 
@@ -41,21 +41,6 @@ label:after {
   width: 20%;
 }
 
-.page-title {
-  margin-top: 5px;
-  margin-left: 5px;
-}
-
-.search-button {
-  background: rgb(3, 138, 248);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  float: right;
-  height: 30px;
-  width: 60px;
-}
-
 .small-column {
   width: 15%;
 }
@@ -68,18 +53,11 @@ label:after {
   font-weight: bold;
 }
 
-/*table, td, th {
-  border: 1px solid black;
-}*/
-
-/*.table-header {
-  background: #016E8F !important;
-}*/
-
 .top-centered-content {
   margin-left: 5%;
   margin-right: auto;
   width: 70%;
+  display: inline-block;
 }
 
 td, th {
