@@ -1,5 +1,4 @@
 import uuid
-import sys
 import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.exc import NoResultFound
@@ -20,7 +19,6 @@ session = Session()
 #    return package_download_count.download
 
 
-
 def get_resource_download_count(target_resource_id):
     resource_download_count = (
         session.query(DownloadSummary.download)
@@ -33,13 +31,14 @@ def get_resource_download_count(target_resource_id):
 
 def increase_resource_download_count(target_resource_id):
     try:
-        resource_download_count = (
-            session.query(DownloadSummary.download)
+        resource = (
+            session.query(DownloadSummary.download, DownloadSummary.updated)
             .filter_by(resource_id=target_resource_id)
             .scalar()
         )
-        resource_download_count = resource_download_count + 1
-        # TODO: renew updated  
+        resource.download = resource.download + 1
+        resource.updated = datetime.datetime.now()
+        session.commit()
     except NoResultFound:
         download_summary_id = text_type(uuid.uuid4())
         session.add(
@@ -51,7 +50,6 @@ def increase_resource_download_count(target_resource_id):
                 updated=datetime.datetime.now(),
             )
         )
+        session.commit()
     except Exception as e:
         tk.error_shout(e)
-
-    session.commit()
