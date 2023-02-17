@@ -4,7 +4,7 @@ from ckan.common import config
 from flask import Blueprint
 
 import ckanext.feedback.controllers.utilization as utilization
-import ckanext.feedback.services.utilization.search as searchService
+import ckanext.feedback.services.utilization.search as search_service
 from ckanext.feedback.command import feedback
 
 
@@ -84,9 +84,9 @@ class FeedbackPlugin(p.SingletonPlugin):
             'enable_downloads': FeedbackPlugin.enable_downloads,
             'enable_resources': FeedbackPlugin.enable_resources,
             'enable_utilizations': FeedbackPlugin.enable_utilizations,
-            'get_utilizations': searchService.get_utilizations,
-            'get_utilizations_count': searchService.get_utilizations_count,
-            'keep_keyword': searchService.keep_keyword,
-            'get_package_info': searchService.get_package_info,
-            'get_resource_info': searchService.get_resource_info,
+            'get_utilizations': search_service.get_utilizations,
+            'get_utilizations_count': search_service.get_utilizations_count,
+            'keep_keyword': search_service.keep_keyword,
+            'get_package_info': search_service.get_package_info,
+            'get_resource_info': search_service.get_resource_info,
         }
