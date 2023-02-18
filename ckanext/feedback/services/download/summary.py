@@ -11,14 +11,15 @@ from ckan.model import Resource
 session = Session()
 
 def get_package_download_count(target_package_id):
-   package_download_count = (
-    session.query(func.sum(DownloadSummary.download))
-   .join(Resource, DownloadSummary.resource_id == Resource.id)
-   .group_by(Resource.package_id)
-   .filter_by(package_id=target_package_id)
-   )
-
-   return package_download_count.download
+    package_download_count = (
+     session.query(Resource.package_id, func.sum(DownloadSummary.download).label('package_download'))
+    .join(DownloadSummary, Resource.id == DownloadSummary.resource_id)
+    .group_by(Resource.package_id)
+    .filter(Resource.package_id == target_package_id)
+    .first()
+    )
+   
+    return package_download_count.package_download
 
 
 def get_resource_download_count(target_resource_id):
