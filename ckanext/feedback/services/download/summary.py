@@ -1,22 +1,24 @@
 import uuid
 import datetime
 from sqlalchemy.orm import Session
-from sqlalchemy.orm.exc import NoResultFound
 from six import text_type
+from sqlalchemy import func
 
 from ckanext.feedback.models.download import DownloadSummary
 import ckan.plugins.toolkit as tk
+from ckan.model import Resource
 
 session = Session()
 
-# def get_package_download_count(package_id):
-#    package_download_count = session.query(Resource, Resource.package_id, func.sum(DownloadSummary.download))
-#    .join(DownloadSummary, DownloadSummary.resource_id == Resource.id)
-#    .group_by(Resource.package_id)
-#    .filter_by(Resource.package_id = package_id)
-#    .scalar()
-#
-#    return package_download_count.download
+def get_package_download_count(target_package_id):
+   package_download_count = (
+    session.query(func.sum(DownloadSummary.download))
+   .join(Resource, DownloadSummary.resource_id == Resource.id)
+   .group_by(Resource.package_id)
+   .filter_by(package_id=target_package_id)
+   )
+
+   return package_download_count.download
 
 
 def get_resource_download_count(target_resource_id):
