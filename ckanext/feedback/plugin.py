@@ -5,10 +5,7 @@ from ckan.common import config
 from flask import Blueprint
 
 import ckanext.feedback.services.download.summary as summaryService
-
-from ckan.views.resource import download as alias
-from ckan.views import resource
-from ckanext.feedback import custom_download
+from ckanext.feedback.custom_download import custom_download
 
 from ckanext.feedback.command import feedback
 
@@ -17,16 +14,20 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
-    
+
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('fanstatic', 'feedback')
 
-        resource.download = custom_download.custom_download
-
     def get_blueprint(self):
-        blueprint = Blueprint("download", self.__module__)
+        blueprint = Blueprint(
+                  'download',
+                  self.__module__,
+                  url_prefix='/dataset/<id>/resource',
+                  url_defaults={'package_type': 'dataset'}
+              )
+        blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=custom_download)
         return blueprint
 
     def get_commands(self):
