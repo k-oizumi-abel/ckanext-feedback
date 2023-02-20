@@ -28,6 +28,7 @@ class FeedbackPlugin(plugins.SingletonPlugin):
                   url_defaults={'package_type': 'dataset'}
               )
         blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=custom_download)
+        blueprint.add_url_rule('/<resource_id>/download', view_func=custom_download)
         return blueprint
 
     def get_commands(self):
