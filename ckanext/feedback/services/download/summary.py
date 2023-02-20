@@ -5,11 +5,13 @@ from six import text_type
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import ProgrammingError
-from psycopg2.errors import InFailedSqlTransaction
-from psycopg2.errors import UndefinedTable
 from ckan.model import Resource
 from ckan.plugins import toolkit
 from ckanext.feedback.models.download import DownloadSummary
+from psycopg2.errors import (
+    InFailedSqlTransaction,
+    UndefinedTable
+)
 
 session = Session()
 log = logging.getLogger(__name__)
