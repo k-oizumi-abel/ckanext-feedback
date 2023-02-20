@@ -1,4 +1,7 @@
 import ckan.plugins.toolkit as toolkit
+from ckan.common import request
+
+import ckanext.feedback.services.utilization.search as search_service
 
 
 class UtilizationController:
@@ -21,4 +24,10 @@ class UtilizationController:
 
     # utilization/search.html
     def search():
-        return toolkit.render('utilization/search.html')
+        keyword = request.args.get('keyword', '')
+        utilizations = search_service.get_utilizations()
+
+        return toolkit.render(
+            'utilization/search.html',
+            {'keyword': keyword, 'utilizations': utilizations},
+        )

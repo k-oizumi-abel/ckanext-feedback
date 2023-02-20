@@ -2,7 +2,6 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.common import config
 
-import ckanext.feedback.services.utilization.search as search_service
 from ckanext.feedback.command import feedback
 from ckanext.feedback.views.utilization import (
     utilization_blueprint as utilization_blueprint,
@@ -58,9 +57,4 @@ class FeedbackPlugin(plugins.SingletonPlugin):
             'enable_downloads': FeedbackPlugin.enable_downloads,
             'enable_resources': FeedbackPlugin.enable_resources,
             'enable_utilizations': FeedbackPlugin.enable_utilizations,
-            'get_utilizations': search_service.get_utilizations,
-            'get_utilizations_count': search_service.get_utilizations_count,
-            'keep_keyword': search_service.keep_keyword,
-            'get_package_info': search_service.get_package_info,
-            'get_resource_info': search_service.get_resource_info,
         }
