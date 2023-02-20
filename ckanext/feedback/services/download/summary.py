@@ -1,21 +1,20 @@
-import logging
 import uuid
+import logging
 import datetime
-from sqlalchemy.orm import Session
 from six import text_type
 from sqlalchemy import func
+from sqlalchemy.orm import Session
 from sqlalchemy.exc import ProgrammingError
-from psycopg2 import errors
 
-from ckanext.feedback.models.download import DownloadSummary
-import ckan.plugins.toolkit as toolkit
 from ckan.model import Resource
+import ckan.plugins.toolkit as toolkit
+from ckanext.feedback.models.download import DownloadSummary
 
 session = Session()
 log = logging.getLogger(__name__)
 
 
-def get_package_download_count(target_package_id):
+def get_package_download_count(package_id):
     try:
         package_download_count = (
             session.query(
@@ -24,7 +23,7 @@ def get_package_download_count(target_package_id):
             )
             .join(DownloadSummary, Resource.id == DownloadSummary.resource_id)
             .group_by(Resource.package_id)
-            .filter(Resource.package_id == target_package_id)
+            .filter(Resource.package_id == package_id)
             .first()
         )
         if package_download_count is None:
@@ -32,16 +31,12 @@ def get_package_download_count(target_package_id):
 
         return package_download_count.package_download
     except ProgrammingError as e:
-        if isinstance(e.orig, errors.UndefinedTable):
-            log.error(
-                'download_summary table does not exit. Hit "feedback init" command'
-            )
-        else:
-            toolkit.error_shout(e)
-        return
+        toolkit.error_shout(e)
+        log.error('If download_summary table does not exit. Hit "feedback init" command')
+        return 'Error'
     except Exception as e:
         toolkit.error_shout(e)
-        return
+        return 'Error'
 
 
 def get_resource_download_count(target_resource_id):
@@ -53,15 +48,12 @@ def get_resource_download_count(target_resource_id):
         )
         return resource_download_count
     except ProgrammingError as e:
-        if isinstance(e.orig, errors.UndefinedTable):
-            log.error(
-                'download_summary table does not exit. Hit "feedback init" command'
-            )
-        else:
-            toolkit.error_shout(e)
-        return
+        toolkit.error_shout(e)
+        log.error('If download_summary table does not exit. Hit "feedback init" command')
+        return 'Error'
     except Exception as e:
         toolkit.error_shout(e)
+        return  'Error'
 
 
 def increase_resource_download_count(target_resource_id):
@@ -86,12 +78,9 @@ def increase_resource_download_count(target_resource_id):
             resource.updated = datetime.datetime.now()
         session.commit()
     except ProgrammingError as e:
-        if isinstance(e.orig, errors.UndefinedTable):
-            log.error(
-                'download_summary table does not exit. Hit "feedback init" command'
-            )
-        else:
-            toolkit.error_shout(e)
-        return
+        toolkit.error_shout(e)
+        log.error('If download_summary table does not exit. Hit "feedback init" command')
+        return 'Error'
     except Exception as e:
         toolkit.error_shout(e)
+        return  'Error'
