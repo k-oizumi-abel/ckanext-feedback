@@ -1,5 +1,5 @@
-import ckan.plugins as p
-import ckan.plugins.toolkit as tk
+import ckan.plugins as plugins
+import ckan.plugins.toolkit as toolkit
 
 from ckan.common import config
 from flask import Blueprint
@@ -9,16 +9,16 @@ from ckanext.feedback.custom_download import custom_download
 
 from ckanext.feedback.command import feedback
 
-class FeedbackPlugin(p.SingletonPlugin):
-    p.implements(p.IConfigurer)
-    p.implements(p.IClick)
-    p.implements(p.IBlueprint)
-    p.implements(p.ITemplateHelpers)
+class FeedbackPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IClick)
+    plugins.implements(plugins.IBlueprint)
+    plugins.implements(plugins.ITemplateHelpers)
 
     def update_config(self, config):
-        tk.add_template_directory(config, 'templates')
-        tk.add_public_directory(config, 'public')
-        tk.add_resource('fanstatic', 'feedback')
+        toolkit.add_template_directory(config, 'templates')
+        toolkit.add_public_directory(config, 'public')
+        toolkit.add_resource('fanstatic', 'feedback')
 
     def get_blueprint(self):
         blueprint = Blueprint(
@@ -35,11 +35,11 @@ class FeedbackPlugin(p.SingletonPlugin):
         return [feedback.feedback]
 
     def show_package_download(self):
-        return tk.asbool(config.get(
+        return toolkit.asbool(config.get(
             "ckan.feedback.download.xxx", False))
 
     def show_resource_download(seld):
-        return tk.asbool(config.get(
+        return toolkit.asbool(config.get(
             "ckan.feedback.download.yyy", False))
 
     def get_helpers(self):
