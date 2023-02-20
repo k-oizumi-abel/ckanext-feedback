@@ -55,7 +55,7 @@ class FeedbackPlugin(plugins.SingletonPlugin):
             "show_package_download": FeedbackPlugin.show_package_download,
             "show_resource_download": FeedbackPlugin.show_resource_download,
             "get_resource_download_count": summaryService.get_resource_download_count,
-            "get_package_download_count": summaryService.get_package_download_count
+            "get_package_downloads": summaryService.get_package_downloads
         }
 
     def show_package_download(self):

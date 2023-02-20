@@ -6,7 +6,7 @@
     <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}" class="label label-default" data-format="{{ resource.lower() }}">{{ resource }}</a>
     {% if h.show_package_download(self) == True %}
       <i class="fa fa-arrow-circle-o-down"></i>
-      {{ h.get_package_download_count(package.id) or _('0') }}
+      {{ h.get_package_downloads(package.id) or _('0') }}
     {% endif %}
   </li>
   {% endfor %}

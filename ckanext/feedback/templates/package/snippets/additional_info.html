@@ -4,7 +4,7 @@
   {% if h.show_package_download(self) == True %}
     <tr>
       <th scope="row" class="dataset-label">{{ _('Download') }}</th>
-      <td class="dataset-details" property="foaf:homepage">{{ h.get_package_download_count(pkg_dict.id) or _('0') }}</td>
+      <td class="dataset-details" property="foaf:homepage">{{ h.get_package_downloads(pkg_dict.id) or _('0') }}</td>
     </tr>
   {% endif %}
   {% if pkg_dict.url %}
