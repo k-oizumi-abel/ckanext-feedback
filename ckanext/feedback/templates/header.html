@@ -91,28 +91,22 @@
                 ('home.index', _('Top')),
                 ('dataset.search', _('Dataset')),
                 ('organization.index', _('Organization')),
-                ('group.index', _('Group'))) 
-              }}
-              <!-- ToDo -->
-              <li><a href="#">タグ</a></li>
-              <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
-              <li><a href="#">フィードバック一覧</a></li> 
-              {{ h.build_nav_main(
-                ('home.about', _('About'))) 
-              }}
+                ('group.index', _('Group')),
+                ('home.about', _('タグ')),
+                ('utilization.search', _('利活用方法')),
+                ('home.about', _('フィードバック一覧')),
+                ('home.about', _('About'))
+              )}}
             {% else %}
               {{ h.build_nav_main(
                 ('home.index', _('Top')),
                 ('dataset.search', _('Dataset')),
                 ('organization.index', _('Organization')),
-                ('group.index', _('Group'))) 
-              }}
-              <!-- ToDo -->
-              <li><a href="#">タグ</a></li>
-              <li><a href="http://localhost:5000/utilization/search">利活用方法</a></li>
-              {{ h.build_nav_main(
-                ('home.about', _('About'))) 
-              }}
+                ('group.index', _('Group')),
+                ('home.about', _('タグ')),
+                ('utilization.search', _('利活用方法')),
+                ('home.about', _('About'))
+              )}}
             {% endif %}
           {% endblock %}
         </ul>
