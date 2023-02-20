@@ -54,7 +54,7 @@ class FeedbackPlugin(plugins.SingletonPlugin):
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
         return {
-            'enable_downloads': FeedbackPlugin.enable_downloads,
-            'enable_resources': FeedbackPlugin.enable_resources,
-            'enable_utilizations': FeedbackPlugin.enable_utilizations,
+            'enable_downloads': self.enable_downloads(),
+            'enable_resources': self.enable_resources(),
+            'enable_utilizations': self.enable_utilizations(),
         }
