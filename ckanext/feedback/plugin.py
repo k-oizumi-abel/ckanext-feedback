@@ -10,14 +10,29 @@ from ckanext.feedback.custom_download import custom_download
 from ckanext.feedback.command import feedback
 
 class FeedbackPlugin(plugins.SingletonPlugin):
-    # override update_config
+    '''
+    override update_config
+    Called by load_environment at the earliest point that config is available to plugins.
+    The config should be updated in place.
+    '''
     plugins.implements(plugins.IConfigurer)
-    # override get_commands
+    '''
+    override get_commands
+    Return a list of command functions objects to be registered by the click.add_command
+    '''
     plugins.implements(plugins.IClick)
-    # override get_blueprint
+    '''
+    override get_blueprint
+    Return either a single Flask Blueprint object or a list of Flask
+    Blueprint objects to be registered by the app.
+    '''
     plugins.implements(plugins.IBlueprint)
-    # override get_helpers
+    '''
+    override get_helpers
+    Return a dict mapping names to helper functions
+    '''
     plugins.implements(plugins.ITemplateHelpers)
+
 
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
