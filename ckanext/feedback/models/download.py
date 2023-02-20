@@ -1,4 +1,3 @@
-import datetime
 import ckan.model.domain_object as domain_object
 import ckan.model.meta as meta
 from sqlalchemy import (
@@ -31,5 +30,5 @@ class DownloadSummary(domain_object.DomainObject):
         self.created = created
         self.updated = updated
 
-meta.mapper(DownloadSummary, download_summary)
 
+meta.mapper(DownloadSummary, download_summary)
