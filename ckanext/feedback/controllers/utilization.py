@@ -25,7 +25,7 @@ class UtilizationController:
     # utilization/search.html
     def search():
         keyword = request.args.get('keyword', '')
-        utilizations = search_service.get_utilizations()
+        utilizations = search_service.get_utilizations(keyword)
 
         return toolkit.render(
             'utilization/search.html',
