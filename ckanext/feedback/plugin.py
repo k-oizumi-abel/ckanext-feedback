@@ -63,8 +63,8 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     def show_package_download(self):
         return toolkit.asbool(config.get(
-            "ckan.feedback.download.xxx", False))
+            "ckan.feedback.download.show_package_download", False))
 
     def show_resource_download(seld):
         return toolkit.asbool(config.get(
-            "ckan.feedback.download.yyy", False))
+            "ckan.feedback.download.show_resource_download", False))

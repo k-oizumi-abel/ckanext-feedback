@@ -1,10 +1,12 @@
 {% ckan_extends %}
 
 {% block package_additional_info %}
-  <tr>
-    <th scope="row" class="dataset-label">{{ _('Download') }}</th>
+  {% if h.show_package_download(self) == True %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _('Download') }}</th>
       <td class="dataset-details" property="foaf:homepage">{{ h.get_package_download_count(pkg_dict.id) or _('0') }}</td>
-  </tr>
+    </tr>
+  {% endif %}
   {% if pkg_dict.url %}
     <tr>
       <th scope="row" class="dataset-label">{{ _('Source') }}</th>
