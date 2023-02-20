@@ -10,15 +10,22 @@ from ckanext.feedback.custom_download import custom_download
 from ckanext.feedback.command import feedback
 
 class FeedbackPlugin(plugins.SingletonPlugin):
+    # override update_config
     plugins.implements(plugins.IConfigurer)
+    # override get_commands
     plugins.implements(plugins.IClick)
+    # override get_blueprint
     plugins.implements(plugins.IBlueprint)
+    # override get_helpers
     plugins.implements(plugins.ITemplateHelpers)
 
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('fanstatic', 'feedback')
+
+    def get_commands(self):
+        return [feedback.feedback]
 
     def get_blueprint(self):
         blueprint = Blueprint(
@@ -30,9 +37,14 @@ class FeedbackPlugin(plugins.SingletonPlugin):
         blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=custom_download)
         blueprint.add_url_rule('/<resource_id>/download', view_func=custom_download)
         return blueprint
-
-    def get_commands(self):
-        return [feedback.feedback]
+    
+    def get_helpers(self):
+        return {
+            "show_package_download": FeedbackPlugin.show_package_download,
+            "show_resource_download": FeedbackPlugin.show_resource_download,
+            "get_resource_download_count": summaryService.get_resource_download_count,
+            "get_package_download_count": summaryService.get_package_download_count
+        }
 
     def show_package_download(self):
         return toolkit.asbool(config.get(
@@ -41,11 +53,3 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     def show_resource_download(seld):
         return toolkit.asbool(config.get(
             "ckan.feedback.download.yyy", False))
-
-    def get_helpers(self):
-        return {
-            "show_package_download": FeedbackPlugin.show_package_download,
-            "show_resource_download": FeedbackPlugin.show_resource_download,
-            "get_resource_download_count": summaryService.get_resource_download_count,
-            "get_package_download_count": summaryService.get_package_download_count
-        }
