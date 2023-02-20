@@ -1,13 +1,10 @@
-import ckan.plugins as plugins
-import ckan.plugins.toolkit as toolkit
-
+from ckan import plugins
 from ckan.common import config
+from ckan.plugins import toolkit
 from flask import Blueprint
-
-import ckanext.feedback.services.download.summary as summaryService
-from ckanext.feedback.custom_download import custom_download
-
 from ckanext.feedback.command import feedback
+from ckanext.feedback.custom_download import custom_download
+from ckanext.feedback.services.download import summary as summaryService
 
 class FeedbackPlugin(plugins.SingletonPlugin):
     '''

@@ -5,9 +5,8 @@ from six import text_type
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import ProgrammingError
-
 from ckan.model import Resource
-import ckan.plugins.toolkit as toolkit
+from ckan.plugins import toolkit
 from ckanext.feedback.models.download import DownloadSummary
 
 session = Session()
@@ -64,9 +63,8 @@ def increase_resource_download_count(target_resource_id):
             .first()
         )
         if resource is None:
-            download_summary_id = text_type(uuid.uuid4())
             resource_download_summary = DownloadSummary(
-                download_summary_id,
+                text_type(uuid.uuid4()),
                 target_resource_id,
                 1,
                 datetime.datetime.now(),
@@ -77,10 +75,6 @@ def increase_resource_download_count(target_resource_id):
             resource.download = resource.download + 1
             resource.updated = datetime.datetime.now()
         session.commit()
-    except ProgrammingError as e:
-        toolkit.error_shout(e)
-        log.error('If download_summary table does not exit. Hit "feedback init" command')
-        return 'Error'
     except Exception as e:
         toolkit.error_shout(e)
-        return  'Error'
+        return
