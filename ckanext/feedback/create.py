@@ -40,7 +40,7 @@ for table in utilization.__all__:
 try:
     metadata_obj.create_all(engine)
     print('テーブルの作成が成功しました。')
-except (Exception) as e:
+except Exception as e:
     print('テーブルの作成が失敗しました。理由：', e)
     engine.dispose()
     print('接続を閉じました。')
