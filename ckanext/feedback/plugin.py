@@ -1,11 +1,12 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.common import config
-from flask import Blueprint
 
-import ckanext.feedback.controllers.utilization as utilization
 import ckanext.feedback.services.utilization.search as search_service
 from ckanext.feedback.command import feedback
+from ckanext.feedback.views.utilization import (
+    utilization_blueprint as utilization_blueprint,
+)
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):
@@ -25,35 +26,9 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
-        blueprint = Blueprint('search', self.__module__)
-        # Add target page URLs to rules and add each URL to the blueprint
-        rules = [
-            (
-                '/utilization/details',
-                'details',
-                utilization.UtilizationController.details,
-            ),
-            (
-                '/utilization/registration',
-                'registration',
-                utilization.UtilizationController.registration,
-            ),
-            (
-                '/utilization/comment_approval',
-                'comment_approval',
-                utilization.UtilizationController.comment_approval,
-            ),
-            (
-                '/utilization/comment',
-                'comment',
-                utilization.UtilizationController.comment,
-            ),
-            ('/utilization/search', 'search', utilization.UtilizationController.search),
-        ]
-        for rule in rules:
-            blueprint.add_url_rule(*rule)
-
-        return blueprint
+        blueprints = []
+        blueprints.append(utilization_blueprint)
+        return blueprints
 
     def get_commands(self):
         return [feedback.feedback]
