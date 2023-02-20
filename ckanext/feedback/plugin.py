@@ -1,7 +1,11 @@
-from ckan import plugins
+import ckan.plugins as plugins
+import ckan.plugins.toolkit as toolkit
 from ckan.common import config
-from ckan.plugins import toolkit
+from flask import Blueprint
 
+import ckanext.feedback.controllers.utilization as utilization
+import ckanext.feedback.services.utilization.details as detailService
+import ckanext.feedback.services.utilization.search as searchService
 from ckanext.feedback.command import feedback
 from ckanext.feedback.views import utilization
 
@@ -30,17 +34,17 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     def get_commands(self):
         return [feedback.feedback]
 
-    # Check production.ini settings
+        # Check production.ini settings
     # Enable/disable the download module
-    def is_enabled_downloads(self):
+    def enable_downloads(self):
         return toolkit.asbool(config.get('ckan.feedback.downloads.enable', False))
 
     # Enable/disable the resources module
-    def is_enabled_resources(self):
+    def enable_resources(self):
         return toolkit.asbool(config.get('ckan.feedback.resources.enable', False))
 
     # Enable/disable the utilizations module
-    def is_enabled_utilizations(self):
+    def enable_utilizations(self):
         return toolkit.asbool(config.get('ckan.feedback.utilizations.enable', False))
 
     def get_helpers(self):
@@ -51,7 +55,10 @@ class FeedbackPlugin(plugins.SingletonPlugin):
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
         return {
-            'is_enabled_downloads': self.is_enabled_downloads(),
-            'is_enabled_resources': self.is_enabled_resources(),
-            'is_enabled_utilizations': self.is_enabled_utilizations(),
+            'enable_downloads': FeedbackPlugin.enable_downloads,
+            'enable_resources': FeedbackPlugin.enable_resources,
+            'enable_utilizations': FeedbackPlugin.enable_utilizations,
+            'get_utilizations': searchService.get_utilizations,
+            'keep_keyword': searchService.keep_keyword,
+            'get_utilization_details': detailService.get_utilization_details
         }
