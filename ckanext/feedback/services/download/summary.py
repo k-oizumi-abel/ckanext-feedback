@@ -5,6 +5,8 @@ from six import text_type
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import ProgrammingError
+from psycopg2.errors import InFailedSqlTransaction
+from psycopg2.errors import UndefinedTable
 from ckan.model import Resource
 from ckan.plugins import toolkit
 from ckanext.feedback.models.download import DownloadSummary
@@ -30,10 +32,17 @@ def get_package_download_count(package_id):
 
         return package_download_count.package_download
     except ProgrammingError as e:
+        
+        if isinstance(e.orig, UndefinedTable):
+            log.error('download_summary table does not exit. Hit "feedback init" command')
+        
         toolkit.error_shout(e)
-        log.error('If download_summary table does not exit. Hit "feedback init" command')
         return 'Error'
     except Exception as e:
+
+        if isinstance(e.orig, InFailedSqlTransaction):
+            log.error('download_summary table does not exit. Hit "feedback init" command')
+        
         toolkit.error_shout(e)
         return 'Error'
 
@@ -47,12 +56,19 @@ def get_resource_download_count(target_resource_id):
         )
         return resource_download_count
     except ProgrammingError as e:
+        
+        if isinstance(e.orig, UndefinedTable):
+            log.error('download_summary table does not exit. Hit "feedback init" command')
+        
         toolkit.error_shout(e)
-        log.error('If download_summary table does not exit. Hit "feedback init" command')
         return 'Error'
     except Exception as e:
+        
+        if isinstance(e.orig, InFailedSqlTransaction):
+            log.error('download_summary table does not exit. Hit "feedback init" command')
+        
         toolkit.error_shout(e)
-        return  'Error'
+        return 'Error'
 
 
 def increase_resource_download_count(target_resource_id):
@@ -75,6 +91,20 @@ def increase_resource_download_count(target_resource_id):
             resource.download = resource.download + 1
             resource.updated = datetime.datetime.now()
         session.commit()
+    except ProgrammingError as e:
+        
+        if isinstance(e.orig, UndefinedTable):
+            log.error('download_summary table does not exit. Hit "feedback init" command')
+        
+        toolkit.error_shout(e)
+        return 'Error'
+    except Exception as e:
+        
+        if isinstance(e.orig, InFailedSqlTransaction):
+            log.error('download_summary table does not exit. Hit "feedback init" command')
+        
+        toolkit.error_shout(e)
+        return 'Error'
     except Exception as e:
         toolkit.error_shout(e)
         return
