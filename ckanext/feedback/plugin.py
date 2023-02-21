@@ -3,7 +3,7 @@ from ckan.common import config
 from ckan.plugins import toolkit
 from flask import Blueprint
 from ckanext.feedback.command import feedback
-from ckanext.feedback.custom_download import custom_download
+from ckanext.feedback.controllers.download import DownloadController
 from ckanext.feedback.services.download import summary as summaryService
 
 class FeedbackPlugin(plugins.SingletonPlugin):
@@ -46,8 +46,8 @@ class FeedbackPlugin(plugins.SingletonPlugin):
                   url_prefix='/dataset/<id>/resource',
                   url_defaults={'package_type': 'dataset'}
               )
-        blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=custom_download)
-        blueprint.add_url_rule('/<resource_id>/download', view_func=custom_download)
+        blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=DownloadController.custom_download)
+        blueprint.add_url_rule('/<resource_id>/download', view_func=DownloadController.custom_download)
         return blueprint
     
     def get_helpers(self):
