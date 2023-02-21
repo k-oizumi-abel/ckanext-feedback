@@ -4,6 +4,7 @@ from ckanext.feedback.controllers import utilization
 from ckanext.feedback.views.error_handler import add_error_handler
 
 utilization_blueprint = Blueprint('search', __name__, url_prefix=u'/utilization')
+
 # Add target page URLs to rules and add each URL to the blueprint
 rules = [
     (
