@@ -8,7 +8,7 @@ from sqlalchemy.exc import ProgrammingError
 from ckan.model import Resource
 from ckan.plugins import toolkit
 from ckanext.feedback.models.download import DownloadSummary
-from psycopg2.errors import InFailedSqlTransaction, UndefinedTable
+from psycopg2.errors import UndefinedTable
 
 session = Session()
 log = logging.getLogger(__name__)
@@ -36,14 +36,12 @@ def get_package_downloads(package_id):
                 'download_summary table does not exit. Use "feedback init" command'
             )
         toolkit.error_shout(e)
+        session.rollback()
         return 'Error'
     except Exception as e:
-        if isinstance(e.orig, InFailedSqlTransaction):
-            log.error(
-                'If you did not use the command "feedback init". Use "feedback init"'
-            )
         toolkit.error_shout(e)
-        return 'Error'
+        session.rollback()
+        return 'Exception'
 
 
 def get_resource_downloads(resource_id):
@@ -60,14 +58,12 @@ def get_resource_downloads(resource_id):
                 'download_summary table does not exit. Use "feedback init" command'
             )
         toolkit.error_shout(e)
+        session.rollback()
         return 'Error'
     except Exception as e:
-        if isinstance(e.orig, InFailedSqlTransaction):
-            log.error(
-                'If you did not use the command "feedback init". Use "feedback init"'
-            )
         toolkit.error_shout(e)
-        return 'Error'
+        session.rollback()
+        return 'Exception'
 
 
 def count_resource_downloads(resource_id):
@@ -96,11 +92,9 @@ def count_resource_downloads(resource_id):
                 'download_summary table does not exit. Use "feedback init" command'
             )
         toolkit.error_shout(e)
+        session.rollback()
         return 'Error'
     except Exception as e:
-        if isinstance(e.orig, InFailedSqlTransaction):
-            log.error(
-                'If you did not use the command "feedback init". Use "feedback init"'
-            )
         toolkit.error_shout(e)
-        return 'Error'
+        session.rollback()
+        return 'Exception'
