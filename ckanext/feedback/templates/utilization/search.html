@@ -1,3 +1,5 @@
+{% if h.enable_utilizations == true %}
+
 {% extends "page.html" %}
 
   {%- block page -%}
@@ -163,3 +165,4 @@
     {% endif %}
     {{ super() }}
   {% endblock -%}
+{% endif %}
