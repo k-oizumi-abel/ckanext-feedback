@@ -36,16 +36,13 @@ def get_package_downloads(package_id):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
             )
-
-        toolkit.error_shout(e)
-        return 'Error'
-    except Exception as e:
-
-        if isinstance(e.orig, InFailedSqlTransaction):
+        elif isinstance(e.orig, InFailedSqlTransaction):
             log.error(
                 'If download_summary table does not exit. Use "feedback init" command'
             )
-
+        toolkit.error_shout(e)
+        return 'Error'
+    except Exception as e:
         toolkit.error_shout(e)
         return 'Error'
 
@@ -64,16 +61,13 @@ def get_resource_downloads(resource_id):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
             )
-
-        toolkit.error_shout(e)
-        return 'Error'
-    except Exception as e:
-
-        if isinstance(e.orig, InFailedSqlTransaction):
+        elif isinstance(e.orig, InFailedSqlTransaction):
             log.error(
                 'If download_summary table does not exit. Use "feedback init" command'
             )
-
+        toolkit.error_shout(e)
+        return 'Error'
+    except Exception as e:
         toolkit.error_shout(e)
         return 'Error'
 
@@ -82,7 +76,7 @@ def count_resource_downloads(resource_id):
     try:
         resource = (
             session.query(DownloadSummary)
-            .filter_by(DownloadSummary.resource_id == resource_id)
+            .filter(DownloadSummary.resource_id == resource_id)
             .first()
         )
         if resource is None:
@@ -104,15 +98,13 @@ def count_resource_downloads(resource_id):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
             )
-
-        toolkit.error_shout(e)
-        return 'Error'
-    except Exception as e:
-
-        if isinstance(e.orig, InFailedSqlTransaction):
+        elif isinstance(e.orig, InFailedSqlTransaction):
             log.error(
                 'If download_summary table does not exit. Use "feedback init" command'
             )
 
+        toolkit.error_shout(e)
+        return 'Error'
+    except Exception as e:
         toolkit.error_shout(e)
         return 'Error'

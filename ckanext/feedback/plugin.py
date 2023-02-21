@@ -52,16 +52,16 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     
     def get_helpers(self):
         return {
-            "show_package_download": FeedbackPlugin.show_package_download,
-            "show_resource_download": FeedbackPlugin.show_resource_download,
+            "show_package_downloads": FeedbackPlugin.show_package_downloads,
+            "show_resource_downloads": FeedbackPlugin.show_resource_downloads,
             "get_resource_downloads": summaryService.get_resource_downloads,
             "get_package_downloads": summaryService.get_package_downloads
         }
 
-    def show_package_download(self):
+    def show_package_downloads(self):
         return toolkit.asbool(config.get(
-            "ckan.feedback.download.show_package_download", False))
+            "ckan.feedback.download.show_package_downloads", False))
 
-    def show_resource_download(seld):
+    def show_resource_downloads(seld):
         return toolkit.asbool(config.get(
-            "ckan.feedback.download.show_resource_download", False))
+            "ckan.feedback.download.show_resource_downloads", False))
