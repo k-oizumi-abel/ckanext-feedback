@@ -31,7 +31,6 @@ def get_package_downloads(package_id):
 
         return package_download_data.package_downloads
     except ProgrammingError as e:
-
         if isinstance(e.orig, UndefinedTable):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
@@ -56,7 +55,6 @@ def get_resource_downloads(resource_id):
         )
         return resource_downloads.download
     except ProgrammingError as e:
-
         if isinstance(e.orig, UndefinedTable):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
@@ -93,7 +91,6 @@ def count_resource_downloads(resource_id):
             resource.updated = datetime.datetime.now()
         session.commit()
     except ProgrammingError as e:
-
         if isinstance(e.orig, UndefinedTable):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
