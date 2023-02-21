@@ -2,7 +2,7 @@ from ckan import plugins
 from ckan.common import config
 from ckan.plugins import toolkit
 from ckanext.feedback.command import feedback
-from ckanext.feedback.services.download import summary as summaryService
+from ckanext.feedback.services.download import summary as summary_service
 from ckanext.feedback.views.download import blueprint as download_blueprint
 
 
@@ -54,6 +54,6 @@ class FeedbackPlugin(plugins.SingletonPlugin):
             'enable_downloads': self.enable_downloads(),
             'enable_resources': self.enable_resources(),
             'enable_utilizations': self.enable_utilizations(),
-            'get_resource_downloads': summaryService.get_resource_downloads,
-            'get_package_downloads': summaryService.get_package_downloads,
+            'get_resource_downloads': summary_service.get_resource_downloads,
+            'get_package_downloads': summary_service.get_package_downloads,
         }
