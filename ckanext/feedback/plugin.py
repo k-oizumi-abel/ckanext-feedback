@@ -28,18 +28,9 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
-#        blueprints = []
-#        blueprints.append(download_blueprint)
-#        return blueprints
-        blueprint = Blueprint(
-                  'download',
-                  self.__module__,
-                  url_prefix='/dataset/<id>/resource',
-                  url_defaults={'package_type': 'dataset'}
-              )
-        blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=DownloadController.custom_download)
-        blueprint.add_url_rule('/<resource_id>/download', view_func=DownloadController.custom_download)
-        return blueprint
+        blueprints = []
+        blueprints.append(download_blueprint)
+        return blueprints
 
     # Check production.ini settings
     # Enable/disable the download module
