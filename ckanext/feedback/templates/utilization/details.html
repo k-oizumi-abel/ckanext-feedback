@@ -58,28 +58,34 @@
               {% endblock %}
 
               {% block primary %}
-                {% set row = details %}
-                <div class="centered-content">
+                {% set row = h.get_utilization_details() %}
+                <form class="centered-content" method="get">
                   <br>
-                  {% if c.userobj.sysadmin %}
-                    <form name="admin_form" method="post">
-                      <input type="hidden" id="resource_id" name="resource_id" value="{{ row.resource_id }}"/>
-                      <input type="hidden" id="utilization_id" name="utilization_id" value="{{ utilization_id }}"/>
-                      <a class="btn btn-primary right-aligned spaced-left" href="{{ h.url_for('utilization.edit') }}?utilization_id={{ utilization_id }}&resource_id={{ row.resource_id }}">編集</a>
-                      {% if row.approval == false %}
-                        <button class="btn btn-primary right-aligned" id="approval_flag" name="approval_flag" value="true">承認</button>
-                      {% endif %}
-                      <br>
-                    </form>
-                    <hr class="divider">
-                  {% endif %}
-                  <h1>{{ row.title }}</h1>
-                  <hr>
-                  <h4>データセット</h4>
-                  <a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}">{{ row.package_name }}</a>
-                  <hr>
-                  <h4>データリソース</h4>
-                  <a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}/resource/{{ row.resource_id }}">{{ row.resource_name }}</a>
+                  <button class="btn btn-primary right-aligned spaced-left">編集</button>
+                  <button class="btn btn-primary right-aligned">承認</button>
+                  <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                      <th scope="col" class="left-aligned-text">Field</th>
+                      <th scope="col" class="left-aligned-text">Value</th>
+                    </thead>
+                    <tr>
+                      <td class="left-aligned-text bold">データセット</td>
+                      <td class="left-aligned-text"><a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}">{{ row.package_name }}</a></td>
+                    </tr>
+                    <tr>
+                      <td class="left-aligned-text bold">データリソース</td>
+                      <td class="left-aligned-text"><a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}/resource/{{ row.resource_id }}">{{ row.resource_name }}</a></td>
+                    </tr>
+                    <tr>
+                      <td class="left-aligned-text bold">タイトル</td>
+                      <td class="left-aligned-text">{{ row.title }}</td>
+                    </tr>
+                    <br>
+                  </table>
+                  <p class="bold">利活用内容</p>
+                  <p>サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル</p>
+                  <br>
+                  <p class="bold">課題解決数</p>
                   <hr>
                   <h4>利活用内容</h4>
                   <p>{{ row.description }}</p>
@@ -87,66 +93,51 @@
                   <h4>課題解決数</h4>
                   <!-- ToDo -->
                   <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">1
-                  {% if c.userobj.sysadmin %}
-                    <button class="btn btn-primary right-aligned">課題解決</button>
-                  {% endif %}
+                  <button class="btn btn-primary right-aligned">課題解決</button>
                   <br>
-                  <hr>
-                  <h4>コメント数</h4>
-                  {% if not c.userobj.sysadmin %}
-                    {% set comments = approved_comments %}
-                  {% endif %}
-                  <p>{{ comments|length }}</p>
-                  <hr>
-                  <form name="comment_form" method="post">
-                    <input type="hidden" id="resource_id" name="resource_id" value="{{ row.resource_id }}"/>
-                    <input type="hidden" id="utilization_id" name="utilization_id" value="{{ utilization_id }}"/>
-                    <h4>コメント</h4>
-                    <select name="comment_type" id="comment_type">
-                      {% for category in categories %}
-                        <option value="{{ category.name }}">{{ category.value }}</option>
-                      {% endfor %}
-                    </select>
-                    <br>
-                    <br>
-                    <textarea class="form-control" cols="20" rows="5" id="comment_content" name="comment_content"></textarea>
-                    <br>
-                    <button class="btn btn-primary right-aligned" id="comment_flag" name="comment_flag" value="true">コメント送信</button>
-                    <br>
-                    <br>
-                    <br>
-                  </form>
-                  {% if comments|length %}
-                    <hr class="divider">
-                  {% endif %}
-                  <form name="approval_form" method="post">
-                    <input type="hidden" id="utilization_id" name="utilization_id" value="{{ utilization_id }}"/>
-                    <input type="hidden" id="approval_user" name="approval_user" value="{{ c.userobj.id }}"/>
-                    {% for comment in comments %}
-                      <span>
-                        {% if c.userobj.sysadmin and comment.approval == false %}
-                          <button class="btn btn-primary right-aligned" id="comment_id" name="comment_id" value="{{ comment.id }}">承認</button>
-                        {% endif %}
-                        <h4>
-                          {{ comment.created.strftime('%Y/%m/%d') }}
-                          {% for category in categories %}
-                            {% if comment.category in category.name %}
-                              {{ category.value }}
-                            {% endif %}
-                          {% endfor %}
-                        </h4>
-                      </span>
-                      <br>
-                      <p>{{ comment.content }}</p>
-                      <hr class="divider">
-                    {% endfor %}
-                  </form>
-                </div>
+                  <br>
+                  <p class="bold">コメント数</p>
+                  <p>1</p>
+                  <br>
+                  <p class="bold">コメント</p>
+                  <select name="comment-type" id="comment-type">
+                    <option value="request">要望</option>
+                    <option value="inquiry">問合せ</option>
+                  </select>
+                  <br>
+                  <br>
+                  <textarea class="form-control" cols="20" rows="5"></textarea>
+                  <br>
+                  <button class="btn btn-primary right-aligned">コメント送信</button>
+                  <br>
+                  <br>
+                  <br>
+                  <p class="bold">2023/01/15 要望</p>
+                  <button class="btn btn-primary right-aligned">承認</button>
+                  <br>
+                  <br>
+                  <p>サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル</p>
+                  <br>
+                  <br>
+                  <p class="bold">2023/01/10 要望</p>
+                  <button class="btn btn-primary right-aligned">承認</button>
+                  <br>
+                  <br>
+                  <p>サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル</p>
+                  <br>
+                  <br>
+                  <p class="bold">2023/01/08 問合せ</p>
+                  <button class="btn btn-primary right-aligned">承認</button>
+                  <br>
+                  <br>
+                  <p>サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル</p>
+                  <br>
+                  <br>
+                </form>
               {% endblock %}
             </div>
           {% endblock %}
         </div>
-      </div>
     {% endblock -%}
 
     {#
