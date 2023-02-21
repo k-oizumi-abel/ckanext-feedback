@@ -16,24 +16,12 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.ITemplateHelpers)
 
     def update_config(self, config):
-        # Retrieve the value for the "ckan.feedback.substitute_templates"
-        # setting from the Config file (/etc/ckan/production.ini) and
-        # return it as a bool.
-        # If the "ckan.feedback.substitute_templates" setting doesn't exist
-        # return False
-        substitute_templates = toolkit.asbool(
-            config.get('ckan.feedback.substitute_templates', False)
-        )
-
-        # If substitute_templates is True, add the feedback directories below
-        # to CKAN's extra paths
-        if substitute_templates:
-            # Add this plugin's directories to CKAN's extra paths, so that
-            # CKAN will use this plugin's custom files.
-            # Paths are relative to this plugin.py file.
-            toolkit.add_template_directory(config, 'templates')
-            toolkit.add_public_directory(config, 'public')
-            toolkit.add_resource('fanstatic', 'feedback')
+        # Add this plugin's directories to CKAN's extra paths, so that
+        # CKAN will use this plugin's custom files.
+        # Paths are relative to this plugin.py file.
+        toolkit.add_template_directory(config, 'templates')
+        toolkit.add_public_directory(config, 'public')
+        toolkit.add_resource('assets', 'feedback')
 
     def get_commands(self):
         return [feedback.feedback]
