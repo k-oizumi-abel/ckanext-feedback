@@ -65,4 +65,6 @@ class FeedbackPlugin(plugins.SingletonPlugin):
             'enable_downloads': self.enable_downloads(),
             'enable_resources': self.enable_resources(),
             'enable_utilizations': self.enable_utilizations(),
+            "get_resource_downloads": summaryService.get_resource_downloads,
+            "get_package_downloads": summaryService.get_package_downloads
         }

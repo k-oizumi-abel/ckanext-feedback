@@ -52,7 +52,7 @@ def get_resource_downloads(resource_id):
         resource_downloads = (
             session.query(DownloadSummary.download)
             .filter(DownloadSummary.resource_id == resource_id)
-            .scalar()
+            .first()
         )
         return resource_downloads
     except ProgrammingError as e:
