@@ -35,13 +35,13 @@ def get_package_downloads(package_id):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
             )
-        elif isinstance(e.orig, InFailedSqlTransaction):
-            log.error(
-                'If you did not use the command "feedback init". Use "feedback init"'
-            )
         toolkit.error_shout(e)
         return 'Error'
     except Exception as e:
+        if isinstance(e.orig, InFailedSqlTransaction):
+            log.error(
+                'If you did not use the command "feedback init". Use "feedback init"'
+            )
         toolkit.error_shout(e)
         return 'Error'
 
@@ -59,13 +59,13 @@ def get_resource_downloads(resource_id):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
             )
-        elif isinstance(e.orig, InFailedSqlTransaction):
-            log.error(
-                'If you did not use the command "feedback init". Use "feedback init"'
-            )
         toolkit.error_shout(e)
         return 'Error'
     except Exception as e:
+        if isinstance(e.orig, InFailedSqlTransaction):
+            log.error(
+                'If you did not use the command "feedback init". Use "feedback init"'
+            )
         toolkit.error_shout(e)
         return 'Error'
 
@@ -95,13 +95,12 @@ def count_resource_downloads(resource_id):
             log.error(
                 'download_summary table does not exit. Use "feedback init" command'
             )
-        elif isinstance(e.orig, InFailedSqlTransaction):
-            log.error(
-                'If you did not use the command "feedback init". Use "feedback init"'
-            )
-
         toolkit.error_shout(e)
         return 'Error'
     except Exception as e:
+        if isinstance(e.orig, InFailedSqlTransaction):
+            log.error(
+                'If you did not use the command "feedback init". Use "feedback init"'
+            )
         toolkit.error_shout(e)
         return 'Error'
