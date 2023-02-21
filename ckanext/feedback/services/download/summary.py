@@ -37,11 +37,11 @@ def get_package_downloads(package_id):
             )
         toolkit.error_shout(e)
         session.rollback()
-        return 'Error'
+        return ' '
     except Exception as e:
         toolkit.error_shout(e)
         session.rollback()
-        return 'Exception'
+        return ' '
 
 
 def get_resource_downloads(resource_id):
@@ -59,11 +59,11 @@ def get_resource_downloads(resource_id):
             )
         toolkit.error_shout(e)
         session.rollback()
-        return 'Error'
+        return ' '
     except Exception as e:
         toolkit.error_shout(e)
         session.rollback()
-        return 'Exception'
+        return ' '
 
 
 def count_resource_downloads(resource_id):
@@ -93,8 +93,8 @@ def count_resource_downloads(resource_id):
             )
         toolkit.error_shout(e)
         session.rollback()
-        return 'Error'
+        return ' '
     except Exception as e:
         toolkit.error_shout(e)
         session.rollback()
-        return 'Exception'
+        return ' '
