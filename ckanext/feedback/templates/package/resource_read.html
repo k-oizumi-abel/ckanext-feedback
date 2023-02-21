@@ -15,7 +15,7 @@
         {% if h.show_resource_download(self) == True %}
           <tr>
             <th scope="row">{{ _('Download') }}</th>
-            <td>{{ h.get_resource_download_count(res.id) or _('0') }}</td>
+            <td>{{ h.get_resource_downloads(res.id) or _('0') }}</td>
           </tr>
         {% endif %}
         <tr>

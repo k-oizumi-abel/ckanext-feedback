@@ -50,14 +50,14 @@ def get_package_downloads(package_id):
         return 'Error'
 
 
-def get_resource_download_count(target_resource_id):
+def get_resource_downloads(resource_id):
     try:
-        resource_download_count = (
+        resource_downloads = (
             session.query(DownloadSummary.download)
-            .filter_by(resource_id=target_resource_id)
+            .filter(DownloadSummary.resource_id == resource_id)
             .scalar()
         )
-        return resource_download_count
+        return resource_downloads
     except ProgrammingError as e:
 
         if isinstance(e.orig, UndefinedTable):
@@ -78,22 +78,22 @@ def get_resource_download_count(target_resource_id):
         return 'Error'
 
 
-def increase_resource_download_count(target_resource_id):
+def count_resource_downloads(resource_id):
     try:
         resource = (
             session.query(DownloadSummary)
-            .filter_by(resource_id=target_resource_id)
+            .filter_by(DownloadSummary.resource_id == resource_id)
             .first()
         )
         if resource is None:
-            resource_download_summary = DownloadSummary(
+            download_summary = DownloadSummary(
                 text_type(uuid.uuid4()),
-                target_resource_id,
+                resource_id,
                 1,
                 datetime.datetime.now(),
                 datetime.datetime.now(),
             )
-            session.add(resource_download_summary)
+            session.add(download_summary)
         else:
             resource.download = resource.download + 1
             resource.updated = datetime.datetime.now()

@@ -6,7 +6,7 @@
     {{ h.popular('views', res.tracking_summary.total, min=10) if res.tracking_summary }}
     {% if h.show_resource_download(self) == True %}
       <i class="fa fa-arrow-circle-o-down"></i>
-      {{ h.get_resource_download_count(res.id) or _('0') }}
+      {{ h.get_resource_downloads(res.id) or _('0') }}
     {% endif %}
   </a>
   {% endblock %}
