@@ -38,7 +38,7 @@ def get_package_downloads(package_id):
             )
         elif isinstance(e.orig, InFailedSqlTransaction):
             log.error(
-                'If download_summary table does not exit. Use "feedback init" command'
+                'If you did not use the command "feedback init". Use "feedback init"'
             )
         toolkit.error_shout(e)
         return 'Error'
@@ -63,7 +63,7 @@ def get_resource_downloads(resource_id):
             )
         elif isinstance(e.orig, InFailedSqlTransaction):
             log.error(
-                'If download_summary table does not exit. Use "feedback init" command'
+                'If you did not use the command "feedback init". Use "feedback init"'
             )
         toolkit.error_shout(e)
         return 'Error'
@@ -100,7 +100,7 @@ def count_resource_downloads(resource_id):
             )
         elif isinstance(e.orig, InFailedSqlTransaction):
             log.error(
-                'If download_summary table does not exit. Use "feedback init" command'
+                'If you did not use the command "feedback init". Use "feedback init"'
             )
 
         toolkit.error_shout(e)

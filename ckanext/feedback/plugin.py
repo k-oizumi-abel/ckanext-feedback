@@ -5,7 +5,7 @@ from flask import Blueprint
 from ckanext.feedback.command import feedback
 from ckanext.feedback.controllers.download import DownloadController
 from ckanext.feedback.services.download import summary as summaryService
-from ckanext.feedback.views.download import download_blueprint
+from ckanext.feedback.views.download import blueprint as download_blueprint
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):
@@ -40,9 +40,18 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
-        blueprints = []
-        blueprints.append(download_blueprint)
-        return blueprints
+#        blueprints = []
+#        blueprints.append(download_blueprint)
+#        return blueprints
+        blueprint = Blueprint(
+                  'download',
+                  self.__module__,
+                  url_prefix='/dataset/<id>/resource',
+                  url_defaults={'package_type': 'dataset'}
+              )
+        blueprint.add_url_rule('/<resource_id>/download/<filename>', view_func=DownloadController.custom_download)
+        blueprint.add_url_rule('/<resource_id>/download', view_func=DownloadController.custom_download)
+        return blueprint
 
     def get_helpers(self):
         # Template helper function names should begin with the name of the
