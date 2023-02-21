@@ -2,6 +2,7 @@ from ckan.common import request
 from ckan.plugins import toolkit
 
 import ckanext.feedback.services.utilization.details as detail_service
+import ckanext.feedback.services.utilization.registration as registration_service
 import ckanext.feedback.services.utilization.search as search_service
 
 
@@ -49,7 +50,15 @@ class UtilizationController:
 
     # utilization/registration.html
     def registration():
-        return toolkit.render('utilization/registration.html')
+        resource_id = request.args.get('resource_id', '')
+        resource_details = registration_service.get_resource_details(resource_id)
+
+        return toolkit.render(
+            'utilization/registration.html',
+            {
+                'resource_details': resource_details,
+            },
+        )
 
     # utilization/edit.html
     def edit():
