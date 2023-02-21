@@ -6,6 +6,7 @@ class DownloadController:
     def count_resource_downloads(resource_id):
         count_resource_downloads(resource_id)
 
-    def download(package_type, id, resource_id, filename=None):
+    # extend default download function to count when a resource is downloaded
+    def extended_download(package_type, id, resource_id, filename=None):
         count_resource_downloads(resource_id)
         return download(package_type, id, resource_id, filename=filename)
