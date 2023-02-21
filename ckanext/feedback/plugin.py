@@ -41,25 +41,28 @@ class FeedbackPlugin(plugins.SingletonPlugin):
         blueprint.add_url_rule('/<resource_id>/download', view_func=DownloadController.custom_download)
         return blueprint
 
+    # Check production.ini settings
+    # Enable/disable the download module
+    def enable_downloads(self):
+        return toolkit.asbool(config.get('ckan.feedback.downloads.enable', False))
+
+    # Enable/disable the resources module
+    def enable_resources(self):
+        return toolkit.asbool(config.get('ckan.feedback.resources.enable', False))
+
+    # Enable/disable the utilizations module
+    def enable_utilizations(self):
+        return toolkit.asbool(config.get('ckan.feedback.utilizations.enable', False))
+
     def get_helpers(self):
+        '''Register the most_popular_groups() function above as a template
+        helper function.
+        '''
         # Template helper function names should begin with the name of the
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
         return {
-            'show_package_downloads': FeedbackPlugin.show_package_downloads,
-            'show_resource_downloads': FeedbackPlugin.show_resource_downloads,
-            'get_resource_downloads': summaryService.get_resource_downloads,
-            'get_package_downloads': summaryService.get_package_downloads,
+            'enable_downloads': self.enable_downloads(),
+            'enable_resources': self.enable_resources(),
+            'enable_utilizations': self.enable_utilizations(),
         }
-
-    # Check production.ini settings
-    # Show/hide the sum of resource downloads in the same package
-    def show_package_downloads(self):
-        return toolkit.asbool(
-            config.get('ckan.feedback.download.show_package_downloads', False)
-        )
-    # Show/hide resource downloads
-    def show_resource_downloads(seld):
-        return toolkit.asbool(
-            config.get('ckan.feedback.download.show_resource_downloads', False)
-        )
