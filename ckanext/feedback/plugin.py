@@ -3,7 +3,7 @@ from ckan.common import config
 from ckan.plugins import toolkit
 from ckanext.feedback.command import feedback
 from ckanext.feedback.services.download import summary as summary_service
-from ckanext.feedback.views.download import blueprint as download_blueprint
+from ckanext.feedback.views import download
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):
@@ -28,7 +28,7 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     def get_blueprint(self):
         blueprints = []
-        blueprints.append(download_blueprint)
+        blueprints.append(download.get_download_blueprint())
         return blueprints
 
     # Check production.ini settings
