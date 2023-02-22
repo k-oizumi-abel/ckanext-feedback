@@ -33,7 +33,7 @@ def get_package_downloads(package_id):
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
-                'download_summary table does not exit. Use "feedback init" command'
+                'download_summary table does not exit. Run "ckan --config=/etc/ckan/production.ini feedback init".'
             )
         toolkit.error_shout(e)
         session.rollback()
@@ -55,7 +55,7 @@ def get_resource_downloads(resource_id):
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
-                'download_summary table does not exit. Use "feedback init" command'
+                'download_summary table does not exit. Run "ckan --config=/etc/ckan/production.ini feedback init".'
             )
         toolkit.error_shout(e)
         session.rollback()
@@ -89,7 +89,7 @@ def count_resource_downloads(resource_id):
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
-                'download_summary table does not exit. Use "feedback init" command'
+                'download_summary table does not exit. Run "ckan --config=/etc/ckan/production.ini feedback init".'
             )
         toolkit.error_shout(e)
         session.rollback()
