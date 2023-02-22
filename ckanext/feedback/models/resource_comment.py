@@ -1,7 +1,6 @@
 import datetime
 
-import ckan.model.domain_object as domain_object
-import ckan.model.meta as meta
+from ckan.model import domain_object, meta
 from sqlalchemy import (  # type: ignore
     BOOLEAN,
     TIMESTAMP,

@@ -1,11 +1,9 @@
-import ckan.plugins as plugins
-import ckan.plugins.toolkit as toolkit
+from ckan import plugins
 from ckan.common import config
+from ckan.plugins import toolkit
 
 from ckanext.feedback.command import feedback
-from ckanext.feedback.views.utilization import (
-    utilization_blueprint as utilization_blueprint,
-)
+from ckanext.feedback.views.utilization import utilization_blueprint
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):

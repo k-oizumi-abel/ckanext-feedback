@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-import ckanext.feedback.controllers.utilization as utilization
+from ckanext.feedback.controllers import utilization
 
 utilization_blueprint = Blueprint('utilization', __name__, url_prefix=u'/utilization')
 

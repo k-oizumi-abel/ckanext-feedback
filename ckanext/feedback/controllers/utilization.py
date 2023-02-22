@@ -1,5 +1,5 @@
-import ckan.plugins.toolkit as toolkit
 from ckan.common import request
+from ckan.plugins import toolkit
 
 import ckanext.feedback.services.utilization.search as search_service
 
