@@ -1,7 +1,6 @@
 import uuid
 import logging
 import datetime
-from six import text_type
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import ProgrammingError
@@ -73,7 +72,7 @@ def increment_resource_downloads(resource_id):
         )
         if download_summary is None:
             download_summary = DownloadSummary(
-                text_type(uuid.uuid4()),
+                str(uuid.uuid4()),
                 resource_id,
                 1,
                 datetime.datetime.now(),
