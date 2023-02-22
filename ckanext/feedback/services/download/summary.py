@@ -42,14 +42,14 @@ def get_package_downloads(package_id):
 
 def get_resource_downloads(resource_id):
     try:
-        resource_downloads = (
+        count = (
             session.query(DownloadSummary.download)
             .filter(DownloadSummary.resource_id == resource_id)
-            .first()
+            .scalar()
         )
-        if resource_downloads is None:
+        if count is None:
             return 0
-        return resource_downloads.download
+        return count
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
