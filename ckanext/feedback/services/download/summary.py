@@ -66,12 +66,12 @@ def get_resource_downloads(resource_id):
 
 def increment_resource_downloads(resource_id):
     try:
-        resource = (
+        download_summary = (
             session.query(DownloadSummary)
             .filter(DownloadSummary.resource_id == resource_id)
             .first()
         )
-        if resource is None:
+        if download_summary is None:
             download_summary = DownloadSummary(
                 text_type(uuid.uuid4()),
                 resource_id,
@@ -81,8 +81,8 @@ def increment_resource_downloads(resource_id):
             )
             session.add(download_summary)
         else:
-            resource.download = resource.download + 1
-            resource.updated = datetime.datetime.now()
+            download_summary.download = download_summary.download + 1
+            download_summary.updated = datetime.datetime.now()
         session.commit()
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
