@@ -3,15 +3,13 @@ from datetime import datetime
 
 from ckan.model.package import Package
 from ckan.model.resource import Resource
+from flask import Flask
 from sqlalchemy import insert, update
 from sqlalchemy.orm import Session
 
-from ckanext.feedback.models.utilization import (
-    Utilization,
-    Utilization_comment_category,
-    UtilizationComment,
-    UtilizationSummary,
-)
+from ckanext.feedback.models.utilization import Utilization, UtilizationComment
+
+app = Flask(__name__)
 
 session = Session()
 
@@ -22,7 +20,6 @@ def get_utilization_details(utilization_id):
         session.query(
             Utilization.title,
             Utilization.description,
-            Utilization.approval,
             Resource.name.label('resource_name'),
             Resource.id.label('resource_id'),
             Package.name.label('package_name'),
@@ -40,7 +37,6 @@ def get_utilization_comments(utilization_id):
     rows = (
         session.query(
             UtilizationComment.id,
-            UtilizationComment.category,
             UtilizationComment.content,
             UtilizationComment.created,
             UtilizationComment.approval,
@@ -49,36 +45,7 @@ def get_utilization_comments(utilization_id):
         .order_by(UtilizationComment.created.desc())
         .all()
     )
-
     return rows
-
-
-# Get approved comments related to the Utilization record
-def get_approved_utilization_comments(utilization_id):
-    rows = (
-        session.query(
-            UtilizationComment.id,
-            UtilizationComment.category,
-            UtilizationComment.content,
-            UtilizationComment.created,
-            UtilizationComment.approval,
-        )
-        .filter(
-            UtilizationComment.utilization_id == utilization_id,
-            UtilizationComment.approval == 'true',
-        )
-        .order_by(UtilizationComment.created.desc())
-        .all()
-    )
-
-    return rows
-
-
-# Get category enum names and values
-def get_categories():
-    # rows = Utilization_comment_category
-
-    return Utilization_comment_category
 
 
 # Submit comment
@@ -103,6 +70,7 @@ def submit_comment(utilization_id, comment_type, comment_content):
             raise e
 
 
+@app.route('/', methods=['GET', 'POST'])
 # Submit comment approval
 def submit_approval(comment_id, approval_user):
     try:
@@ -113,46 +81,6 @@ def submit_approval(comment_id, approval_user):
                 approval=True,
                 approved=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
                 approval_user_id=approval_user,
-            )
-        )
-        session.commit()
-    except Exception as e:
-        session.rollback()
-        raise e
-
-
-# Approve currently displayed utilization
-def approve_utilization(utilization_id, approval_user):
-    try:
-        session.execute(
-            update(Utilization)
-            .where(Utilization.id == utilization_id)
-            .values(
-                approval=True,
-                approved=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
-                approval_user_id=approval_user,
-            )
-        )
-        session.commit()
-    except Exception as e:
-        session.rollback()
-        raise e
-
-
-# Update utilization summary comment count
-def update_utilization_summary(resource_id):
-    count = (
-        session.query(UtilizationSummary.comment)
-        .filter(UtilizationSummary.resource_id == resource_id)
-        .first()
-    )
-    try:
-        session.execute(
-            update(UtilizationSummary)
-            .where(UtilizationSummary.resource_id == resource_id)
-            .values(
-                comment=count.comment + 1,
-                updated=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
             )
         )
         session.commit()
