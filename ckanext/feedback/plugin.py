@@ -33,24 +33,24 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     # Check production.ini settings
     # Enable/disable the download module
-    def enable_downloads(self):
+    def is_enabled_downloads(self):
         return toolkit.asbool(config.get('ckan.feedback.downloads.enable', False))
 
     # Enable/disable the resources module
-    def enable_resources(self):
+    def is_enabled_resources(self):
         return toolkit.asbool(config.get('ckan.feedback.resources.enable', False))
 
     # Enable/disable the utilizations module
-    def enable_utilizations(self):
+    def is_enabled_utilizations(self):
         return toolkit.asbool(config.get('ckan.feedback.utilizations.enable', False))
 
     # ITemplateHelpers
 
     def get_helpers(self):
         return {
-            'enable_downloads': self.enable_downloads(),
-            'enable_resources': self.enable_resources(),
-            'enable_utilizations': self.enable_utilizations(),
+            'is_enabled_downloads': self.is_enabled_downloads(),
+            'is_enabled_resources': self.is_enabled_resources(),
+            'is_enabled_utilizations': self.is_enabled_utilizations(),
             'get_resource_downloads': summary_service.get_resource_downloads,
             'get_package_downloads': summary_service.get_package_downloads,
         }

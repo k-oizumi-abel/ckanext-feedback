@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        {% if h.enable_downloads %}
+        {% if h.is_enabled_downloads %}
           <tr>
             <th scope="row">{{ _('Download') }}</th>
             <td>{{ h.get_resource_downloads(res.id) or _('0') }}</td>

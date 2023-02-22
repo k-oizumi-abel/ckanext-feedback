@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block package_additional_info %}
-  {% if h.enable_downloads %}
+  {% if h.is_enabled_downloads %}
     <tr>
       <th scope="row" class="dataset-label">{{ _('Download') }}</th>
       <td class="dataset-details" property="foaf:homepage">{{ h.get_package_downloads(pkg_dict.id) or _('0') }}</td>
