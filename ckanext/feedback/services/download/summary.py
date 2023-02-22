@@ -22,8 +22,8 @@ def get_package_downloads(package_id):
                 func.sum(DownloadSummary.download).label('package_downloads'),
             )
             .join(DownloadSummary, Resource.id == DownloadSummary.resource_id)
-            .group_by(Resource.package_id)
             .filter(Resource.package_id == package_id)
+            .group_by(Resource.package_id)
             .first()
         )
         if package_download_data is None:
