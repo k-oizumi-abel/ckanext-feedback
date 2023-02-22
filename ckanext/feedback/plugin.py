@@ -7,24 +7,25 @@ from ckanext.feedback.views.download import blueprint as download_blueprint
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):
-    # Declare class implements
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
 
+    # IConfigurer
+
     def update_config(self, config):
-        # Add this plugin's directories to CKAN's extra paths, so that
-        # CKAN will use this plugin's custom files.
-        # Paths are relative to this plugin.py file.
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('assets', 'feedback')
 
+    # IClick
+
     def get_commands(self):
         return [feedback.feedback]
 
-    # Return a flask Blueprint object to be registered by the extension
+    # IBlueprint
+
     def get_blueprint(self):
         blueprints = []
         blueprints.append(download_blueprint)
@@ -43,13 +44,9 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     def enable_utilizations(self):
         return toolkit.asbool(config.get('ckan.feedback.utilizations.enable', False))
 
+    # ITemplateHelpers
+
     def get_helpers(self):
-        '''Register the most_popular_groups() function above as a template
-        helper function.
-        '''
-        # Template helper function names should begin with the name of the
-        # extension they belong to, to avoid clashing with functions from
-        # other extensions.
         return {
             'enable_downloads': self.enable_downloads(),
             'enable_resources': self.enable_resources(),
