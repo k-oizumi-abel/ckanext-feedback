@@ -51,6 +51,8 @@ def get_resource_downloads(resource_id):
             .filter(DownloadSummary.resource_id == resource_id)
             .first()
         )
+        if resource_downloads is None:
+            return 0
         return resource_downloads.download
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
