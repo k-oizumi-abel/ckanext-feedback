@@ -3,7 +3,7 @@ from ckan.common import config
 from ckan.plugins import toolkit
 
 from ckanext.feedback.command import feedback
-from ckanext.feedback.views.utilization import utilization_blueprint
+from ckanext.feedback.views import utilization
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):
@@ -24,7 +24,7 @@ class FeedbackPlugin(plugins.SingletonPlugin):
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
         blueprints = []
-        blueprints.append(utilization_blueprint)
+        blueprints.append(utilization.get_utilization_blueprint())
         return blueprints
 
     def get_commands(self):
