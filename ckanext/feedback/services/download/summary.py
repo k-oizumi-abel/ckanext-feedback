@@ -16,20 +16,16 @@ log = logging.getLogger(__name__)
 
 def get_package_downloads(package_id):
     try:
-        package_downloads = (
-            session.query(
-                Resource.package_id,
-                func.sum(DownloadSummary.download).label('downloads'),
-            )
-            .join(DownloadSummary, Resource.id == DownloadSummary.resource_id)
+        count = (
+            session.query(func.sum(DownloadSummary.download))
+            .join(Resource)
             .filter(Resource.package_id == package_id)
-            .group_by(Resource.package_id)
-            .first()
+            .scalar()
         )
-        if package_downloads is None:
+        if count is None:
             return 0
 
-        return package_downloads.downloads
+        return count
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
