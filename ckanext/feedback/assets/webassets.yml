@@ -12,3 +12,10 @@
 #   output: ckanext-feedback/%(version)s-feedback.css
 #   contents:
 #     - css/feedback.css
+
+feedback-tooltip-css:
+  filter: cssrewrite
+  output: feedback/%(version)s-tooltip.css
+  contents:
+    - css/tooltip.css
+    
