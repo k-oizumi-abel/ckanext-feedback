@@ -8,25 +8,10 @@
   width: 90%
 }
 
-.centered-text {
-  text-align: center;
-}
-
-.left-aligned-text {
-  text-align: left;
-}
-
-.middle-aligned {
-  float: left;
-  position: relative;
-  left: 50%;
-}
-
-td, th {
-  text-align: center;
-  vertical-align: middle !important;
+.right-aligned {
+  float: right;
 }
 
 .title {
-  width: 50%;
+  width: 100%;
 }
