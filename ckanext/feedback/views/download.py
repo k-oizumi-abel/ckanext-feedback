@@ -16,5 +16,6 @@ blueprint.add_url_rule(
     '/<resource_id>/download', view_func=DownloadController.extended_download
 )
 
+
 def get_download_blueprint():
     return blueprint
