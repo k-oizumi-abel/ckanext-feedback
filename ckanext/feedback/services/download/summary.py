@@ -64,7 +64,7 @@ def get_resource_downloads(resource_id):
         return ' '
 
 
-def count_resource_downloads(resource_id):
+def increment_resource_downloads(resource_id):
     try:
         resource = (
             session.query(DownloadSummary)
