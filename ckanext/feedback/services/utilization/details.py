@@ -3,13 +3,10 @@ from datetime import datetime
 
 from ckan.model.package import Package
 from ckan.model.resource import Resource
-from flask import Flask
 from sqlalchemy import insert, update
 from sqlalchemy.orm import Session
 
 from ckanext.feedback.models.utilization import Utilization, UtilizationComment
-
-app = Flask(__name__)
 
 session = Session()
 
@@ -70,7 +67,6 @@ def submit_comment(utilization_id, comment_type, comment_content):
             raise e
 
 
-@app.route('/', methods=['GET', 'POST'])
 # Submit comment approval
 def submit_approval(comment_id, approval_user):
     try:

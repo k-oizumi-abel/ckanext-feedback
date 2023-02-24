@@ -1,35 +1,24 @@
 from ckan.common import request
-from ckan.plugins import toolkit
-from flask import Flask
 
 import ckanext.feedback.services.utilization.details as detail_service
 import ckanext.feedback.services.utilization.registration as registration_service
 import ckanext.feedback.services.utilization.search as search_service
 
-app = Flask(__name__)
-
 
 class UtilizationController:
     # Render HTML pages
     # utilization/details.html
-    @app.route('/', methods=['GET', 'POST'])
     def details():
         if request.method == 'POST':
-            utilization_id = request.params('utilization_id', '')
-            comment_id = request.params('comment_id')
-            comment_type = request.params('comment_type', '')
-            comment_content = request.params('comment_content', '')
-            approval_user = request.params('approval_user')
+            utilization_id = request.form.get('utilization_id', '')
+            comment_id = request.form.get('comment_id')
+            comment_type = request.form.get('comment_type', '')
+            comment_content = request.form.get('comment_content', '')
+            approval_user = request.form.get('approval_user')
+            detail_service.submit_comment(utilization_id, comment_type, comment_content)
+            detail_service.submit_approval(comment_id, approval_user)
         else:
             utilization_id = request.args.get('utilization_id', '')
-            comment_id = request.args.get('comment_id')
-            comment_type = request.args.get('comment_type', '')
-            comment_content = request.args.get('comment_content', '')
-            approval_user = request.args.get('approval_user')
-        submit_comment = detail_service.submit_comment(
-            utilization_id, comment_type, comment_content
-        )
-        submit_approval = detail_service.submit_approval(comment_id, approval_user)
         details = detail_service.get_utilization_details(utilization_id)
         comments = detail_service.get_utilization_comments(utilization_id)
 
@@ -39,8 +28,6 @@ class UtilizationController:
                 'utilization_id': utilization_id,
                 'details': details,
                 'comments': comments,
-                'submit_comment': submit_comment,
-                'submit_approval': submit_approval,
             },
         )
 

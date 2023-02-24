@@ -89,7 +89,7 @@
                 <h4>コメント数</h4>
                 <p>{{ comments|length }}</p>
                 <hr>
-                <form name="comment_form" method="get">
+                <form name="comment_form" method="post">
                   <input type="hidden" id="utilization_id" name="utilization_id" value="{{ utilization_id }}"/>
                   <h4>コメント</h4>
                   <select name="comment_type" id="comment_type">
@@ -108,7 +108,7 @@
                 {% if comments|length %}
                   <hr class="divider">
                 {% endif %}
-                <form name="approval_form" method="get">
+                <form name="approval_form" method="post">
                   <input type="hidden" id="utilization_id" name="utilization_id" value="{{ utilization_id }}"/>
                   <input type="hidden" id="approval_user" name="approval_user" value="{{ c.userobj.id }}"/>
                   {% for comment in comments %}
