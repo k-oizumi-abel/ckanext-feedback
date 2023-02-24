@@ -1,7 +1,6 @@
 from flask import Blueprint
 
 from ckanext.feedback.controllers import utilization
-from ckanext.feedback.views.error_handler import add_error_handler
 
 utilization_blueprint = Blueprint('utilization', __name__, url_prefix=u'/utilization')
 
@@ -30,8 +29,4 @@ rules = [
     ('/search', 'search', utilization.UtilizationController.search),
 ]
 for rule in rules:
-    blueprint.add_url_rule(*rule, methods=['GET', 'POST'])
-
-@add_error_handler
-def get_utilization_blueprint():
-    return blueprint
+    utilization_blueprint.add_url_rule(*rule, methods=['GET', 'POST'])
