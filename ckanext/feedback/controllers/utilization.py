@@ -1,4 +1,5 @@
 from ckan.common import request
+from flask import redirect
 
 import ckanext.feedback.services.utilization.details as detail_service
 import ckanext.feedback.services.utilization.registration as registration_service
@@ -35,15 +36,25 @@ class UtilizationController:
 
     # utilization/registration.html
     def registration():
-        resource_id = request.args.get('resource_id', '')
-        resource_details = registration_service.get_resource_details(resource_id)
+        if request.method == 'POST':
+            resource_id = request.form.get('resource_id', '')
+            title = request.form.get('title', '')
+            content = request.form.get('content', '')
+            utilization_id = registration_service.submit_utilization(
+                resource_id, title, content
+            )
 
-        return toolkit.render(
-            'utilization/registration.html',
-            {
-                'resource_details': resource_details,
-            },
-        )
+            return redirect('details?utilization_id=' + utilization_id)
+        else:
+            resource_id = request.args.get('resource_id', '')
+            resource_details = registration_service.get_resource_details(resource_id)
+
+            return toolkit.render(
+                'utilization/registration.html',
+                {
+                    'resource_details': resource_details,
+                },
+            )
 
     # utilization/edit.html
     def edit():

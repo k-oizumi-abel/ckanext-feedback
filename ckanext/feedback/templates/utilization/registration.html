@@ -59,7 +59,7 @@
 
             {% block primary %}
               {% set row = resource_details %}
-              <div class="centered-content" method="get">
+              <div class="centered-content">
                 <br>
                 <h4>データセット</h4>
                 <a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}">{{ row.package_name }}</a>
@@ -67,13 +67,14 @@
                 <h4>データリソース</h4>
                 <a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}/resource/{{ row.resource_id }}">{{ row.resource_name }}</a>
                 <hr>
-                <form name="comment_form"></form>
+                <form name="content_form" method="post">
+                  <input type="hidden" id="resource_id" name="resource_id" value="{{ row.resource_id }}"/>
                   <h4>タイトル</h4>
-                  <input type="text" class="title"/>
+                  <input type="text" class="title" id="title" name="title"/>
                   <br>
                   <hr>
                   <h4>内容</h4>
-                  <textarea class="form-control" cols="20" rows="5" id="comment_content" name="comment_content"></textarea>
+                  <textarea class="form-control" cols="20" rows="5" id="content" name="content"></textarea>
                   <br>
                   <button class="btn btn-primary right-aligned">登録</button>
                 </form>
