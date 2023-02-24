@@ -1,4 +1,5 @@
 import datetime
+import enum
 
 import ckan.model.domain_object as domain_object
 import ckan.model.meta as meta
@@ -16,6 +17,7 @@ from sqlalchemy import (
 )
 
 __all__ = ['utilization', 'utilization_comment', 'utilization_summary']
+
 
 # Declare the utilization table
 utilization = Table(
@@ -37,7 +39,17 @@ utilization_comment = Table(
     meta.metadata,
     Column('id', Text, primary_key=True, nullable=False),
     Column('utilization_id', Text, ForeignKey('utilization.id'), nullable=False),
-    Column('category', Enum('承認待ち', '承認済', name='category_enum'), nullable=False),
+    Column(
+        'category',
+        Enum(
+            'Request',
+            'Question',
+            'Advertise',
+            'Thank',
+            name='utilization_comment_category',
+        ),
+        nullable=False,
+    ),
     Column('content', Text),
     Column('created', TIMESTAMP),
     Column('approval', BOOLEAN, default=False),
@@ -56,6 +68,13 @@ utilization_summary = Table(
     Column('created', TIMESTAMP),
     Column('updated', TIMESTAMP),
 )
+
+
+class Utilization_comment_category(enum.Enum):
+    Request = '要望'
+    Question = '問合せ'
+    Advertise = '宣伝'
+    Thank = '感謝'
 
 
 class Utilization(domain_object.DomainObject):
