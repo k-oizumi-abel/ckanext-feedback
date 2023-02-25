@@ -21,10 +21,7 @@ def get_package_downloads(package_id):
             .filter(Resource.package_id == package_id)
             .scalar()
         )
-        if count is None:
-            return 0
-
-        return count
+        return count or 0
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
@@ -47,9 +44,7 @@ def get_resource_downloads(resource_id):
             .filter(DownloadSummary.resource_id == resource_id)
             .scalar()
         )
-        if count is None:
-            return 0
-        return count
+        return count or 0
     except ProgrammingError as e:
         if isinstance(e.orig, UndefinedTable):
             log.error(
