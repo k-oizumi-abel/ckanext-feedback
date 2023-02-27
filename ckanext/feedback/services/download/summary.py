@@ -32,22 +32,24 @@ def get_resource_downloads(resource_id):
 
 
 def increment_resource_downloads(resource_id):
-    if request.headers.get('Sec-Fetch-Dest') == 'document':
-        download_summary = (
-            session.query(DownloadSummary)
-            .filter(DownloadSummary.resource_id == resource_id)
-            .first()
+    if request.headers.get('Sec-Fetch-Dest') != 'document':
+        return
+
+    download_summary = (
+        session.query(DownloadSummary)
+        .filter(DownloadSummary.resource_id == resource_id)
+        .first()
+    )
+    if download_summary is None:
+        download_summary = DownloadSummary(
+            str(uuid.uuid4()),
+            resource_id,
+            1,
+            datetime.datetime.now(),
+            datetime.datetime.now(),
         )
-        if download_summary is None:
-            download_summary = DownloadSummary(
-                str(uuid.uuid4()),
-                resource_id,
-                1,
-                datetime.datetime.now(),
-                datetime.datetime.now(),
-            )
-            session.add(download_summary)
-        else:
-            download_summary.download = download_summary.download + 1
-            download_summary.updated = datetime.datetime.now()
-        session.commit()
+        session.add(download_summary)
+    else:
+        download_summary.download = download_summary.download + 1
+        download_summary.updated = datetime.datetime.now()
+    session.commit()
