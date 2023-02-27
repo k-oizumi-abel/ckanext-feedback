@@ -4,30 +4,37 @@ from ckan.plugins import toolkit
 from ckanext.feedback.command import feedback
 from ckanext.feedback.services.download import summary as summary_service
 from ckanext.feedback.views import download
+from ckanext.feedback.views import utilization
 
 
 class FeedbackPlugin(plugins.SingletonPlugin):
+    # Declare class implements
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
-
-    # IConfigurer
+    
+    #IConfigurer
 
     def update_config(self, config):
+        # Add this plugin's directories to CKAN's extra paths, so that
+        # CKAN will use this plugin's custom files.
+        # Paths are relative to this plugin.py file.
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('assets', 'feedback')
 
     # IClick
-
+  
     def get_commands(self):
         return [feedback.feedback]
 
     # IBlueprint
 
+    # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
         blueprints = []
+        blueprints.append(utilization.get_utilization_blueprint())
         blueprints.append(download.get_download_blueprint())
         return blueprints
 

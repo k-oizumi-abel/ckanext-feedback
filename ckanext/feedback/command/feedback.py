@@ -1,7 +1,6 @@
 import sys
-import psycopg2
 import click
-
+import psycopg2
 from ckan.plugins import toolkit
 
 
