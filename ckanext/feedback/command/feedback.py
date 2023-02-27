@@ -1,8 +1,8 @@
 import sys
-import psycopg2
-import click
 
-import ckan.plugins.toolkit as tk
+import click
+import psycopg2
+from ckan.plugins import toolkit
 
 
 @click.group()
@@ -16,7 +16,7 @@ def get_connection(host, port, dbname, user, password):
             f'postgresql://{user}:{password}@{host}:{port}/{dbname}'
         )
     except Exception as e:
-        tk.error_shout(e)
+        toolkit.error_shout(e)
         sys.exit(1)
     else:
         return connector
@@ -96,7 +96,7 @@ def init(modules, host, port, dbname, user, password):
                     _create_download_tables(cursor)
                     click.secho('Initialize download: SUCCESS', fg='green', bold=True)
             except Exception as e:
-                tk.error_shout(e)
+                toolkit.error_shout(e)
                 sys.exit(1)
 
             connection.commit()
