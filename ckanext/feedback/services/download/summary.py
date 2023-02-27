@@ -29,8 +29,6 @@ def get_package_downloads(package_id):
                 ' Run "ckan --config=/etc/ckan/production.ini feedback init".'
             )
         raise
-    except Exception:
-        raise
     finally:
         session.rollback()
 
@@ -49,8 +47,6 @@ def get_resource_downloads(resource_id):
                 'download_summary table does not exit.'
                 ' Run "ckan --config=/etc/ckan/production.ini feedback init".'
             )
-        raise
-    except Exception:
         raise
     finally:
         session.rollback()
@@ -82,8 +78,6 @@ def increment_resource_downloads(resource_id):
                 'download_summary table does not exit.'
                 ' Run "ckan --config=/etc/ckan/production.ini feedback init".'
             )
-        raise
-    except Exception:
         raise
     finally:
         session.rollback()
