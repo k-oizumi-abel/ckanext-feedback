@@ -6,14 +6,12 @@ from ckanext.feedback.services.download import summary as summary_service
 from ckanext.feedback.views import download
 from ckanext.feedback.views import utilization
 
-
 class FeedbackPlugin(plugins.SingletonPlugin):
     # Declare class implements
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
-#    plugins.implements(plugins.IDatasetForm)
 
     # IConfigurer
 
@@ -56,47 +54,9 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         return {
-            'is_enabled_downloads': FeedbackPlugin.is_enabled_downloads,
-            'is_enabled_resources': FeedbackPlugin.is_enabled_resources,
-            'is_enabled_utilizations': FeedbackPlugin.is_enabled_utilizations,
+            'is_enabled_downloads': self.is_enabled_downloads,
+            'is_enabled_resources': self.is_enabled_resources,
+            'is_enabled_utilizations': self.is_enabled_utilizations,
             'get_resource_downloads': summary_service.get_resource_downloads,
             'get_package_downloads': summary_service.get_package_downloads,
         }
-
-#    # IDatasetForm
-#
-#    def _modify_package_schema(self, schema):
-#        schema.update({
-#            'custom_text': [toolkit.get_validator('ignore_missing'),
-#                            toolkit.get_converter('convert_to_extras')]
-#        })
-#        return schema
-#
-#    def create_package_schema(self):
-#        schema = super(FeedbackPlugin, self).create_package_schema()
-#        schema = self._modify_package_schema(schema)
-#        return schema
-#
-#    def update_package_schema(self):
-#        schema = super(FeedbackPlugin, self).update_package_schema()
-#        schema = self._modify_package_schema(schema)
-#        return schema
-#    
-#    def show_package_schema(self):
-#        schema = super(FeedbackPlugin, self).show_package_schema()
-#        schema.update({
-#            'custom_text': [tk.get_converter('convert_from_extras'),
-#                            tk.get_validator('ignore_missing')]
-#        })
-#        return schema
-#
-#    def is_fallback(self):
-#        # Return True to register this plugin as the default handler for
-#        # package types not handled by any other IDatasetForm plugin.
-#        return True
-#
-#    def package_types(self):
-#        # This plugin doesn't handle any special package types, it just
-#        # registers itself as the default (above).
-#        return []
-    
