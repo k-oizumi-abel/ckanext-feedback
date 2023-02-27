@@ -1,4 +1,5 @@
 from ckan.common import request
+from ckan.plugins import toolkit
 from flask import redirect
 
 import ckanext.feedback.services.utilization.details as detail_service
@@ -22,6 +23,9 @@ class UtilizationController:
             utilization_id = request.args.get('utilization_id', '')
         details = detail_service.get_utilization_details(utilization_id)
         comments = detail_service.get_utilization_comments(utilization_id)
+        approved_comments = detail_service.get_approved_utilization_comments(
+            utilization_id
+        )
         categories = detail_service.get_categories()
 
         return toolkit.render(
@@ -30,6 +34,7 @@ class UtilizationController:
                 'utilization_id': utilization_id,
                 'details': details,
                 'comments': comments,
+                'approved_comments': approved_comments,
                 'categories': categories,
             },
         )
