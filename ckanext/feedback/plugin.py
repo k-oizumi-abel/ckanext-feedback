@@ -6,6 +6,7 @@ from ckanext.feedback.services.download import summary as summary_service
 from ckanext.feedback.views import download
 from ckanext.feedback.views import utilization
 
+
 class FeedbackPlugin(plugins.SingletonPlugin):
     # Declare class implements
     plugins.implements(plugins.IConfigurer)
@@ -24,7 +25,7 @@ class FeedbackPlugin(plugins.SingletonPlugin):
         toolkit.add_resource('assets', 'feedback')
 
     # IClick
-  
+
     def get_commands(self):
         return [feedback.feedback]
 

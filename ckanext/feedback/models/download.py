@@ -1,5 +1,3 @@
-import datetime
-
 from ckan.model import domain_object, meta
 from sqlalchemy import (
     TIMESTAMP,

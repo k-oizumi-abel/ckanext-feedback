@@ -5,7 +5,6 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import ProgrammingError
 from ckan.model import Resource
-from ckan.plugins import toolkit
 from ckanext.feedback.models.download import DownloadSummary
 from psycopg2.errors import UndefinedTable
 
