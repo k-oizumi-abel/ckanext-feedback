@@ -56,9 +56,9 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         return {
-            'is_enabled_downloads': self.is_enabled_downloads(),
-            'is_enabled_resources': self.is_enabled_resources(),
-            'is_enabled_utilizations': self.is_enabled_utilizations(),
+            'is_enabled_downloads': FeedbackPlugin.is_enabled_downloads,
+            'is_enabled_resources': FeedbackPlugin.is_enabled_resources,
+            'is_enabled_utilizations': FeedbackPlugin.is_enabled_utilizations,
             'get_resource_downloads': summary_service.get_resource_downloads,
             'get_package_downloads': summary_service.get_package_downloads,
         }

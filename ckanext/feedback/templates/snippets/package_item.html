@@ -78,10 +78,10 @@ Example:
                       <img src="/images/empty_rating_star.png" alt="empty rating star" width="16" height="16"/>
                     </p>
                   </div>
-                  {% if h.is_enabled_downloads %}
+                  {% if h.is_enabled_downloads(self) == True %}
                     <div class = "bubble">
                       <i class="fa fa-arrow-circle-o-down"></i>
-                      {{ h.get_package_downloads(package.id) or _('0') }}
+                      {{ h.get_package_downloads(package.id) }}
                       <div class="description">ダウンロード数</div>
                     </div>
                   {% endif %}
