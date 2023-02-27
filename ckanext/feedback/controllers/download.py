@@ -1,5 +1,6 @@
-from ckanext.feedback.services.download.summary import increment_resource_downloads
 from ckan.views.resource import download
+
+from ckanext.feedback.services.download.summary import increment_resource_downloads
 
 
 class DownloadController:

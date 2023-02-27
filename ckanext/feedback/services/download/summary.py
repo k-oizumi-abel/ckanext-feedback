@@ -1,13 +1,15 @@
-import uuid
-import logging
 import datetime
-from sqlalchemy import func
-from sqlalchemy.orm import Session
-from sqlalchemy.exc import ProgrammingError
+import logging
+import uuid
+
 from ckan.model import Resource
-from ckanext.feedback.models.download import DownloadSummary
-from psycopg2.errors import UndefinedTable
 from flask import request
+from psycopg2.errors import UndefinedTable
+from sqlalchemy import func
+from sqlalchemy.exc import ProgrammingError
+from sqlalchemy.orm import Session
+
+from ckanext.feedback.models.download import DownloadSummary
 
 session = Session()
 log = logging.getLogger(__name__)
