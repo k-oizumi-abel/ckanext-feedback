@@ -3,6 +3,7 @@ from ckan.plugins import toolkit
 from flask import redirect
 
 import ckanext.feedback.services.utilization.details as detail_service
+import ckanext.feedback.services.utilization.edit as edit_service
 import ckanext.feedback.services.utilization.registration as registration_service
 import ckanext.feedback.services.utilization.search as search_service
 
@@ -74,7 +75,31 @@ class UtilizationController:
 
     # utilization/edit.html
     def edit():
-        return toolkit.render('utilization/edit.html')
+        if request.method == 'POST':
+            utilization_id = request.form.get('utilization_id', '')
+            resource_id = request.form.get('resource_id', '')
+            title = request.form.get('title', '')
+            description = request.form.get('description', '')
+            delete_flag = request.form.get('delete_flag', '')
+            update_flag = request.form.get('update_flag', '')
+            if delete_flag == 'True':
+                edit_service.delete_utilization(utilization_id)
+                return redirect('search')
+            elif update_flag == 'True':
+                edit_service.update_utilization(utilization_id, title, description)
+                return redirect('details?utilization_id=' + utilization_id)
+        else:
+            utilization_id = request.args.get('utilization_id', '')
+            resource_id = request.args.get('resource_id', '')
+            resource_details = edit_service.get_resource_details(resource_id)
+
+            return toolkit.render(
+                'utilization/edit.html',
+                {
+                    'utilization_id': utilization_id,
+                    'resource_details': resource_details,
+                },
+            )
 
     # utilization/comment_approval.html
     def comment_approval():

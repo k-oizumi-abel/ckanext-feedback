@@ -36,3 +36,9 @@ feedback-registration-css:
   output: feedback/%(version)s-registration.css
   contents:
     - css/registration.css
+
+feedback-edit-css:
+  filter: cssrewrite
+  output: feedback/%(version)s-edit.css
+  contents:
+    - css/edit.css
