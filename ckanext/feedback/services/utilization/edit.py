@@ -43,10 +43,7 @@ def update_utilization(utilization_id, title, description):
 # Delete utilization
 def delete_utilization(utilization_id):
     try:
-        session.execute(
-            delete(Utilization)
-            .where(Utilization.id == utilization_id)
-        )
+        session.execute(delete(Utilization).where(Utilization.id == utilization_id))
         session.commit()
     except Exception as e:
         session.rollback()
