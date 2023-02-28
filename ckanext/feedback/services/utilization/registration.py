@@ -74,7 +74,7 @@ def create_utilization_summary(resource_id):
                     id=str(uuid.uuid4()),
                     resource_id=resource_id,
                     utilization=1,
-                    comment=1,
+                    comment=0,
                     created=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
                     updated=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
                 )
