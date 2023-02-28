@@ -83,7 +83,7 @@ class UtilizationController:
             delete_flag = request.form.get('delete_flag', '')
             update_flag = request.form.get('update_flag', '')
             if delete_flag == 'True':
-                edit_service.delete_utilization(utilization_id)
+                edit_service.delete_utilization(utilization_id, resource_id)
                 return redirect('search')
             elif update_flag == 'True':
                 edit_service.update_utilization(utilization_id, title, description)

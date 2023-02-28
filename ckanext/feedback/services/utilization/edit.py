@@ -3,7 +3,11 @@ from ckan.model.resource import Resource
 from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
 
-from ckanext.feedback.models.utilization import Utilization
+from ckanext.feedback.models.utilization import (
+    Utilization,
+    UtilizationComment,
+    UtilizationSummary,
+)
 
 session = Session()
 
@@ -40,10 +44,29 @@ def update_utilization(utilization_id, title, description):
         raise e
 
 
-# Delete utilization
-def delete_utilization(utilization_id):
+# Delete utilization and related data then update utilization summary
+def delete_utilization(utilization_id, resource_id):
+    comment_count = (
+        session.query(UtilizationComment)
+        .filter(UtilizationComment.utilization_id == utilization_id)
+        .count()
+    )
+    print(comment_count)
     try:
+        session.execute(
+            delete(UtilizationComment).where(
+                UtilizationComment.utilization_id == utilization_id
+            )
+        )
         session.execute(delete(Utilization).where(Utilization.id == utilization_id))
+        session.execute(
+            update(UtilizationSummary)
+            .where(UtilizationSummary.resource_id == resource_id)
+            .values(
+                utilization=UtilizationSummary.utilization - 1,
+                comment=UtilizationSummary.comment - comment_count
+            )
+        )
         session.commit()
     except Exception as e:
         session.rollback()
