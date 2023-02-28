@@ -48,6 +48,7 @@ class UtilizationController:
             utilization_id = registration_service.submit_utilization(
                 resource_id, title, content
             )
+            registration_service.create_utilization_summary(resource_id)
 
             return redirect('details?utilization_id=' + utilization_id)
         else:

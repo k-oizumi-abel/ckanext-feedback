@@ -3,10 +3,10 @@ from datetime import datetime
 
 from ckan.model.package import Package
 from ckan.model.resource import Resource
-from sqlalchemy import insert
+from sqlalchemy import insert, update
 from sqlalchemy.orm import Session
 
-from ckanext.feedback.models.utilization import Utilization
+from ckanext.feedback.models.utilization import Utilization, UtilizationSummary
 
 session = Session()
 
@@ -45,6 +45,41 @@ def submit_utilization(resource_id, title, content):
         )
         session.commit()
         return utilization_id
+    except Exception as e:
+        session.rollback()
+        raise e
+
+
+# Create utilizaton summary
+def create_utilization_summary(resource_id):
+    count = (
+        session.query(UtilizationSummary.utilization)
+        .filter(UtilizationSummary.resource_id == resource_id)
+        .first()
+    )
+    try:
+        if count:
+            session.execute(
+                update(UtilizationSummary)
+                .where(UtilizationSummary.resource_id == resource_id)
+                .values(
+                    utilization=count.utilization + 1,
+                    updated=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
+                )
+            )
+            session.commit()
+        else:
+            session.execute(
+                insert(UtilizationSummary).values(
+                    id=str(uuid.uuid4()),
+                    resource_id=resource_id,
+                    utilization=1,
+                    comment=1,
+                    created=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
+                    updated=datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
+                )
+            )
+            session.commit()
     except Exception as e:
         session.rollback()
         raise e
