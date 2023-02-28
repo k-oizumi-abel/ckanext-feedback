@@ -64,7 +64,7 @@ def delete_utilization(utilization_id, resource_id):
             .where(UtilizationSummary.resource_id == resource_id)
             .values(
                 utilization=UtilizationSummary.utilization - 1,
-                comment=UtilizationSummary.comment - comment_count
+                comment=UtilizationSummary.comment - comment_count,
             )
         )
         session.commit()
