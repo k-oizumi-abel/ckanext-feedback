@@ -30,8 +30,7 @@ rules = [
     ('/search', 'search', utilization.UtilizationController.search),
 ]
 for rule in rules:
-    blueprint.add_url_rule(*rule)
-
+    blueprint.add_url_rule(*rule, methods=['GET', 'POST'])
 
 @add_error_handler
 def get_utilization_blueprint():
