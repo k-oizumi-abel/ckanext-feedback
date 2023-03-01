@@ -1,18 +1,20 @@
 from ckan import plugins
 from ckan.common import config
 from ckan.plugins import toolkit
+from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.feedback.command import feedback
 from ckanext.feedback.services.download import summary as summary_service
 from ckanext.feedback.views import download, utilization
 
 
-class FeedbackPlugin(plugins.SingletonPlugin):
+class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
     # Declare class implements
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.ITranslation)
 
     # IConfigurer
 
