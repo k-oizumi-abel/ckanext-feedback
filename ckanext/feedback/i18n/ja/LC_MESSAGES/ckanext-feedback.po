@@ -1,0 +1,282 @@
+# Japanese translations for ckanext-feedback.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the ckanext-feedback
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-feedback 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-03-01 14:07+0900\n"
+"PO-Revision-Date: 2023-03-01 14:16+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: ckanext/feedback/templates/header.html:9
+msgid "Sysadmin settings"
+msgstr "Sysadmin settings"
+
+#: ckanext/feedback/templates/header.html:11
+msgid "Admin"
+msgstr "管理者"
+
+#: ckanext/feedback/templates/header.html:16
+msgid "View profile"
+msgstr "View profile"
+
+#: ckanext/feedback/templates/header.html:23
+#, python-format
+msgid "Dashboard (%(num)d new item)"
+msgid_plural "Dashboard (%(num)d new items)"
+msgstr[0] "ダッシュボード (%(num)d 件の新着アイテム)"
+
+#: ckanext/feedback/templates/header.html:27
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: ckanext/feedback/templates/header.html:33
+#: ckanext/feedback/templates/header.html:35
+msgid "Profile settings"
+msgstr "Profile settings"
+
+#: ckanext/feedback/templates/header.html:40
+#: ckanext/feedback/templates/header.html:42
+msgid "Log out"
+msgstr "ログアウト"
+
+#: ckanext/feedback/templates/header.html:49
+msgid "Account"
+msgstr "アカウント"
+
+#: ckanext/feedback/templates/header.html:52
+msgid "Log in"
+msgstr "ログイン"
+
+#: ckanext/feedback/templates/header.html:54
+msgid "Register"
+msgstr "保存"
+
+#: ckanext/feedback/templates/header.html:69
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+#: ckanext/feedback/templates/header.html:90
+msgid "Top"
+msgstr "トップ"
+
+#: ckanext/feedback/templates/header.html:91
+msgid "Dataset"
+msgstr "データセット"
+
+#: ckanext/feedback/templates/header.html:92
+msgid "Organization"
+msgstr "組織"
+
+#: ckanext/feedback/templates/header.html:93
+msgid "Group"
+msgstr "グループ"
+
+#: ckanext/feedback/templates/header.html:95
+#: ckanext/feedback/templates/utilization/search.html:39
+msgid "利活用方法"
+msgstr "利活用方法"
+
+#: ckanext/feedback/templates/header.html:98
+msgid "フィードバック一覧"
+msgstr "フィードバック一覧"
+
+#: ckanext/feedback/templates/header.html:100
+msgid "About"
+msgstr "About"
+
+#: ckanext/feedback/templates/header.html:110
+msgid "Search Datasets"
+msgstr "Search Datasets"
+
+#: ckanext/feedback/templates/header.html:111
+msgid "Search"
+msgstr "検索"
+
+#: ckanext/feedback/templates/header.html:111
+msgid "Search datasets"
+msgstr "Search datasets"
+
+#: ckanext/feedback/templates/header.html:112
+#: ckanext/feedback/templates/utilization/search.html:68
+msgid "Submit"
+msgstr "Submit"
+
+#: ckanext/feedback/templates/package/resource_read.html:5
+msgid "Manage"
+msgstr "Manage"
+
+#: ckanext/feedback/templates/package/resource_read.html:12
+msgid "View"
+msgstr "View"
+
+#: ckanext/feedback/templates/package/resource_read.html:14
+msgid "API Endpoint"
+msgstr "API Endpoint"
+
+#: ckanext/feedback/templates/package/resource_read.html:16
+#: ckanext/feedback/templates/package/snippets/resource_item.html:47
+msgid "Go to resource"
+msgstr "Go to resource"
+
+#: ckanext/feedback/templates/package/resource_read.html:18
+#: ckanext/feedback/templates/package/snippets/resource_item.html:44
+msgid "Download"
+msgstr "ダウンロード"
+
+#: ckanext/feedback/templates/package/resource_read.html:47
+#: ckanext/feedback/templates/package/resource_read.html:49
+msgid "URL:"
+msgstr "URL"
+
+#: ckanext/feedback/templates/package/resource_read.html:55
+msgid "Additional Information"
+msgstr "Additional Information"
+
+#: ckanext/feedback/templates/package/resource_read.html:59
+msgid "Field"
+msgstr "Field"
+
+#: ckanext/feedback/templates/package/resource_read.html:60
+msgid "Value"
+msgstr "Value"
+
+#: ckanext/feedback/templates/package/resource_read.html:66
+#: ckanext/feedback/templates/package/snippets/additional_info.html:6
+#: ckanext/feedback/templates/package/snippets/resource_item.html:13
+#: ckanext/feedback/templates/snippets/package_item.html:85
+msgid "Downloads"
+msgstr "ダウンロード数"
+
+#: ckanext/feedback/templates/package/resource_read.html:71
+msgid "Data last updated"
+msgstr "Data last updated"
+
+#: ckanext/feedback/templates/package/resource_read.html:72
+#: ckanext/feedback/templates/package/resource_read.html:76
+#: ckanext/feedback/templates/package/resource_read.html:80
+#: ckanext/feedback/templates/package/resource_read.html:84
+msgid "unknown"
+msgstr "unknown"
+
+#: ckanext/feedback/templates/package/resource_read.html:75
+msgid "Metadata last updated"
+msgstr "Metadata last updated"
+
+#: ckanext/feedback/templates/package/resource_read.html:79
+#: ckanext/feedback/templates/package/snippets/additional_info.html:64
+msgid "Created"
+msgstr "Created"
+
+#: ckanext/feedback/templates/package/resource_read.html:83
+msgid "Format"
+msgstr "Format"
+
+#: ckanext/feedback/templates/package/resource_read.html:87
+msgid "License"
+msgstr "License"
+
+#: ckanext/feedback/templates/package/snippets/additional_info.html:12
+msgid "Source"
+msgstr "Source"
+
+#: ckanext/feedback/templates/package/snippets/additional_info.html:22
+#: ckanext/feedback/templates/package/snippets/additional_info.html:27
+msgid "Author"
+msgstr "Author"
+
+#: ckanext/feedback/templates/package/snippets/additional_info.html:33
+#: ckanext/feedback/templates/package/snippets/additional_info.html:38
+msgid "Maintainer"
+msgstr "Maintainer"
+
+#: ckanext/feedback/templates/package/snippets/additional_info.html:44
+msgid "Version"
+msgstr "Version"
+
+#: ckanext/feedback/templates/package/snippets/additional_info.html:50
+msgid "State"
+msgstr "State"
+
+#: ckanext/feedback/templates/package/snippets/additional_info.html:56
+msgid "Last Updated"
+msgstr "Last Updated"
+
+#: ckanext/feedback/templates/package/snippets/resource_item.html:23
+msgid "Explore"
+msgstr "Explore"
+
+#: ckanext/feedback/templates/package/snippets/resource_item.html:32
+msgid "Preview"
+msgstr "Preview"
+
+#: ckanext/feedback/templates/package/snippets/resource_item.html:35
+msgid "More information"
+msgstr "More information"
+
+#: ckanext/feedback/templates/package/snippets/resource_item.html:56
+msgid "Edit"
+msgstr "Edit"
+
+#: ckanext/feedback/templates/package/snippets/resources_list.html:14
+msgid "Data and Resources"
+msgstr "Data and Resource"
+
+#: ckanext/feedback/templates/package/snippets/resources_list.html:38
+#, python-format
+msgid ""
+"<p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not "
+"add some?</a></p>"
+msgstr "このデータセットにはデータがありません"
+
+#: ckanext/feedback/templates/package/snippets/resources_list.html:42
+msgid "This dataset has no data"
+msgstr "This dataset has no data"
+
+#: ckanext/feedback/templates/snippets/package_item.html:31
+msgid "Private"
+msgstr "Private"
+
+#: ckanext/feedback/templates/snippets/package_item.html:40
+msgid "Draft"
+msgstr "Draft"
+
+#: ckanext/feedback/templates/snippets/package_item.html:42
+msgid "Deleted"
+msgstr "Deleted"
+
+#: ckanext/feedback/templates/snippets/package_item.html:50
+msgid "Popular"
+msgstr "Popular"
+
+#: ckanext/feedback/templates/snippets/package_item.html:57
+msgid "This dataset has no description"
+msgstr "This dataset has no description"
+
+#: ckanext/feedback/templates/utilization/search.html:8
+msgid "Skip to content"
+msgstr "Skip to content"
+
+#: ckanext/feedback/templates/utilization/search.html:32
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+#: ckanext/feedback/templates/utilization/search.html:66
+msgid "キーワード検索..."
+msgstr "キーワード検索..."
+
+#: ckanext/feedback/templates/utilization/search.html:66
+msgid "Search utilizaton data"
+msgstr "Search utilization data"
+
