@@ -1,14 +1,15 @@
+import os
+
 from ckan import plugins
 from ckan.common import config
 from ckan.plugins import toolkit
-from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.feedback.command import feedback
 from ckanext.feedback.services.download import summary as summary_service
 from ckanext.feedback.views import download, utilization
 
 
-class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
+class FeedbackPlugin(plugins.SingletonPlugin):
     # Declare class implements
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IClick)
@@ -63,3 +64,14 @@ class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_resource_downloads': summary_service.get_resource_downloads,
             'get_package_downloads': summary_service.get_package_downloads,
         }
+    
+    #ITranslation
+
+    def i18n_directory(self):
+        return '/opt/ckanext-feedback/ckanext/feedback/i18n/ja/LC_MESSAGES'
+    
+    def i18n_locales(self):
+        return ['ja']
+    
+    def i18n_domain(self):
+        return 'ckanext-feedback'
