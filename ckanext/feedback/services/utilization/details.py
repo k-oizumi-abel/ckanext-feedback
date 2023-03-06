@@ -3,6 +3,7 @@ from datetime import datetime
 from ckan.model.package import Package
 from ckan.model.resource import Resource
 
+from ckanext.feedback.models.issue import IssueResolution
 from ckanext.feedback.models.session import session
 from ckanext.feedback.models.utilization import (
     Utilization,
@@ -71,3 +72,23 @@ def approve_utilization_comment(comment_id, approval_user_id):
 # Get comment category enum names and values
 def get_utilization_comment_categories():
     return UtilizationCommentCategory
+
+
+# Get issues resolved related to the Utilization record
+def get_issue_resolutions(utilization_id):
+    return (
+        session.query(IssueResolution)
+        .filter(IssueResolution.utilization_id == utilization_id)
+        .order_by(IssueResolution.created.desc())
+        .all()
+    )
+
+
+# Create issue resolution
+def create_issue_resolution(utilization_id, description, creator_user_id):
+    issue_resolution = IssueResolution(
+        utilization_id=utilization_id,
+        description=description,
+        creator_user_id=creator_user_id,
+    )
+    session.add(issue_resolution)

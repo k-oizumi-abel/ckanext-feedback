@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-22 13:46+0900\n"
+"POT-Creation-Date: 2023-03-28 13:01+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -153,12 +153,12 @@ msgid "API Endpoint"
 msgstr "API エンドポイント"
 
 #: ckanext/feedback/templates/package/resource_read.html:16
-#: ckanext/feedback/templates/package/snippets/resource_item.html:47
+#: ckanext/feedback/templates/package/snippets/resource_item.html:54
 msgid "Go to resource"
 msgstr "リソースへ行く"
 
 #: ckanext/feedback/templates/package/resource_read.html:18
-#: ckanext/feedback/templates/package/snippets/resource_item.html:44
+#: ckanext/feedback/templates/package/snippets/resource_item.html:51
 msgid "Download"
 msgstr "ダウンロード"
 
@@ -192,73 +192,80 @@ msgstr "値"
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: ckanext/feedback/templates/package/resource_read.html:75
+#: ckanext/feedback/templates/package/resource_read.html:76
+#: ckanext/feedback/templates/package/snippets/additional_info.html:16
+#: ckanext/feedback/templates/package/snippets/resource_item.html:20
+#: ckanext/feedback/templates/snippets/package_item.html:95
+msgid "Issue Resolutions"
+msgstr "課題解決数"
+
+#: ckanext/feedback/templates/package/resource_read.html:81
 msgid "Data last updated"
 msgstr "最終更新日"
 
-#: ckanext/feedback/templates/package/resource_read.html:85
-#: ckanext/feedback/templates/package/resource_read.html:89
-#: ckanext/feedback/templates/package/resource_read.html:93
-#: ckanext/feedback/templates/package/resource_read.html:97
+#: ckanext/feedback/templates/package/resource_read.html:82
+#: ckanext/feedback/templates/package/resource_read.html:86
+#: ckanext/feedback/templates/package/resource_read.html:90
+#: ckanext/feedback/templates/package/resource_read.html:94
 msgid "unknown"
 msgstr "不明"
 
-#: ckanext/feedback/templates/package/resource_read.html:88
+#: ckanext/feedback/templates/package/resource_read.html:85
 msgid "Metadata last updated"
 msgstr "メタデータ 最終更新日時"
 
-#: ckanext/feedback/templates/package/resource_read.html:92
-#: ckanext/feedback/templates/package/snippets/additional_info.html:68
+#: ckanext/feedback/templates/package/resource_read.html:89
+#: ckanext/feedback/templates/package/snippets/additional_info.html:74
 msgid "Created"
 msgstr "作成日"
 
-#: ckanext/feedback/templates/package/resource_read.html:96
+#: ckanext/feedback/templates/package/resource_read.html:93
 msgid "Format"
 msgstr "フォーマット"
 
-#: ckanext/feedback/templates/package/resource_read.html:100
+#: ckanext/feedback/templates/package/resource_read.html:97
 msgid "License"
 msgstr "ライセンス"
 
-#: ckanext/feedback/templates/package/snippets/additional_info.html:16
+#: ckanext/feedback/templates/package/snippets/additional_info.html:22
 msgid "Source"
 msgstr "ソース"
 
-#: ckanext/feedback/templates/package/snippets/additional_info.html:26
-#: ckanext/feedback/templates/package/snippets/additional_info.html:31
+#: ckanext/feedback/templates/package/snippets/additional_info.html:32
+#: ckanext/feedback/templates/package/snippets/additional_info.html:37
 msgid "Author"
 msgstr "作成者"
 
-#: ckanext/feedback/templates/package/snippets/additional_info.html:37
-#: ckanext/feedback/templates/package/snippets/additional_info.html:42
+#: ckanext/feedback/templates/package/snippets/additional_info.html:43
+#: ckanext/feedback/templates/package/snippets/additional_info.html:48
 msgid "Maintainer"
 msgstr "メンテナー"
 
-#: ckanext/feedback/templates/package/snippets/additional_info.html:48
+#: ckanext/feedback/templates/package/snippets/additional_info.html:54
 msgid "Version"
 msgstr "バージョン"
 
-#: ckanext/feedback/templates/package/snippets/additional_info.html:54
+#: ckanext/feedback/templates/package/snippets/additional_info.html:60
 msgid "State"
 msgstr "状態"
 
-#: ckanext/feedback/templates/package/snippets/additional_info.html:60
+#: ckanext/feedback/templates/package/snippets/additional_info.html:66
 msgid "Last Updated"
 msgstr "最終更新"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:23
+#: ckanext/feedback/templates/package/snippets/resource_item.html:30
 msgid "Explore"
 msgstr "探索"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:32
+#: ckanext/feedback/templates/package/snippets/resource_item.html:39
 msgid "Preview"
 msgstr "プレビュー"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:35
+#: ckanext/feedback/templates/package/snippets/resource_item.html:42
 msgid "More information"
 msgstr "詳細情報の表示"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:56
+#: ckanext/feedback/templates/package/snippets/resource_item.html:63
 #: ckanext/feedback/templates/utilization/details.html:66
 msgid "Edit"
 msgstr "編集"
@@ -315,7 +322,7 @@ msgid "Details"
 msgstr "詳細"
 
 #: ckanext/feedback/templates/utilization/details.html:68
-#: ckanext/feedback/templates/utilization/details.html:122
+#: ckanext/feedback/templates/utilization/details.html:120
 msgid "Approve"
 msgstr "承認"
 
@@ -333,15 +340,15 @@ msgstr "利活用内容"
 msgid "Issue resolutions"
 msgstr "課題解決数"
 
-#: ckanext/feedback/templates/utilization/details.html:89
-msgid "Issue resolution"
+#: ckanext/feedback/templates/utilization/details.html:90
+msgid "Resolve issue"
 msgstr "課題解決"
 
-#: ckanext/feedback/templates/utilization/details.html:93
+#: ckanext/feedback/templates/utilization/details.html:94
 msgid "Comments"
 msgstr "コメント数"
 
-#: ckanext/feedback/templates/utilization/details.html:97
+#: ckanext/feedback/templates/utilization/details.html:98
 msgid "Comment"
 msgstr "コメント"
 
@@ -374,6 +381,31 @@ msgstr "内容を入力してください。"
 msgid "Create"
 msgstr "登録"
 
+#: ckanext/feedback/templates/utilization/details.html:149
+#: ckanext/feedback/templates/utilization/details.html:183
+msgid "Issue resolution content"
+msgstr "課題解決内容"
+
+#: ckanext/feedback/templates/utilization/details.html:153
+msgid "Input field"
+msgstr "入力欄"
+
+#: ckanext/feedback/templates/utilization/details.html:158
+msgid "Please enter your issue resolution content"
+msgstr "課題解決内容を入力してください"
+
+#: ckanext/feedback/templates/utilization/details.html:163
+msgid "Certificate"
+msgstr "認定"
+
+#: ckanext/feedback/templates/utilization/details.html:175
+msgid "Issue resolution details"
+msgstr "課題解決内容詳細"
+
+#: ckanext/feedback/templates/utilization/details.html:182
+msgid "Certification date"
+msgstr "認定日"
+
 #: ckanext/feedback/templates/utilization/search.html:65
 msgid "Keyword Search"
 msgstr "キーワード検索"
@@ -392,12 +424,12 @@ msgid "Status"
 msgstr "ステータス"
 
 #: ckanext/feedback/templates/utilization/search.html:78
-#: ckanext/feedback/templates/utilization/search.html:117
+#: ckanext/feedback/templates/utilization/search.html:116
 msgid "Unapproved"
 msgstr "承認待ち"
 
 #: ckanext/feedback/templates/utilization/search.html:80
-#: ckanext/feedback/templates/utilization/search.html:115
+#: ckanext/feedback/templates/utilization/search.html:114
 msgid "Approved"
 msgstr "承認済"
 

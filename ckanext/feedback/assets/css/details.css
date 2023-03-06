@@ -24,3 +24,8 @@
 .unapproved {
   color: #808080;
 }
+
+#issue-resolution-table {
+  height: 400px;
+  overflow-y: scroll;
+}

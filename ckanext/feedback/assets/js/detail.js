@@ -10,3 +10,16 @@ function checkCommentExists() {
     return false;
   }
 }
+
+function checkDescriptionExists() {
+  errorElement = document.getElementById('description-error');
+  description = document.getElementById('description').value;
+
+  if (description) {
+    errorElement.style.display = 'None';
+    return true;
+  } else {
+    errorElement.style.display = '';
+    return false;
+  }
+}
