@@ -42,7 +42,7 @@ setup(
         ),
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.8',
     ],
     # What does your project relate to?
     keywords='''CKAN extension opendata open-data review''',
@@ -73,7 +73,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        feedback=ckanext.feedback.plugin:TestPlugin
+        feedback=ckanext.feedback.plugin:FeedbackPlugin
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
     ''',
