@@ -69,11 +69,11 @@ class FeedbackPlugin(plugins.SingletonPlugin):
 
     def i18n_directory(self):
         #Activate this path only to develop ckanext-feedback i18n
-        return '/opt/ckanext-feedback/ckanext/feedback/i18n'
+        #return '/opt/ckanext-feedback/ckanext/feedback/i18n'
     
         #Activate thsi path when install and use ckanext-feedback i18n
-        #return '$VIRTUAL_ENV/src/ckanext-feedback/ckanext/feedback/i18n'
-        #return '$VIRTUAL_ENV/lib/python3.8/site-packages/ckanext/feedback/i18n'
+        #return '$CKAN_VENV/src/ckanext-feedback/ckanext/feedback/i18n'
+        return '$CKAN_VENV/lib/python3.8/site-packages/ckanext/feedback/i18n'
     
     def i18n_locales(self):
         return ['ja']
