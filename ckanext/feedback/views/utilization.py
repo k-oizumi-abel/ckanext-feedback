@@ -69,6 +69,12 @@ rules = [
         utilization.UtilizationController.comment,
         {'methods': ['GET']},
     ),
+    (
+        '/<utilization_id>/issue_resolution/new',
+        'create_issue_resolution',
+        utilization.UtilizationController.create_issue_resolution,
+        {'methods': ['POST']},
+    ),
 ]
 for rule, endpoint, view_func, *others in rules:
     options = next(iter(others), {})
