@@ -1,5 +1,3 @@
-import os
-
 from ckan import plugins
 from ckan.common import config
 from ckan.plugins import toolkit
