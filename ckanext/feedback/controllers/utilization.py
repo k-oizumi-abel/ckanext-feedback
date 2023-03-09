@@ -1,4 +1,4 @@
-from ckan.common import request
+from ckan.common import c, request
 from ckan.plugins import toolkit
 
 import ckanext.feedback.services.utilization.search as search_service
@@ -24,10 +24,19 @@ class UtilizationController:
 
     # utilization/search.html
     def search():
+        id = request.args.get('id', '')
         keyword = request.args.get('keyword', '')
-        utilizations = search_service.get_utilizations(keyword)
+        approval = None
+        if c.userobj is None or c.userobj.sysadmin is None:
+            approval = True
+        disable_keyword = request.args.get('disable_keyword', '')
+        utilizations = search_service.get_utilizations(id, keyword, approval)
 
         return toolkit.render(
             'utilization/search.html',
-            {'keyword': keyword, 'utilizations': utilizations},
+            {
+                'keyword': keyword,
+                'disable_keyword': disable_keyword,
+                'utilizations': utilizations,
+            },
         )

@@ -7,6 +7,12 @@
 #     preload:
 #       - base/main
 
+feedback-search-js:
+  filter: rjsmin
+  output: ckanext-feedback/%(version)s-search.js
+  contents:
+    - js/search.js
+
 feedback-search-css:
   filter: cssrewrite
   output: feedback/%(version)s-search.css
@@ -18,3 +24,9 @@ feedback-tooltip-css:
   output: feedback/%(version)s-tooltip.css
   contents:
     - css/tooltip.css
+
+feedback-package-item-css:
+  filter: cssrewrite
+  output: feedback/%(version)s-package_item.css
+  contents:
+    - css/package_item.css

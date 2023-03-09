@@ -91,7 +91,7 @@
             {% do menu_items.append(('dataset.search', _('Dataset'))) %}
             {% do menu_items.append(('organization.index', _('Organization'))) %}
             {% do menu_items.append(('group.index', _('Group'))) %}
-            {% if h.is_enabled_utilizations %}
+            {% if h.is_enabled_utilizations() %}
               {% do menu_items.append(('utilization.search', _('利活用方法'))) %}
             {% endif %}
             {% if c.userobj.sysadmin and h.is_enabled_resources %}
