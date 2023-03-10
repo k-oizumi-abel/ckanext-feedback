@@ -3,7 +3,7 @@
 {% block package_additional_info %}
   {% if h.is_enabled_downloads() %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _('Download') }}</th>
+      <th scope="row" class="dataset-label">{{ _('Downloads') }}</th>
       <td class="dataset-details" property="foaf:homepage">{{ h.get_package_downloads(pkg_dict.id) }}</td>
     </tr>
   {% endif %}

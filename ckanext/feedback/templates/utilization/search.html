@@ -36,7 +36,7 @@
                       {% snippet 'snippets/home_breadcrumb_item.html' %}
                       {% block breadcrumb_content %}
                         {{ super() }}
-                        <li class="active"><a href="{{ h.url_for('utilization.search') }}">{{ _('利活用方法') }}</a></li>
+                        <li class="active"><a href="{{ h.url_for('utilization.search') }}">{{ _('Utilization') }}</a></li>
                       {% endblock %}
                     </ol>
                   {% endif %}
@@ -64,7 +64,7 @@
                     {% if not disable_keyword %}
                       <h4>キーワード検索</h4>
                       <div class="input-group search-input-group">
-                        <input id="field-giant-search" type="text" class="form-control input-lg" name="keyword" placeholder="{{ _('キーワード検索...') }}" aria-label="{{ _('Search utilizaton data') }}" autocomplete="off" value="{{ keyword }}"/>
+                        <input id="field-giant-search" type="text" class="form-control input-lg" name="keyword" placeholder="{{ _('Keyword Search...') }}" aria-label="{{ _('Search utilizaton data') }}" autocomplete="off" value="{{ keyword }}"/>
                         <span class="input-group-btn">
                           <button class="btn btn-default btn-lg" type="submit" aria-label="{{ _('Submit') }}"><i class="fa fa-search"></i></button>
                         </span>
