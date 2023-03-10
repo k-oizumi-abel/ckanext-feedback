@@ -9,7 +9,7 @@ session = Session()
 
 
 # Get records from the Utilization table
-def get_utilizations(id=None, keyword=None, approval=None):
+def get_utilizations(id=None, keyword=None, approval=False):
     query = (
         session.query(
             Utilization.id,
@@ -34,7 +34,7 @@ def get_utilizations(id=None, keyword=None, approval=None):
                 Package.name.like(f'%{keyword}%'),
             )
         )
-    if approval is not None:
+    if approval:
         query = query.filter(Utilization.approval == approval)
 
     return query.all()
