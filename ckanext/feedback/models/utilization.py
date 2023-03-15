@@ -1,5 +1,8 @@
 import enum
+import uuid
+from datetime import datetime
 
+from ckan.common import _
 from ckan.model.resource import Resource
 from ckan.model.user import User
 from sqlalchemy import BOOLEAN, TIMESTAMP, Column, Enum, ForeignKey, Integer, Text
@@ -9,10 +12,10 @@ from ckanext.feedback.models.session import Base
 
 
 class UtilizationCommentCategory(enum.Enum):
-    request = 'Request'
-    question = 'Question'
-    advertise = 'Advertise'
-    thank = 'Thank'
+    request = _('Request')
+    question = _('Question')
+    advertise = _('Advertise')
+    thank = _('Thank')
 
 
 class Utilization(Base):
@@ -43,7 +46,7 @@ class Utilization(Base):
 
 class UtilizationComment(Base):
     __tablename__ = 'utilization_comment'
-    id = Column(Text, primary_key=True, nullable=False)
+    id = Column(Text, default=uuid.uuid4, primary_key=True, nullable=False)
     utilization_id = Column(
         Text,
         ForeignKey('utilization.id', onupdate='CASCADE', ondelete='CASCADE'),
@@ -51,7 +54,7 @@ class UtilizationComment(Base):
     )
     category = Column(Enum(UtilizationCommentCategory), nullable=False)
     content = Column(Text)
-    created = Column(TIMESTAMP)
+    created = Column(TIMESTAMP, default=datetime.now)
     approval = Column(BOOLEAN, default=False)
     approved = Column(TIMESTAMP)
     approval_user_id = Column(
@@ -64,15 +67,15 @@ class UtilizationComment(Base):
 
 class UtilizationSummary(Base):
     __tablename__ = 'utilization_summary'
-    id = Column(Text, primary_key=True, nullable=False)
+    id = Column(Text, default=uuid.uuid4, primary_key=True, nullable=False)
     resource_id = Column(
         Text,
         ForeignKey('resource.id', onupdate='CASCADE', ondelete='CASCADE'),
         nullable=False,
     )
-    utilization = Column(Integer)
-    comment = Column(Integer)
-    created = Column(TIMESTAMP)
+    utilization = Column(Integer, default=1)
+    comment = Column(Integer, default=0)
+    created = Column(TIMESTAMP, default=datetime.now)
     updated = Column(TIMESTAMP)
 
     resource = relationship(Resource)
