@@ -95,7 +95,7 @@
               {% do menu_items.append(('utilization.search', _('Utilization'))) %}
             {% endif %}
             {% if c.userobj.sysadmin and h.is_enabled_resources %}
-              {% do menu_items.append(('admin.commnets', _('Feedback Comments'))) %}
+              {% do menu_items.append(('management.comments', _('Management Comments'))) %}
             {% endif %}
             {% do menu_items.append(('home.about', _('About'))) %}
             {% for item in menu_items %}

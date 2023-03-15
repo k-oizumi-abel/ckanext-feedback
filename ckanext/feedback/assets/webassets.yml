@@ -37,6 +37,12 @@ feedback-search-css:
   contents:
     - css/search.css
 
+feedback-comments-css:
+  filter: cssrewrite
+  output: feedback/%(version)s-comments.css
+  contents:
+    - css/comments.css
+
 feedback-tooltip-css:
   filter: cssrewrite
   output: feedback/%(version)s-tooltip.css

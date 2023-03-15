@@ -8,7 +8,7 @@ from ckanext.feedback.services.download import summary as download_summary_servi
 from ckanext.feedback.services.resource import comment as comment_service
 from ckanext.feedback.services.resource import summary as resource_summary_service
 from ckanext.feedback.services.utilization import summary as utilization_summary_service
-from ckanext.feedback.views import download, resource, utilization
+from ckanext.feedback.views import download, management, resource, utilization
 
 
 class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
@@ -45,6 +45,7 @@ class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
             blueprints.append(resource.get_resource_comment_blueprint())
         if self.is_enabled_utilizations():
             blueprints.append(utilization.get_utilization_blueprint())
+        blueprints.append(management.get_management_blueprint())
         return blueprints
 
     # Check production.ini settings
