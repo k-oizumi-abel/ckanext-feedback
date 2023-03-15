@@ -1,4 +1,4 @@
-{% ckan_extends %} 
+{% ckan_extends %}
 
 {% block resource_actions_inner %}
   {% if h.check_access('package_update', {'id':pkg.id }) and not is_activity_archive %}
@@ -49,6 +49,15 @@
       </div>
     </li>
   {% endif %}
+  {% if h.is_enabled_resources() %}
+    <li>
+      <div class="btn-group">
+        <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ h.url_for('resource_comment.comment', resource_id=res.id) }}">
+          <i class="fa fa-commenting-o"></i> {{ _('Comment') }}
+        </a>
+      </div>
+    </li>
+  {% endif %}
 {% endblock %}
 
 {% block resource_read_url %}
@@ -81,6 +90,18 @@
             <th scope="row">{{ _('Utilizations') }}</th>
             <td><a href="{{ h.url_for('utilization.search', id=resource.id, disable_keyword=true) }}">{{ h.get_resource_utilizations(resource.id) }}</a></td>
           </tr>
+        {% endif %}
+        {% if h.is_enabled_resources() %}
+        <tr>
+          <th scope="row">{{ _('Comments') }}</th>
+          <td><a href="{{ h.url_for('resource_comment.comment', resource_id=res.id) }}">{{ h.get_resource_comments(resource.id) }}</a></td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Rating') }}</th>
+          <td>{{ h.get_resource_rating(resource.id)|round(1) }}</td>
+        </tr>
+        {% endif %}
+        {% if h.is_enabled_utilizations() %}
           <tr>
             <th scope="row">{{ _('Issue Resolutions') }}</th>
             <td>{{ h.get_resource_issue_resolutions(res.id) }}</td>

@@ -1,23 +1,35 @@
 import enum
+import uuid
+from datetime import datetime
 
+from ckan.common import _
 from ckan.model.resource import Resource
 from ckan.model.user import User
-from sqlalchemy import BOOLEAN, TIMESTAMP, Column, Enum, ForeignKey, Integer, Text
+from sqlalchemy import (
+    BOOLEAN,
+    TIMESTAMP,
+    Column,
+    Enum,
+    ForeignKey,
+    Integer,
+    Numeric,
+    Text,
+)
 from sqlalchemy.orm import relationship
 
 from ckanext.feedback.models.session import Base
 
 
 class ResourceCommentCategory(enum.Enum):
-    request = 'Request'
-    question = 'Question'
-    advertise = 'Advertise'
-    thank = 'Thank'
+    REQUEST = _('Request')
+    QUESTION = _('Question')
+    ADVERTISE = _('Advertise')
+    THANK = _('Thank')
 
 
 class ResourceComment(Base):
     __tablename__ = 'resource_comment'
-    id = Column(Text, primary_key=True, nullable=False)
+    id = Column(Text, default=uuid.uuid4, primary_key=True, nullable=False)
     resource_id = Column(
         Text,
         ForeignKey('resource.id', onupdate='CASCADE', ondelete='CASCADE'),
@@ -26,7 +38,7 @@ class ResourceComment(Base):
     category = Column(Enum(ResourceCommentCategory), nullable=False)
     content = Column(Text)
     rating = Column(Integer)
-    created = Column(TIMESTAMP)
+    created = Column(TIMESTAMP, default=datetime.now)
     approval = Column(BOOLEAN, default=False)
     approved = Column(TIMESTAMP)
     approval_user_id = Column(
@@ -40,14 +52,14 @@ class ResourceComment(Base):
 
 class ResourceCommentReply(Base):
     __tablename__ = 'resource_comment_reply'
-    id = Column(Text, primary_key=True, nullable=False)
+    id = Column(Text, default=uuid.uuid4, primary_key=True, nullable=False)
     resource_comment_id = Column(
         Text,
         ForeignKey('resource_comment.id', onupdate='CASCADE', ondelete='CASCADE'),
         nullable=False,
     )
     content = Column(Text)
-    created = Column(TIMESTAMP)
+    created = Column(TIMESTAMP, default=datetime.now)
     creator_user_id = Column(
         Text, ForeignKey('user.id', onupdate='CASCADE', ondelete='SET NULL')
     )
@@ -58,15 +70,15 @@ class ResourceCommentReply(Base):
 
 class ResourceCommentSummary(Base):
     __tablename__ = 'resource_comment_summary'
-    id = Column(Text, primary_key=True, nullable=False)
+    id = Column(Text, default=uuid.uuid4, primary_key=True, nullable=False)
     resource_id = Column(
         Text,
         ForeignKey('resource.id', onupdate='CASCADE', ondelete='CASCADE'),
         nullable=False,
     )
-    comment = Column(Integer)
-    rating = Column(Integer)
-    created = Column(TIMESTAMP)
+    comment = Column(Integer, default=0)
+    rating = Column(Numeric, default=0)
+    created = Column(TIMESTAMP, default=datetime.now)
     updated = Column(TIMESTAMP)
 
     resource = relationship(Resource)
