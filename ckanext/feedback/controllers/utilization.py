@@ -31,7 +31,9 @@ class UtilizationController:
     def search():
         id = request.args.get('id', '')
         keyword = request.args.get('keyword', '')
-        approval = c.userobj is None or c.userobj.sysadmin is None
+        approval = None
+        if c.userobj is None or c.userobj.sysadmin is None:
+            approval = True
         disable_keyword = request.args.get('disable_keyword', '')
         utilizations = search_service.get_utilizations(id, keyword, approval)
 
