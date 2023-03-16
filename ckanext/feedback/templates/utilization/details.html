@@ -1,1 +1,161 @@
-<p>DETAILS</p>
+{% if h.is_enabled_utilizations() %}
+
+  {% extends "page.html" %}
+
+  {%- block page -%}
+
+    <!-- {% block skip %}
+      <div class="sr-only sr-only-focusable"><a href="#content">{{ _('Skip to content') }}</a></div>
+    {% endblock %} -->
+
+    {#
+    Override the header on a page by page basis by extending this block. If
+    making sitewide header changes it is preferable to override the header.html
+    file.
+    #}
+    {%- block header %}
+      {% include "header.html" %}
+    {% endblock -%}
+
+    {% block styles %}
+      {{ super() }}
+      {% asset 'feedback/feedback-details-css' %}
+    {% endblock %}
+
+    {# The content block allows you to replace the content of the page if needed #}
+    {%- block content %}
+      {% block maintag %}<div class="main">{% endblock %}
+        <div id="content" class="container">
+          {% block main_content %}
+
+            {% block toolbar %}
+              <div class="toolbar" role="navigation" aria-label="{{ _('Breadcrumb') }}">
+                {% block breadcrumb %}
+                  {% if self.breadcrumb_content() | trim %}
+                    <ol class="breadcrumb">
+                      {% snippet 'snippets/home_breadcrumb_item.html' %}
+                      {% block breadcrumb_content %}
+                        <li class="inactive"><a href="{{ h.url_for('utilization.search') }}">{{ _('Utilization') }}</a></li>
+                        <li class="active"><a href="{{ h.url_for('utilization.details', utilization_id=utilization_id) }}">{{ _('Details') }}</a></li>
+                      {% endblock %}
+                    </ol>
+                  {% endif %}
+                {% endblock %}
+              </div>
+            {% endblock %}
+
+            <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
+
+              {#
+              The pre_primary block can be used to add content to before the
+              rendering of the main content columns of the page.
+              #}
+              {% block pre_primary %}
+              {% endblock %}
+
+              {% block secondary %}
+                
+              {% endblock %}
+
+              {% block primary %}
+                {% set row = utilization %}
+                <div class="centered-content">
+                  <br>
+                  {% if c.userobj.sysadmin %}
+                    <form name="admin_form" action="{{ url_for('utilization.approve', utilization_id=utilization_id ) }}" method="post">
+                      <a class="btn btn-primary right-aligned spaced-left" href="#">{{ _('Edit') }}</a>
+                      {% if row.approval == false %}
+                        <button class="btn btn-primary right-aligned">{{ _('Approve') }}</button>
+                      {% endif %}
+                      <br>
+                    </form>
+                    <hr class="divider">
+                  {% endif %}
+                  <h1>{{ row.title }}</h1>
+                  <hr>
+                  <h4>{{ _('Dataset') }}</h4>
+                  <a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}">{{ row.package_name }}</a>
+                  <hr>
+                  <h4>{{ _('Resource') }}</h4>
+                  <a href="{{ h.url_for('dataset.search') }}{{ row.package_name }}/resource/{{ row.resource_id }}">{{ row.resource_name }}</a>
+                  <hr>
+                  <h4>{{ _('Utilization description') }}</h4>
+                  <p>{{ row.description }}</p>
+                  <hr>
+                  <h4>{{ _('Issue resolutions') }}</h4>
+                  <!-- ToDo -->
+                  <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">1
+                  {% if c.userobj.sysadmin %}
+                    <button class="btn btn-primary right-aligned">{{ _('Issue resolution') }}</button>
+                  {% endif %}
+                  <br>
+                  <hr>
+                  <h4>{{ _('Comments') }}</h4>
+                  <p>{{ comments|length }}</p>
+                  <hr>
+                  <form name="comment_form" action="{{ url_for('utilization.create_comment', utilization_id=utilization_id ) }}" method="post">
+                    <h4>{{ _('Comment') }}</h4>
+                    <select name="category" id="category">
+                      {% for category in categories %}
+                        <option value="{{ category.name }}">{{ _(category.value) }}</option>
+                      {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                    <textarea class="form-control" cols="20" rows="5" id="content" name="content"></textarea>
+                    <br>
+                    <button class="btn btn-primary right-aligned">{{ _('Send comment') }}</button>
+                    <br>
+                    <br>
+                    <br>
+                  </form>
+                  {% if comments|length %}
+                    <hr class="divider">
+                  {% endif %}
+                  {% for comment in comments %}
+                    {% if c.userobj.sysadmin and comment.approval == false %}
+                      <form name="approval_form" action="{{ url_for('utilization.approve_comment', utilization_id=utilization_id, comment_id=comment.id) }}" method="post">
+                        <input type="hidden" id="resource_id" name="resource_id" value="{{ row.resource_id }}"/>
+                        <button class="btn btn-primary right-aligned">{{ _('Approve') }}</button>
+                      </form>
+                    {% endif %}
+                    <h4>
+                      {{ comment.created.strftime('%Y/%m/%d %H:%M') }}
+                      {% for category in categories %}
+                        {% if comment.category.name in category.name %}
+                          {{ _(comment.category.value) }}
+                        {% endif %}
+                      {% endfor %}
+                    </h4>
+                    <br>
+                    <p class="comment-content {{'unapproved' if not comment.approval }}">{{ comment.content }}</p>
+                    <hr class="divider">
+                  {% endfor %}
+                </div>
+              {% endblock %}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
+    {% endblock -%}
+
+    {#
+    Override the footer on a page by page basis by extending this block. If
+    making sitewide header changes it is preferable to override the footer.html-u
+    file.
+    #}
+    {%- block footer %}
+      {% include "footer.html" %}
+    {% endblock -%}
+  {%- endblock -%}
+
+  {%- block scripts %}
+    {% asset 'base/main' %}
+    {% asset 'base/ckan' %}
+    {% if g.tracking_enabled %}
+      {% asset 'base/tracking' %}
+    {% endif %}
+    {{ super() }}
+  {% endblock -%}
+
+{% endif %}
