@@ -1,8 +1,11 @@
 from ckan.plugins import toolkit
+import ckanext.feedback.services.utilization.details as detail_service
 
 
 class ManagementController:
     # management/comments.html
     @staticmethod
     def comments():
-        return toolkit.render('management/comments.html')
+        categories = detail_service.get_utilization_comment_categories()
+        return toolkit.render('management/comments.html',
+                              {'categories': categories})

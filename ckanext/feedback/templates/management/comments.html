@@ -59,16 +59,22 @@
               <form class="top-centered-content" method="get">
                 {% if c.userobj.sysadmin %}
                   {% block select_categories %}
-                  <span><h4>{{ _('Category') }}</h4>
-                    {# TODO: Iterate categories #}
+                    <span>
+                      <h4>{{ _('Category') }}</h4>
+                      {% for category in categories %}
+                      {# TODO: Iterate categories #}
+                        <input type="checkbox" id="{{ category.value }}" name="{{ category.value }}" checked>
+                        <label for="{{ category.value }}" class="normal-font-weight middle-vertical-aligned">{{ _(category.value) }}</label>
+                      {% endfor %}
                   </span>
                   {% endblock %}
                   {% block select_status %}
-                  <span><h4>{{ _('Status') }}</h4>
-                    <input type="checkbox" id="waiting" name="waiting" checked>
-                    <label for="waiting" class="normal-font-weight middle-vertical-aligned">{{ _('Waiting') }}</label>
-                    <input class="spaced-left" type="checkbox" id="approval" name="approval" checked>
-                    <label for="approval" class="normal-font-weight middle-vertical-aligned">{{ _('Approved') }}</label>
+                    <span>
+                      <h4>{{ _('Status') }}</h4>
+                      <input type="checkbox" id="waiting" name="waiting" checked>
+                      <label for="waiting" class="normal-font-weight middle-vertical-aligned">{{ _('Waiting') }}</label>
+                      <input class="spaced-left" type="checkbox" id="approval" name="approval" checked>
+                      <label for="approval" class="normal-font-weight middle-vertical-aligned">{{ _('Approved') }}</label>
                     </span>
                   {% endblock %}
                 {% endif %}
