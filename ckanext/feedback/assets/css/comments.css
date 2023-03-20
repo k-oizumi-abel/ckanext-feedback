@@ -99,7 +99,7 @@ input[name="tab_menu"] {
 #menu2:checked ~ #menu2 {
   display: block;
 }
-.tab1 input:checked + .tab-menu {
+.tab input:checked + .tab-menu {
   background-color: #1f71b5;
   color: #fff;
 }
