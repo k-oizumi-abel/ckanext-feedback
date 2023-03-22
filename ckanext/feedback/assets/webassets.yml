@@ -13,6 +13,12 @@ feedback-search-js:
   contents:
     - js/search.js
 
+feedback-registration-js:
+  filter: rjsmin
+  output: ckanext-feedback/%(version)s-registration.js
+  contents:
+    - js/registration.js
+
 feedback-search-css:
   filter: cssrewrite
   output: feedback/%(version)s-search.css
@@ -30,6 +36,12 @@ feedback-package-item-css:
   output: feedback/%(version)s-package_item.css
   contents:
     - css/package_item.css
+
+feedback-registration-css:
+  filter: cssrewrite
+  output: feedback/%(version)s-registration.css
+  contents:
+    - css/registration.css
 
 feedback-details-css:
   filter: cssrewrite
