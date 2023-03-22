@@ -4,6 +4,7 @@ from ckan.plugins import toolkit
 from flask import redirect, url_for
 
 import ckanext.feedback.services.utilization.details as detail_service
+import ckanext.feedback.services.utilization.edit as edit_service
 import ckanext.feedback.services.utilization.registration as registration_service
 import ckanext.feedback.services.utilization.search as search_service
 import ckanext.feedback.services.utilization.summary as summary_service
@@ -99,7 +100,7 @@ class UtilizationController:
     def approve(utilization_id):
         resource_id = detail_service.get_utilization(utilization_id).resource_id
         detail_service.approve_utilization(utilization_id, c.userobj.id)
-        summary_service.increment_utilization_summary_utilizations(resource_id)
+        summary_service.refresh_utilization_summary(resource_id)
         session.commit()
 
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
@@ -127,10 +128,46 @@ class UtilizationController:
     def approve_comment(utilization_id, comment_id):
         resource_id = detail_service.get_utilization(utilization_id).resource_id
         detail_service.approve_utilization_comment(comment_id, c.userobj.id)
-        summary_service.increment_utilization_summary_comments(resource_id)
+        summary_service.refresh_utilization_summary(resource_id)
         session.commit()
 
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
+
+    @staticmethod
+    # utilization/<utilization_id>/edit
+    def edit(utilization_id):
+        utilization_details = edit_service.get_utilization_details(utilization_id)
+        resource_details = edit_service.get_resource_details(
+            utilization_details.resource_id
+        )
+
+        return toolkit.render(
+            'utilization/edit.html',
+            {
+                'utilization_details': utilization_details,
+                'resource_details': resource_details,
+            },
+        )
+
+    @staticmethod
+    # utilization/<utilization_id>/edit
+    def update(utilization_id):
+        title = request.form.get('title', '')
+        description = request.form.get('description', '')
+        edit_service.update_utilization(utilization_id, title, description)
+        session.commit()
+
+        return redirect(url_for('utilization.details', utilization_id=utilization_id))
+
+    @staticmethod
+    # utilization/<utilization_id>/delete
+    def delete(utilization_id):
+        resource_id = detail_service.get_utilization(utilization_id).resource_id
+        edit_service.delete_utilization(utilization_id)
+        summary_service.refresh_utilization_summary(resource_id)
+        session.commit()
+
+        return redirect(url_for('utilization.search'))
 
     # utilization/comment.html
     @staticmethod

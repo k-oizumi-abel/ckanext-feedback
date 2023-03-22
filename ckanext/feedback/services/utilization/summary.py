@@ -1,7 +1,11 @@
 from datetime import datetime
 
 from ckanext.feedback.models.session import session
-from ckanext.feedback.models.utilization import UtilizationSummary
+from ckanext.feedback.models.utilization import (
+    Utilization,
+    UtilizationComment,
+    UtilizationSummary,
+)
 
 
 # Create new utilizaton summary
@@ -18,8 +22,25 @@ def create_utilization_summary(resource_id):
         session.add(summary)
 
 
-# Increment utilization summary utilization count
-def increment_utilization_summary_utilizations(resource_id):
+# Recalculate approved utilization and comments related to the utilization summary
+def refresh_utilization_summary(resource_id):
+    approved_utilizations = (
+        session.query(Utilization)
+        .filter(
+            Utilization.resource_id == resource_id,
+            Utilization.approval,
+        )
+        .count()
+    )
+    approved_comments = (
+        session.query(UtilizationComment)
+        .join(Utilization)
+        .filter(
+            Utilization.resource_id == resource_id,
+            UtilizationComment.approval,
+        )
+        .count()
+    )
     summary = (
         session.query(UtilizationSummary)
         .filter(UtilizationSummary.resource_id == resource_id)
@@ -28,27 +49,11 @@ def increment_utilization_summary_utilizations(resource_id):
     if summary is None:
         summary = UtilizationSummary(
             resource_id=resource_id,
-            utilization=1,
+            utilization=approved_utilizations,
+            comment=approved_comments,
         )
         session.add(summary)
     else:
-        summary.utilization = summary.utilization + 1
-        summary.updated = datetime.now()
-
-
-# Increment utilization summary comment count
-def increment_utilization_summary_comments(resource_id):
-    summary = (
-        session.query(UtilizationSummary)
-        .filter(UtilizationSummary.resource_id == resource_id)
-        .first()
-    )
-    if summary is None:
-        summary = UtilizationSummary(
-            resource_id=resource_id,
-            comment=1,
-        )
-        session.add(summary)
-    else:
-        summary.comment = summary.comment + 1
+        summary.utilization = approved_utilizations
+        summary.comment = approved_comments
         summary.updated = datetime.now()

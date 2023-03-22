@@ -40,6 +40,24 @@ rules = [
         {'methods': ['POST']},
     ),
     (
+        '/<utilization_id>/edit',
+        'edit',
+        utilization.UtilizationController.edit,
+        {'methods': ['GET']},
+    ),
+    (
+        '/<utilization_id>/edit',
+        'update',
+        utilization.UtilizationController.update,
+        {'methods': ['POST']},
+    ),
+    (
+        '/<utilization_id>/delete',
+        'delete',
+        utilization.UtilizationController.delete,
+        {'methods': ['POST']},
+    ),
+    (
         '/comment_approval',
         'comment_approval',
         utilization.UtilizationController.comment_approval,

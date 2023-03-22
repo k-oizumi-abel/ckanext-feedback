@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-28 20:54+0900\n"
+"POT-Creation-Date: 2023-03-29 09:45+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/feedback/controllers/utilization.py:63
+#: ckanext/feedback/controllers/utilization.py:64
 msgid ""
 "Your application is complete.<br>The utilization will not be displayed "
 "until approved by an administrator."
 msgstr "登録申請が完了しました。<br>管理者に申請が承認されるまで表示されません。"
 
-#: ckanext/feedback/controllers/utilization.py:116
+#: ckanext/feedback/controllers/utilization.py:117
 msgid ""
 "Your comment has been sent.<br>The comment will not be displayed until "
 "approved by an administrator."
@@ -101,6 +101,7 @@ msgstr "Top"
 
 #: ckanext/feedback/templates/header.html:91
 #: ckanext/feedback/templates/utilization/details.html:32
+#: ckanext/feedback/templates/utilization/edit.html:16
 #: ckanext/feedback/templates/utilization/new.html:6
 #: ckanext/feedback/templates/utilization/new.html:14
 #: ckanext/feedback/templates/utilization/search.html:94
@@ -117,6 +118,7 @@ msgstr "グループ"
 
 #: ckanext/feedback/templates/header.html:95
 #: ckanext/feedback/templates/utilization/details.html:11
+#: ckanext/feedback/templates/utilization/edit.html:6
 #: ckanext/feedback/templates/utilization/search.html:39
 msgid "Utilization"
 msgstr "利活用方法"
@@ -198,7 +200,7 @@ msgstr "値"
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: ckanext/feedback/templates/package/resource_read.html:75
+#: ckanext/feedback/templates/package/resource_read.html:84
 msgid "Data last updated"
 msgstr "最終更新日"
 
@@ -266,6 +268,7 @@ msgstr "詳細情報の表示"
 
 #: ckanext/feedback/templates/package/snippets/resource_item.html:56
 #: ckanext/feedback/templates/utilization/details.html:22
+#: ckanext/feedback/templates/utilization/edit.html:8
 msgid "Edit"
 msgstr "編集"
 
@@ -306,17 +309,8 @@ msgstr "人気"
 msgid "This dataset has no description"
 msgstr "このデータセットには説明がありません"
 
-#: ckanext/feedback/templates/utilization/details.html:8
-#: ckanext/feedback/templates/utilization/search.html:8
-msgid "Skip to content"
-msgstr "コンテンツへスキップ"
-
-#: ckanext/feedback/templates/utilization/details.html:32
-#: ckanext/feedback/templates/utilization/search.html:32
-msgid "Breadcrumb"
-msgstr "パンくずリスト"
-
-#: ckanext/feedback/templates/utilization/details.html:39
+#: ckanext/feedback/templates/utilization/details.html:12
+#: ckanext/feedback/templates/utilization/edit.html:7
 msgid "Details"
 msgstr "詳細"
 
@@ -326,6 +320,7 @@ msgid "Approve"
 msgstr "承認"
 
 #: ckanext/feedback/templates/utilization/details.html:35
+#: ckanext/feedback/templates/utilization/edit.html:19
 #: ckanext/feedback/templates/utilization/new.html:7
 #: ckanext/feedback/templates/utilization/new.html:17
 msgid "Resource"
@@ -359,26 +354,54 @@ msgstr "コメントを入力してください"
 msgid "Send comment"
 msgstr "コメント送信"
 
+#: ckanext/feedback/templates/utilization/edit.html:14
+msgid ""
+"Deleting this utilization will also delete all related comments.\n"
+"Are you sure?"
+msgstr ""
+"利活用方法を削除すると紐づいているコメントも削除されます。\n"
+"よろしいですか？"
+
+#: ckanext/feedback/templates/utilization/edit.html:23
 #: ckanext/feedback/templates/utilization/new.html:24
 #: ckanext/feedback/templates/utilization/search.html:93
 msgid "Title"
 msgstr "タイトル"
 
+#: ckanext/feedback/templates/utilization/edit.html:26
 #: ckanext/feedback/templates/utilization/new.html:27
 msgid "Please enter a title"
 msgstr "タイトルを入力してください。"
 
+#: ckanext/feedback/templates/utilization/edit.html:30
 #: ckanext/feedback/templates/utilization/new.html:31
 msgid "Description"
 msgstr "内容"
 
+#: ckanext/feedback/templates/utilization/edit.html:33
 #: ckanext/feedback/templates/utilization/new.html:34
 msgid "Please enter a description"
 msgstr "内容を入力してください。"
 
+#: ckanext/feedback/templates/utilization/edit.html:36
+msgid "Update"
+msgstr "更新"
+
+#: ckanext/feedback/templates/utilization/edit.html:40
+msgid "Delete"
+msgstr "削除"
+
 #: ckanext/feedback/templates/utilization/new.html:38
 msgid "Create"
 msgstr "登録"
+
+#: ckanext/feedback/templates/utilization/search.html:8
+msgid "Skip to content"
+msgstr "コンテンツへスキップ"
+
+#: ckanext/feedback/templates/utilization/search.html:32
+msgid "Breadcrumb"
+msgstr "パンくずリスト"
 
 #: ckanext/feedback/templates/utilization/search.html:65
 msgid "Keyword Search"
