@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-28 09:16+0900\n"
+"POT-Creation-Date: 2023-03-22 13:46+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -192,7 +192,7 @@ msgstr "値"
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: ckanext/feedback/templates/package/resource_read.html:84
+#: ckanext/feedback/templates/package/resource_read.html:75
 msgid "Data last updated"
 msgstr "最終更新日"
 
@@ -315,7 +315,7 @@ msgid "Details"
 msgstr "詳細"
 
 #: ckanext/feedback/templates/utilization/details.html:68
-#: ckanext/feedback/templates/utilization/details.html:118
+#: ckanext/feedback/templates/utilization/details.html:122
 msgid "Approve"
 msgstr "承認"
 
@@ -346,6 +346,10 @@ msgid "Comment"
 msgstr "コメント"
 
 #: ckanext/feedback/templates/utilization/details.html:107
+msgid "Please enter your comment"
+msgstr "コメントを入力してください"
+
+#: ckanext/feedback/templates/utilization/details.html:110
 msgid "Send comment"
 msgstr "コメント送信"
 
