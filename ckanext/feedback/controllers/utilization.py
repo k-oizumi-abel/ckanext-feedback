@@ -10,7 +10,7 @@ from ckanext.feedback.models.session import session
 
 class UtilizationController:
     # Render HTML pages
-    # utilization/search.html
+    # utilization/search
     @staticmethod
     def search():
         id = request.args.get('id', '')
