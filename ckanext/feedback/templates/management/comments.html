@@ -93,7 +93,7 @@
                               <input type="checkbox" id="comments-checkbox" name="comments-checkbox" />
                             </th>
                             <th class="big-column">{{ _('Comments Body') }}</th>
-                            <th class="medium-column">{{ _('Title') }}</th>
+                            <th class="medium-column">{{ _('Utilization Title') }}</th>
                             <th class="medium-column">{{ _('Dataset') }}</th>
                             <th class="medium-column">{{ _('Resource') }}</th>
                             <th class="small-column">{{ _('Category') }}</th>
@@ -109,12 +109,19 @@
                               <td class="small-column">
                                 <input type="checkbox" id="comments-checkbox" name="comments-checkbox" />
                               </td>
-                              <td class="left-aligned-text"><a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.content }}</a>
+                              <td class="left-aligned-text">
+                                <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.content }}</a>
                               </td>
-                              <td>{{ row.utilization.title }}</td>
-                              <td>{{ row.utilization.resource.package.title }}</td>
-                              <td>{{ row.utilization.resource.name }}</td>
-                              <td>{{ row.category }}</td>
+                              <td>
+                                <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.utilization.title }}</a>
+                              </td>
+                              <td>
+                                <a href="{{ url_for('dataset.search') }}{{ row.utilization.resource.package.title }}">{{ row.utilization.resource.package.title }}</a>
+                              </td>
+                              <td>
+                                <a href="{{ h.url_for('dataset.search') }}{{ row.utilization.resource.package.title }}/resource/{{ row.utilization.resource.id }}">{{ row.utilization.resource.name }}</a>
+                              </td>
+                              <td>{{ row.category.value }}</td>
                               <td>{{ row.created.strftime('%Y/%m/%d') }}</td>
                               {% if c.userobj.sysadmin %}
                                 {% if row.approval == True %}
