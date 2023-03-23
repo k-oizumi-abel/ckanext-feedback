@@ -40,12 +40,13 @@ def approve_utilization(utilization_id, approval_user_id):
 
 
 # Get comments related to the Utilization record
-def get_utilization_comments(utilization_id, approval=None):
+def get_utilization_comments(utilization_id=None, approval=None):
     query = (
         session.query(UtilizationComment)
-        .filter(UtilizationComment.utilization_id == utilization_id)
         .order_by(UtilizationComment.created.desc())
     )
+    if utilization_id is not None:
+        query = query.filter(UtilizationComment.utilization_id == utilization_id)
     if approval is not None:
         query = query.filter(UtilizationComment.approval == approval)
 

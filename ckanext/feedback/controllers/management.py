@@ -7,5 +7,11 @@ class ManagementController:
     @staticmethod
     def comments():
         categories = detail_service.get_utilization_comment_categories()
-        return toolkit.render('management/comments.html',
-                              {'categories': categories})
+        utilization_comments = detail_service.get_utilization_comments()
+        return toolkit.render(
+            'management/comments.html',
+            {
+                'categories': categories,
+                'utilization_commnets': utilization_comments
+            },
+        )
