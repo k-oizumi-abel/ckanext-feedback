@@ -12,6 +12,6 @@ class ManagementController:
             'management/comments.html',
             {
                 'categories': categories,
-                'utilization_commnets': utilization_comments
+                'utilization_comments': utilization_comments
             },
         )
