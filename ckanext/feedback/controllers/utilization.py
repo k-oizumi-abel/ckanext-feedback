@@ -9,6 +9,7 @@ import ckanext.feedback.services.utilization.registration as registration_servic
 import ckanext.feedback.services.utilization.search as search_service
 import ckanext.feedback.services.utilization.summary as summary_service
 from ckanext.feedback.models.session import session
+from ckanext.feedback.services.common.check import check_administrator
 
 
 class UtilizationController:
@@ -55,6 +56,9 @@ class UtilizationController:
         resource_id = request.form.get('resource_id', '')
         title = request.form.get('title', '')
         description = request.form.get('description', '')
+        if not (resource_id and title and description):
+            toolkit.abort(400)
+
         return_to_resource = eval(request.form.get('return_to_resource'))
         registration_service.create_utilization(resource_id, title, description)
         summary_service.create_utilization_summary(resource_id)
@@ -99,6 +103,7 @@ class UtilizationController:
 
     # utilization/<utilization_id>/approve
     @staticmethod
+    @check_administrator
     def approve(utilization_id):
         resource_id = detail_service.get_utilization(utilization_id).resource_id
         detail_service.approve_utilization(utilization_id, c.userobj.id)
@@ -112,6 +117,9 @@ class UtilizationController:
     def create_comment(utilization_id):
         category = request.form.get('category', '')
         content = request.form.get('content', '')
+        if not (category and content):
+            toolkit.abort(400)
+
         detail_service.create_utilization_comment(utilization_id, category, content)
         session.commit()
 
@@ -127,6 +135,7 @@ class UtilizationController:
 
     # utilization/<utilization_id>/comment/<comment_id>/approve
     @staticmethod
+    @check_administrator
     def approve_comment(utilization_id, comment_id):
         detail_service.approve_utilization_comment(comment_id, c.userobj.id)
         detail_service.refresh_utilization_comments(utilization_id)
@@ -134,8 +143,9 @@ class UtilizationController:
 
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
 
-    @staticmethod
     # utilization/<utilization_id>/edit
+    @staticmethod
+    @check_administrator
     def edit(utilization_id):
         utilization_details = edit_service.get_utilization_details(utilization_id)
         resource_details = edit_service.get_resource_details(
@@ -150,18 +160,23 @@ class UtilizationController:
             },
         )
 
-    @staticmethod
     # utilization/<utilization_id>/edit
+    @staticmethod
+    @check_administrator
     def update(utilization_id):
         title = request.form.get('title', '')
         description = request.form.get('description', '')
+        if not (title and description):
+            toolkit.abort(400)
+
         edit_service.update_utilization(utilization_id, title, description)
         session.commit()
 
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
 
-    @staticmethod
     # utilization/<utilization_id>/delete
+    @staticmethod
+    @check_administrator
     def delete(utilization_id):
         resource_id = detail_service.get_utilization(utilization_id).resource_id
         edit_service.delete_utilization(utilization_id)
@@ -172,18 +187,24 @@ class UtilizationController:
 
     # utilization/comment.html
     @staticmethod
+    @check_administrator
     def comment():
         return toolkit.render('utilization/comment.html')
 
     # utilization/comment_approval.html
     @staticmethod
+    @check_administrator
     def comment_approval():
         return toolkit.render('utilization/comment_approval.html')
 
     # utilization/<utilization_id>/issue_resolution/new
     @staticmethod
+    @check_administrator
     def create_issue_resolution(utilization_id):
         description = request.form.get('description')
+        if not description:
+            toolkit.abort(400)
+
         detail_service.create_issue_resolution(
             utilization_id, description, c.userobj.id
         )
