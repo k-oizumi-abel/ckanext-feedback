@@ -18,6 +18,7 @@ def get_utilization(utilization_id):
         session.query(
             Utilization.title,
             Utilization.description,
+            Utilization.comment,
             Utilization.approval,
             Resource.name.label('resource_name'),
             Resource.id.label('resource_id'),
@@ -92,3 +93,18 @@ def create_issue_resolution(utilization_id, description, creator_user_id):
         creator_user_id=creator_user_id,
     )
     session.add(issue_resolution)
+
+
+# Recalculate total approved utilization comments
+def refresh_utilization_comments(utilization_id):
+    count = (
+        session.query(UtilizationComment)
+        .filter(
+            UtilizationComment.utilization_id == utilization_id,
+            UtilizationComment.approval,
+        )
+        .count()
+    )
+    utilization = session.query(Utilization).get(utilization_id)
+    utilization.comment = count
+    utilization.updated = datetime.now()

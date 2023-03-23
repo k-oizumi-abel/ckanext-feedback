@@ -28,6 +28,7 @@ class Utilization(Base):
     )
     title = Column(Text)
     description = Column(Text)
+    comment = Column(Integer, default=0)
     created = Column(TIMESTAMP, default=datetime.now)
     approval = Column(BOOLEAN, default=False)
     approved = Column(TIMESTAMP)
@@ -76,7 +77,6 @@ class UtilizationSummary(Base):
         nullable=False,
     )
     utilization = Column(Integer, default=0)
-    comment = Column(Integer, default=0)
     created = Column(TIMESTAMP, default=datetime.now)
     updated = Column(TIMESTAMP)
 

@@ -6,11 +6,7 @@ from sqlalchemy import func
 
 from ckanext.feedback.models.issue import IssueResolutionSummary
 from ckanext.feedback.models.session import session
-from ckanext.feedback.models.utilization import (
-    Utilization,
-    UtilizationComment,
-    UtilizationSummary,
-)
+from ckanext.feedback.models.utilization import Utilization, UtilizationSummary
 
 log = logging.getLogger(__name__)
 
@@ -50,22 +46,13 @@ def create_utilization_summary(resource_id):
         session.add(summary)
 
 
-# Recalculate approved utilization and comments related to the utilization summary
+# Recalculate approved utilization related to the utilization summary
 def refresh_utilization_summary(resource_id):
-    approved_utilizations = (
+    count = (
         session.query(Utilization)
         .filter(
             Utilization.resource_id == resource_id,
             Utilization.approval,
-        )
-        .count()
-    )
-    approved_comments = (
-        session.query(UtilizationComment)
-        .join(Utilization)
-        .filter(
-            Utilization.resource_id == resource_id,
-            UtilizationComment.approval,
         )
         .count()
     )
@@ -77,13 +64,11 @@ def refresh_utilization_summary(resource_id):
     if summary is None:
         summary = UtilizationSummary(
             resource_id=resource_id,
-            utilization=approved_utilizations,
-            comment=approved_comments,
+            utilization=count,
         )
         session.add(summary)
     else:
-        summary.utilization = approved_utilizations
-        summary.comment = approved_comments
+        summary.utilization = count
         summary.updated = datetime.now()
 
 
