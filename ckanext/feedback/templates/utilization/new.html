@@ -2,118 +2,53 @@
 
   {% extends "page.html" %}
 
-  {%- block page -%}
+  {% block breadcrumb_content %}
+    <li class="inactive"><a href="{{ h.url_for('dataset.read', id=resource_details.package_name) }}">{{ _('Dataset') }}</a></li>
+    <li class="inactive"><a href="{{ h.url_for('resource.read', id=resource_details.package_name, resource_id=resource_details.resource_id) }}">{{ _('Resource') }}</a></li>
+    <li class="active"><a href="">{{ _('Create utilization application') }}</a></li>
+  {% endblock %}
 
-    <!-- {% block skip %}
-      <div class="sr-only sr-only-focusable"><a href="#content">{{ _('Skip to content') }}</a></div>
-    {% endblock %} -->
-
-    {#
-    Override the header on a page by page basis by extending this block. If
-    making sitewide header changes it is preferable to override the header.html
-    file.
-    #}
-    {%- block header %}
-      {% include "header.html" %}
-    {% endblock -%}
-
-    {% block styles %}
-      {{ super() }}
-      {% asset 'feedback/feedback-registration-css' %}
-    {% endblock %}
-
-    {# The content block allows you to replace the content of the page if needed #}
-    {%- block content %}
-      {% block maintag %}<div class="main">{% endblock %}
-        <div id="content" class="container">
-          {% block main_content %}
-
-            {% block toolbar %}
-              <div class="toolbar" role="navigation" aria-label="{{ _('Breadcrumb') }}">
-                {% block breadcrumb %}
-                  {% if self.breadcrumb_content() | trim %}
-                    <ol class="breadcrumb">
-                      {% snippet 'snippets/home_breadcrumb_item.html' %}
-                      {% block breadcrumb_content %}
-                        <li class="inactive"><a href="{{ h.url_for('dataset.read', id=resource_details.package_name) }}">{{ _('Dataset') }}</a></li>
-                        <li class="inactive"><a href="{{ h.url_for('resource.read', id=resource_details.package_name, resource_id=resource_details.resource_id) }}">{{ _('Resource') }}</a></li>
-                        <li class="active"><a href="">{{ _('Create utilization application') }}</a></li>
-                      {% endblock %}
-                    </ol>
-                  {% endif %}
-                {% endblock %}
-              </div>
-            {% endblock %}
-
-            <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
-
-              {#
-              The pre_primary block can be used to add content to before the
-              rendering of the main content columns of the page.
-              #}
-              {% block pre_primary %}
-              {% endblock %}
-
-              {% block secondary %}
-                
-              {% endblock %}
-
-              {% block primary %}
-                <div class="centered-content">
-                  <br>
-                  <h4>{{ _('Dataset') }}</h4>
-                  <a href="{{ h.url_for('dataset.read', id=resource_details.package_name) }}">{{ resource_details.package_name }}</a>
-                  <hr>
-                  <h4>{{ _('Resource') }}</h4>
-                  <a href="{{ h.url_for('resource.read', id=resource_details.package_name, resource_id=resource_details.resource_id) }}">{{ resource_details.resource_name }}</a>
-                  <hr>
-                  <form name="content_form" action="{{ url_for('utilization.create') }}" method="post">
-                    {% set message = _('Your application is complete. \nThe utilization will not be displayed until approved by an administrator.')  %}
-                    <input type="hidden" id="message" name="message" value="{{ message }}">
-                    <input type="hidden" id="return_to_resource" name="return_to_resource" value="{{ return_to_resource }}">
-                    <input type="hidden" id="package_name" name="package_name" value="{{ resource_details.package_name }}">
-                    <input type="hidden" id="resource_id" name="resource_id" value="{{ resource_details.resource_id }}">
-                    <h4>{{ _('Title') }}</h4>
-                    <input type="text" class="title" id="title" name="title"/>
-                    <div>
-                      <p id="title-error" class="alert alert-error" style="display: none;"">{{ _('Please enter a title') }}</p>
-                    </div>
-                    <br>
-                    <hr>
-                    <h4>{{ _('Description') }}</h4>
-                    <textarea class="form-control" cols="20" rows="5" id="description" name="description"></textarea>
-                    <div>
-                      <p id="description-error" class="alert alert-error" style="display: none;">{{ _('Please enter a description') }}</p>
-                    </div>
-                    <br>
-                    <button class="btn btn-primary right-aligned" onclick="return checkTitleAndDescriptionExists();">{{ _('Create') }}</button>
-                  </form>
-                </div>
-              {% endblock %}
-            </div>
-          {% endblock %}
-        </div>
+  {%- block primary %}
+    <article class="module" role="main">
+      <div class="module-content">
+        {% set message = _('Your application is complete. \nThe utilization will not be displayed until approved by an administrator.')  %}
+        <input type="hidden" id="message" name="message" value="{{ message }}">
+        <h4>{{ _('Dataset') }}</h4>
+        <a href="{{ h.url_for('dataset.read', id=resource_details.package_name) }}">{{ resource_details.package_name }}</a>
+        <hr>
+        <h4>{{ _('Resource') }}</h4>
+        <a href="{{ h.url_for('resource.read', id=resource_details.package_name, resource_id=resource_details.resource_id) }}">{{ resource_details.resource_name }}</a>
+        <hr>
+        <form name="content_form" action="{{ url_for('utilization.create') }}" method="post">
+          <input type="hidden" id="return_to_resource" name="return_to_resource" value="{{ return_to_resource }}">
+          <input type="hidden" id="package_name" name="package_name" value="{{ resource_details.package_name }}">
+          <input type="hidden" id="resource_id" name="resource_id" value="{{ resource_details.resource_id }}">
+          <h4>{{ _('Title') }}</h4>
+          <input type="text" class="form-control" id="title" name="title"/>
+          <div>
+            <p id="title-error" class="alert alert-error" style="display: none;"">{{ _('Please enter a title') }}</p>
+          </div>
+          <br>
+          <hr>
+          <h4>{{ _('Description') }}</h4>
+          <textarea class="form-control" cols="20" rows="5" id="description" name="description"></textarea>
+          <div>
+            <p id="description-error" class="alert alert-error" style="display: none;">{{ _('Please enter a description') }}</p>
+          </div>
+          <br>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="return checkTitleAndDescriptionExists();">{{ _('Create') }}</button>
+          </div>
+        </form>
       </div>
-    {% endblock -%}
+    </article>
+  {% endblock %}
 
-    {#
-    Override the footer on a page by page basis by extending this block. If
-    making sitewide header changes it is preferable to override the footer.html-u
-    file.
-    #}
-    {%- block footer %}
-      {% include "footer.html" %}
-    {% endblock -%}
-  {%- endblock -%}
+  {% block secondary %}{% endblock %}
 
   {%- block scripts %}
-    {% asset 'base/main' %}
-    {% asset 'base/ckan' %}
-    {% asset 'feedback/feedback-registration-js' %}
-    {% if g.tracking_enabled %}
-      {% asset 'base/tracking' %}
-    {% endif %}
     {{ super() }}
+    {% asset 'feedback/feedback-registration-js' %}
   {% endblock -%}
 
 {% endif %}

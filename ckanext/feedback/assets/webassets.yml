@@ -37,12 +37,6 @@ feedback-package-item-css:
   contents:
     - css/package_item.css
 
-feedback-registration-css:
-  filter: cssrewrite
-  output: feedback/%(version)s-registration.css
-  contents:
-    - css/registration.css
-
 feedback-details-css:
   filter: cssrewrite
   output: feedback/%(version)s-details.css
