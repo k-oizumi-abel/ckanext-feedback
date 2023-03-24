@@ -89,7 +89,7 @@
                         <thead class="table-header">
                           <tr>
                             <th class="small-column">
-                              <input type="checkbox" id="comments-checkbox" name="comments-checkbox" />
+                              <input type="checkbox" id="comments-checkbox-all" name="comments-checkbox-all" />
                             </th>
                             <th class="big-column">{{ _('Comments Body') }}</th>
                             <th class="medium-column">{{ _('Utilization Title') }}</th>
@@ -106,7 +106,7 @@
                           {% for row in utilization_comments %}
                             <tr>
                               <td class="small-column">
-                                <input type="checkbox" id="comments-checkbox" name="comments-checkbox" />
+                                <input type="checkbox" id="comments-checkbox-{{ utilization_comments.id }}" name="comments-checkbox" />
                               </td>
                               <td class="left-aligned-text">
                                 <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.content }}</a>
