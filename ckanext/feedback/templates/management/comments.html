@@ -62,7 +62,7 @@
                     <span>
                       <h4>{{ _('Category') }}</h4>
                       {% for category in categories %}
-                        <input type="checkbox" id="{{ category.value }}" name="{{ category.value }}" checked>
+                        <input type="checkbox" class="category-checkbox" id="{{ category.value }}" name="{{ category.value }}" onclick="refreshTable()" checked>
                         <label for="{{ category.value }}" class="normal-font-weight middle-vertical-aligned">{{ _(category.value) }}</label>
                       {% endfor %}
                   </span>
@@ -70,9 +70,9 @@
                   {% block select_status %}
                     <span>
                       <h4>{{ _('Status') }}</h4>
-                      <input type="checkbox" id="waiting" name="waiting" checked>
+                      <input type="checkbox" id="waiting" name="waiting" onclick="refreshTable()" checked>
                       <label for="waiting" class="normal-font-weight middle-vertical-aligned">{{ _('Waiting') }}</label>
-                      <input class="spaced-left" type="checkbox" id="approval" name="approval" checked>
+                      <input class="spaced-left" type="checkbox" id="approval" name="approval" onclick="refreshTable()" checked>
                       <label for="approval" class="normal-font-weight middle-vertical-aligned">{{ _('Approved') }}</label>
                     </span>
                   {% endblock %}
@@ -195,6 +195,7 @@
 {%- block scripts %}
   {% asset 'base/main' %}
   {% asset 'base/ckan' %}
+  {% asset 'feedback/feedback-management-comments-js' %}
   {% if g.tracking_enabled %}
     {% asset 'base/tracking' %}
   {% endif %}

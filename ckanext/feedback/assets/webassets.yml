@@ -31,6 +31,12 @@ feedback-comment-js:
   contents:
     - js/comment.js
 
+feedback-management-comments-js:
+  filter: rjsmin
+  output: ckanext-feedback/%(version)s-management_comments.js
+  contents:
+    - js/management_comments.js
+
 feedback-search-css:
   filter: cssrewrite
   output: feedback/%(version)s-search.css
