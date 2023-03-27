@@ -1,11 +1,9 @@
 from ckan.model.package import Package
 from ckan.model.resource import Resource
 from sqlalchemy import or_
-from sqlalchemy.orm import Session
 
+from ckanext.feedback.models.session import session
 from ckanext.feedback.models.utilization import Utilization
-
-session = Session()
 
 
 # Get records from the Utilization table
