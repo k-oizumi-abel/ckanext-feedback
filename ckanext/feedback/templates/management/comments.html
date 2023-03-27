@@ -56,7 +56,7 @@
             {% endblock %}
 
             {% block primary %}
-              <form class="top-centered-content" method="get">
+              <div class="top-centered-content">
                 {% if c.userobj.sysadmin %}
                   {% block select_categories %}
                     <span>
@@ -77,90 +77,96 @@
                     </span>
                   {% endblock %}
                 {% endif %}
-              </form>
+              </div>
               {% if c.userobj.sysadmin %}
-                <div class="tab">
-                  <input id="menu1" type="radio" name="tab_menu" checked><label class="tab-menu" for="menu1">{{ _('Utilization Commnets') }}</label>
-                  <input id="menu2" type="radio" name="tab_menu"><label class="tab-menu" for="menu2">{{ _('Resource Comments') }}</label>
-                  <div class="tab-contents" id="menu1">
-                    {% block result_utilization_comments_table %}
-                      <h4 class="bottom-centered-content" id="data-count">{{ _('Results: ') }} {{ utilization_comments|length }}</h4>
-                      <table class="table table-striped table-bordered table-condensed table-toggle-more bottom-centered-content" id="results-table">
-                        <thead class="table-header">
-                          <tr>
-                            <th class="small-column">
-                              <input type="checkbox" id="comments-checkbox-all" name="comments-checkbox-all" />
-                            </th>
-                            <th class="big-column">{{ _('Comments Body') }}</th>
-                            <th class="medium-column">{{ _('Utilization Title') }}</th>
-                            <th class="medium-column">{{ _('Dataset') }}</th>
-                            <th class="medium-column">{{ _('Resource') }}</th>
-                            <th class="small-column">{{ _('Category') }}</th>
-                            <th class="small-column">{{ _('Created Date') }}</th>
-                            {% if c.userobj.sysadmin %}
-                              <th class="small-column">{{ _('Status') }}</th>
-                            {% endif %}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for row in utilization_comments %}
+                <form method="post">
+                  <div class="tab">
+                    <input id="menu1" type="radio" name="tab_menu" checked><label class="tab-menu" for="menu1">{{ _('Utilization Commnets') }}</label>
+                    <input id="menu2" type="radio" name="tab_menu"><label class="tab-menu" for="menu2">{{ _('Resource Comments') }}</label>
+                    <div class="tab-contents" id="menu1">
+                      {% block result_utilization_comments_table %}
+                        <h4 class="bottom-centered-content" id="data-count">{{ _('Results: ') }} {{ utilization_comments|length }}</h4>
+                        <span class="bottom-centered-content right-text">
+                          <button class="btn btn-primary" type="button" onclick="runBulkAction('/a/')">{{ _('Bulk Appproval')}}</button>
+                          <button class="btn btn-primary" type="button" onclick="runBulkAction('/a/')">{{ _('Bulk Delete')}}</button>
+                        </span>
+                        <table class="table table-striped table-bordered table-condensed table-toggle-more bottom-centered-content" id="results-table">
+                          <thead class="table-header">
                             <tr>
-                              <td class="small-column">
-                                <input type="checkbox" id="comments-checkbox-{{ utilization_comments.id }}" name="comments-checkbox" />
-                              </td>
-                              <td class="left-aligned-text">
-                                <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.content }}</a>
-                              </td>
-                              <td>
-                                <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.utilization.title }}</a>
-                              </td>
-                              <td>
-                                <a href="{{ url_for('dataset.search') }}{{ row.utilization.resource.package.title }}">{{ row.utilization.resource.package.title }}</a>
-                              </td>
-                              <td>
-                                <a href="{{ h.url_for('dataset.search') }}{{ row.utilization.resource.package.title }}/resource/{{ row.utilization.resource.id }}">{{ row.utilization.resource.name }}</a>
-                              </td>
-                              <td>{{ row.category.value }}</td>
-                              <td>{{ row.created.strftime('%Y/%m/%d') }}</td>
+                              <th class="small-column">
+                                <input type="checkbox" id="comments-checkbox-all" name="comments-checkbox-all" />
+                              </th>
+                              <th class="big-column">{{ _('Comments Body') }}</th>
+                              <th class="medium-column">{{ _('Utilization Title') }}</th>
+                              <th class="medium-column">{{ _('Dataset') }}</th>
+                              <th class="medium-column">{{ _('Resource') }}</th>
+                              <th class="small-column">{{ _('Category') }}</th>
+                              <th class="small-column">{{ _('Created Date') }}</th>
                               {% if c.userobj.sysadmin %}
-                                {% if row.approval == True %}
-                                  <td data-approval="true">{{ _('Approved') }}</td>
-                                {% else %}
-                                  <td data-waiting="true">{{ _('Waiting') }}</td>
-                                {% endif %}
+                                <th class="small-column">{{ _('Status') }}</th>
                               {% endif %}
                             </tr>
-                          {% endfor %}
-                        </tbody>
-                      </table>
-                    {% endblock %}
+                          </thead>
+                          <tbody>
+                            {% for row in utilization_comments %}
+                              <tr>
+                                <td class="small-column">
+                                  <input type="checkbox" id="comments-checkbox-{{ utilization_comments.id }}" name="comments-checkbox" />
+                                </td>
+                                <td class="left-aligned-text">
+                                  <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.content }}</a>
+                                </td>
+                                <td>
+                                  <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.utilization.title }}</a>
+                                </td>
+                                <td>
+                                  <a href="{{ url_for('dataset.search') }}{{ row.utilization.resource.package.title }}">{{ row.utilization.resource.package.title }}</a>
+                                </td>
+                                <td>
+                                  <a href="{{ h.url_for('dataset.search') }}{{ row.utilization.resource.package.title }}/resource/{{ row.utilization.resource.id }}">{{ row.utilization.resource.name }}</a>
+                                </td>
+                                <td>{{ row.category.value }}</td>
+                                <td>{{ row.created.strftime('%Y/%m/%d') }}</td>
+                                {% if c.userobj.sysadmin %}
+                                  {% if row.approval == True %}
+                                    <td data-approval="true">{{ _('Approved') }}</td>
+                                  {% else %}
+                                    <td data-waiting="true">{{ _('Waiting') }}</td>
+                                  {% endif %}
+                                {% endif %}
+                              </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      {% endblock %}
+                    </div>
+                    <div class="tab-contents" id="menu2">
+                      {% block result_resource_comments_table %}
+                        <h4 class="bottom-centered-content" id="data-count">{{ _('Results: ') }} 0</h4>
+                        <table class="table table-striped table-bordered table-condensed table-toggle-more bottom-centered-content" id="results-table">
+                          <thead class="table-header">
+                            <tr>
+                              <th class="small-column">
+                                <input type="checkbox" id="comments-checkbox" name="comments-checkbox" />
+                              </th>
+                              <th class="big-column">{{ _('Comments Body') }}</th>
+                              <th class="medium-column">{{ _('Score') }}</th>
+                              <th class="medium-column">{{ _('Dataset') }}</th>
+                              <th class="medium-column">{{ _('Resource') }}</th>
+                              <th class="small-column">{{ _('Category') }}</th>
+                              <th class="small-column">{{ _('Created Date') }}</th>
+                              {% if c.userobj.sysadmin %}
+                                <th class="small-column">{{ _('Status') }}</th>
+                              {% endif %}
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                      {% endblock %}
+                    </div>
                   </div>
-                  <div class="tab-contents" id="menu2">
-                    {% block result_resource_comments_table %}
-                      <h4 class="bottom-centered-content" id="data-count">{{ _('Results: ') }} 0</h4>
-                      <table class="table table-striped table-bordered table-condensed table-toggle-more bottom-centered-content" id="results-table">
-                        <thead class="table-header">
-                          <tr>
-                            <th class="small-column">
-                              <input type="checkbox" id="comments-checkbox" name="comments-checkbox" />
-                            </th>
-                            <th class="big-column">{{ _('Comments Body') }}</th>
-                            <th class="medium-column">{{ _('Score') }}</th>
-                            <th class="medium-column">{{ _('Dataset') }}</th>
-                            <th class="medium-column">{{ _('Resource') }}</th>
-                            <th class="small-column">{{ _('Category') }}</th>
-                            <th class="small-column">{{ _('Created Date') }}</th>
-                            {% if c.userobj.sysadmin %}
-                              <th class="small-column">{{ _('Status') }}</th>
-                            {% endif %}
-                          </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                    {% endblock %}
-                  </div>
-                </div>
+                </form>
               {% endif %}
             {% endblock %}
             {#

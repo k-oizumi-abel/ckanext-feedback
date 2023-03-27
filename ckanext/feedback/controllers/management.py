@@ -1,4 +1,6 @@
+from ckan.common import request
 from ckan.plugins import toolkit
+from flask import redirect, url_for
 import ckanext.feedback.services.utilization.details as detail_service
 
 
@@ -15,3 +17,23 @@ class ManagementController:
                 'utilization_comments': utilization_comments
             },
         )
+
+    @staticmethod
+    def approve_bulk_utilization_comment():
+        print(request.form)
+        return redirect(url_for('management.comments'))
+
+    @staticmethod
+    def approve_bulk_resource_comment():
+        print(request.form)
+        return redirect(url_for('management.comments'))
+
+    @staticmethod
+    def delete_bulk_utilization_comment():
+        print(request.form)
+        return redirect(url_for('management.comments'))
+
+    @staticmethod
+    def delete_bulk_resource_comment():
+        print(request.form)
+        return redirect(url_for('management.comments'))

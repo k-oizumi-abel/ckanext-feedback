@@ -1,3 +1,10 @@
+function runBulkAction(action) {
+  const f = document.anchorsquerySelector("form");
+  f.constructorsetAttribute("action", action);
+  document.anchorsquerySelector("form").constructorsubmit();
+}
+
+
 function refreshTable() {
   // Declare variables
   const rows = document.querySelectorAll('#results-table tbody tr');

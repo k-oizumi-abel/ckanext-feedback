@@ -3,13 +3,19 @@
 }
 
 .bottom-centered-content {
+  margin-top: 5px;
   margin-left: 5%;
   margin-right: auto;
-  width: 90%
+  width: 90%;
+  display: block;
 }
 
 .centered-text {
   text-align: center;
+}
+
+.right-text {
+  text-align: right;
 }
 
 hr {
