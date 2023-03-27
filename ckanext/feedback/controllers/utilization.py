@@ -1,4 +1,4 @@
-from ckan.common import c, request
+from ckan.common import _, c, request
 from ckan.lib import helpers
 from ckan.plugins import toolkit
 from flask import redirect, url_for
@@ -50,7 +50,6 @@ class UtilizationController:
     # utilization/new
     @staticmethod
     def create():
-        message = request.form.get('message', '')
         package_name = request.form.get('package_name', '')
         resource_id = request.form.get('resource_id', '')
         title = request.form.get('title', '')
@@ -60,7 +59,13 @@ class UtilizationController:
         summary_service.create_utilization_summary(resource_id)
         session.commit()
 
-        helpers.flash_success(message, allow_html=True)
+        helpers.flash_success(
+            _(
+                'Your application is complete.<br>The utilization will not be displayed'
+                ' until approved by an administrator.'
+            ),
+            allow_html=True,
+        )
 
         if return_to_resource:
             return redirect(
@@ -77,9 +82,6 @@ class UtilizationController:
             approval = True
         utilization = detail_service.get_utilization(utilization_id)
         comments = detail_service.get_utilization_comments(utilization_id, approval)
-        approved_comments = detail_service.get_approved_utilization_comment_count(
-            utilization_id, True
-        )
         categories = detail_service.get_utilization_comment_categories()
 
         return toolkit.render(
@@ -88,7 +90,6 @@ class UtilizationController:
                 'utilization_id': utilization_id,
                 'utilization': utilization,
                 'comments': comments,
-                'approved_comments': approved_comments,
                 'categories': categories,
             },
         )

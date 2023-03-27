@@ -1,19 +1,19 @@
 function checkTitleAndDescriptionExists() {
   const title = document.getElementById('title').value;
   const description = document.getElementById('description').value;
-  const titleErrorMessage = document.getElementById('title-error');
-  const descriptionErrorMessage = document.getElementById('description-error');
+  const titleErrorElement = document.getElementById('title-error');
+  const descriptionErrorElement = document.getElementById('description-error');
 
   // Reset display settings
-  titleErrorMessage.style.display = 'None';
-  descriptionErrorMessage.style.display = 'None';
+  titleErrorElement.style.display = 'None';
+  descriptionErrorElement.style.display = 'None';
   
   if (!title) {
-    titleErrorMessage.style.display = '';
+    titleErrorElement.style.display = '';
     return false;
   }
   if (!description) {
-    descriptionErrorMessage.style.display = '';
+    descriptionErrorElement.style.display = '';
     return false;
   }
   return true;

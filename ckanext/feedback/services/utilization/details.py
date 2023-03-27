@@ -50,18 +50,6 @@ def get_utilization_comments(utilization_id, approval=None):
     return query.all()
 
 
-# Get approved comment count related to the Utilization record
-def get_approved_utilization_comment_count(utilization_id, approval=None):
-    return (
-        session.query(UtilizationComment)
-        .filter(
-            UtilizationComment.utilization_id == utilization_id,
-            UtilizationComment.approval == approval,
-        )
-        .all()
-    )
-
-
 # Create comment for currently displayed utilization
 def create_utilization_comment(utilization_id, category, content):
     comment = UtilizationComment(

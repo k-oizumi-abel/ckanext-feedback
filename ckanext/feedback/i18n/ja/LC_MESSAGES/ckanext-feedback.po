@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-27 09:57+0900\n"
+"POT-Creation-Date: 2023-03-28 09:16+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -18,6 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
+
+#: ckanext/feedback/controllers/utilization.py:63
+msgid ""
+"Your application is complete.<br>The utilization will not be displayed "
+"until approved by an administrator."
+msgstr "登録申請が完了しました。<br>管理者に申請が承認されるまで表示されません。"
 
 #: ckanext/feedback/models/utilization.py:15
 msgid "Request"
@@ -89,9 +95,9 @@ msgstr "Top"
 
 #: ckanext/feedback/templates/header.html:91
 #: ckanext/feedback/templates/utilization/details.html:76
+#: ckanext/feedback/templates/utilization/new.html:6
+#: ckanext/feedback/templates/utilization/new.html:14
 #: ckanext/feedback/templates/utilization/search.html:94
-#: ckanext/feedback/templates/utilization/new.html:38
-#: ckanext/feedback/templates/utilization/new.html:64
 msgid "Dataset"
 msgstr "データセット"
 
@@ -134,15 +140,6 @@ msgstr "データセット検索"
 msgid "Submit"
 msgstr "検索"
 
-#: ckanext/feedback/templates/common/show_results.html:3
-#: ckanext/feedback/templates/common/show_results.html:8
-msgid "Application Pending"
-msgstr "申請中"
-
-#: ckanext/feedback/templates/common/show_results.html:16
-msgid "Confirm"
-msgstr "確認"
-
 #: ckanext/feedback/templates/package/resource_read.html:5
 msgid "Manage"
 msgstr "管理"
@@ -167,7 +164,7 @@ msgstr "ダウンロード"
 
 #: ckanext/feedback/templates/package/resource_read.html:46
 #: ckanext/feedback/templates/package/snippets/resource_item.html:63
-#: ckanext/feedback/templates/utilization/new.html:40
+#: ckanext/feedback/templates/utilization/new.html:8
 msgid "Create utilization application"
 msgstr "利活用方法登録申請"
 
@@ -195,7 +192,7 @@ msgstr "値"
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: ckanext/feedback/templates/package/resource_read.html:75
+#: ckanext/feedback/templates/package/resource_read.html:84
 msgid "Data last updated"
 msgstr "最終更新日"
 
@@ -304,13 +301,11 @@ msgid "This dataset has no description"
 msgstr "このデータセットには説明がありません"
 
 #: ckanext/feedback/templates/utilization/details.html:8
-#: ckanext/feedback/templates/utilization/new.html:8
 #: ckanext/feedback/templates/utilization/search.html:8
 msgid "Skip to content"
 msgstr "コンテンツへスキップ"
 
 #: ckanext/feedback/templates/utilization/details.html:32
-#: ckanext/feedback/templates/utilization/new.html:32
 #: ckanext/feedback/templates/utilization/search.html:32
 msgid "Breadcrumb"
 msgstr "パンくずリスト"
@@ -325,8 +320,8 @@ msgid "Approve"
 msgstr "承認"
 
 #: ckanext/feedback/templates/utilization/details.html:79
-#: ckanext/feedback/templates/utilization/new.html:39
-#: ckanext/feedback/templates/utilization/new.html:67
+#: ckanext/feedback/templates/utilization/new.html:7
+#: ckanext/feedback/templates/utilization/new.html:17
 msgid "Resource"
 msgstr "データリソース"
 
@@ -354,36 +349,30 @@ msgstr "コメント"
 msgid "Send comment"
 msgstr "コメント送信"
 
-#: ckanext/feedback/templates/utilization/search.html:65
-msgid "Keyword Search"
-msgstr "キーワード検索"
-#: ckanext/feedback/templates/utilization/new.html:71
-msgid ""
-"Your application is complete. \n"
-"The utilization will not be displayed until approved by an administrator."
-msgstr ""
-"登録申請が完了しました。\n"
-"管理者に申請が承認されるまで表示されません。"
-
-#: ckanext/feedback/templates/utilization/new.html:76
+#: ckanext/feedback/templates/utilization/new.html:24
+#: ckanext/feedback/templates/utilization/search.html:93
 msgid "Title"
 msgstr "タイトル"
 
-#: ckanext/feedback/templates/utilization/new.html:79
+#: ckanext/feedback/templates/utilization/new.html:27
 msgid "Please enter a title"
 msgstr "タイトルを入力してください。"
 
-#: ckanext/feedback/templates/utilization/new.html:83
+#: ckanext/feedback/templates/utilization/new.html:31
 msgid "Description"
 msgstr "内容"
 
-#: ckanext/feedback/templates/utilization/new.html:86
+#: ckanext/feedback/templates/utilization/new.html:34
 msgid "Please enter a description"
 msgstr "内容を入力してください。"
 
-#: ckanext/feedback/templates/utilization/new.html:89
+#: ckanext/feedback/templates/utilization/new.html:38
 msgid "Create"
 msgstr "登録"
+
+#: ckanext/feedback/templates/utilization/search.html:65
+msgid "Keyword Search"
+msgstr "キーワード検索"
 
 #: ckanext/feedback/templates/utilization/search.html:67
 msgid "Keyword Search..."
@@ -415,10 +404,6 @@ msgstr "検索結果："
 #: ckanext/feedback/templates/utilization/search.html:89
 msgid "items"
 msgstr "件"
-
-#: ckanext/feedback/templates/utilization/search.html:93
-msgid "Title"
-msgstr "タイトル"
 
 #: ckanext/feedback/templates/utilization/search.html:95
 msgid "Data resource"

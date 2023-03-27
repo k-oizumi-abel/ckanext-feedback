@@ -11,8 +11,6 @@
   {%- block primary %}
     <article class="module" role="main">
       <div class="module-content">
-        {% set message = _('Your application is complete. \nThe utilization will not be displayed until approved by an administrator.')  %}
-        <input type="hidden" id="message" name="message" value="{{ message }}">
         <h4>{{ _('Dataset') }}</h4>
         <a href="{{ h.url_for('dataset.read', id=resource_details.package_name) }}">{{ resource_details.package_name }}</a>
         <hr>
