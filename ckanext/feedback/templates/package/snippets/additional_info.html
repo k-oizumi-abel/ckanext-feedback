@@ -9,8 +9,8 @@
   {% endif %}
   {% if h.is_enabled_utilizations() %}
     <tr>
-      <th scope="row">{{ _('利活用数') }}</th>
-      <td><a href="{{ h.url_for('utilization.search', id=pkg_dict.id, disable_keyword=true) }}">数字</a></td>
+      <th scope="row" class="dataset-label">{{ _('Utilizations') }}</th>
+      <td class="dataset-details"><a href="{{ h.url_for('utilization.search', id=pkg_dict.id, disable_keyword=true) }}">{{ h.get_package_utilizations(pkg_dict.id) }}</a></td>
     </tr>
     <tr>
       <th scope="row" class="dataset-label">{{ _('Issue Resolutions') }}</th>
