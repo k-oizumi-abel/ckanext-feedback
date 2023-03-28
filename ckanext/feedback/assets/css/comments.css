@@ -91,7 +91,7 @@ td, th {
 .tab-menu:hover {
   opacity: 0.75;
 }
-input[name="tab_menu"] {
+input[name="tab-menu"] {
   display: none;
 }
 .tab-contents {

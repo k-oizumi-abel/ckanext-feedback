@@ -1,7 +1,7 @@
 function runBulkAction(action) {
-  const f = document.anchorsquerySelector("form");
-  f.constructorsetAttribute("action", action);
-  document.anchorsquerySelector("form").constructorsubmit();
+  const form = document.getElementById("comments-form");
+  form.setAttribute("action", action);
+  form.submit();
 }
 
 
