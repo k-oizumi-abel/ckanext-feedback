@@ -7,13 +7,19 @@ blueprint = Blueprint('utilization', __name__, url_prefix='/utilization')
 
 # Add target page URLs to rules and add each URL to the blueprint
 rules = [
-    ('/search', 'search', utilization.UtilizationController.search),
+    (
+        '/search',
+        'search',
+        utilization.UtilizationController.search,
+        {'methods': ['GET']},
+    ),
     ('/new', 'new', utilization.UtilizationController.new, {'methods': ['GET']}),
     ('/new', 'create', utilization.UtilizationController.create, {'methods': ['POST']}),
     (
         '/<utilization_id>',
         'details',
         utilization.UtilizationController.details,
+        {'methods': ['GET']},
     ),
     (
         '/<utilization_id>/approve',
@@ -37,11 +43,13 @@ rules = [
         '/comment_approval',
         'comment_approval',
         utilization.UtilizationController.comment_approval,
+        {'methods': ['POST']},
     ),
     (
         '/comment',
         'comment',
         utilization.UtilizationController.comment,
+        {'methods': ['GET']},
     ),
 ]
 for rule, endpoint, view_func, *others in rules:
