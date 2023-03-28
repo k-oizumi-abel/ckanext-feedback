@@ -1,4 +1,5 @@
-from ckan.common import c, request
+from ckan.common import _, c, request
+from ckan.lib import helpers
 from ckan.plugins import toolkit
 from flask import redirect, url_for
 import ckanext.feedback.services.utilization.details as detail_service
@@ -30,6 +31,12 @@ class ManagementController:
         if comments:
             detail_service.approve_utilization_comments(comments, c.userobj.id)
             session.commit()
+            helpers.flash_success(
+                _(
+                    f'{len(comments)} bulk approval completed.'
+                ),
+                allow_html=True,
+            )
         return redirect(url_for('management.comments'))
 
     # management/approve_bulk_resource_comments
@@ -44,6 +51,12 @@ class ManagementController:
         if comments:
             detail_service.delete_utilization_comments(comments)
             session.commit()
+            helpers.flash_success(
+                _(
+                    f'{len(comments)} bulk delete completed.'
+                ),
+                allow_html=True,
+            )
         return redirect(url_for('management.comments'))
 
     # management/delete_bulk_resource_comments

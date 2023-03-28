@@ -35,8 +35,9 @@ function refreshTable() {
       row.querySelector('input[type="checkbox"]').checked = false;
     }
   });
-  document.getElementById('data-count').innerText = `検索結果：${count}件`;
+  document.getElementById('utilization-comments-results-count').innerText = count;
 }
+
 function isVisible(row){
   const statusCell = row.getElementsByTagName('td')[7];
   const isWaiting = document.getElementById('waiting').checked && statusCell.dataset.waiting;
