@@ -8,11 +8,8 @@ blueprint = Blueprint('utilization', __name__, url_prefix='/utilization')
 # Add target page URLs to rules and add each URL to the blueprint
 rules = [
     ('/search', 'search', utilization.UtilizationController.search),
-    (
-        '/registration',
-        'registration',
-        utilization.UtilizationController.registration,
-    ),
+    ('/new', 'new', utilization.UtilizationController.new, {'methods': ['GET']}),
+    ('/new', 'create', utilization.UtilizationController.create, {'methods': ['POST']}),
     (
         '/<utilization_id>',
         'details',
@@ -22,16 +19,19 @@ rules = [
         '/<utilization_id>/approve',
         'approve',
         utilization.UtilizationController.approve,
+        {'methods': ['POST']},
     ),
     (
         '/<utilization_id>/comment/new',
         'create_comment',
         utilization.UtilizationController.create_comment,
+        {'methods': ['POST']},
     ),
     (
         '/<utilization_id>/comment/<comment_id>/approve',
         'approve_comment',
         utilization.UtilizationController.approve_comment,
+        {'methods': ['POST']},
     ),
     (
         '/comment_approval',
@@ -44,8 +44,9 @@ rules = [
         utilization.UtilizationController.comment,
     ),
 ]
-for rule in rules:
-    blueprint.add_url_rule(*rule, methods=['GET', 'POST'])
+for rule, endpoint, view_func, *others in rules:
+    options = next(iter(others), {})
+    blueprint.add_url_rule(rule, endpoint, view_func, **options)
 
 
 @add_error_handler

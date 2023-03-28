@@ -115,7 +115,6 @@
                   {% for comment in comments %}
                     {% if c.userobj.sysadmin and comment.approval == false %}
                       <form name="approval_form" action="{{ url_for('utilization.approve_comment', utilization_id=utilization_id, comment_id=comment.id) }}" method="post">
-                        <input type="hidden" id="resource_id" name="resource_id" value="{{ row.resource_id }}"/>
                         <button class="btn btn-primary right-aligned">{{ _('Approve') }}</button>
                       </form>
                     {% endif %}

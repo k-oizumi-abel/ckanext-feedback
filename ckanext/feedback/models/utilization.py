@@ -20,7 +20,7 @@ class UtilizationCommentCategory(enum.Enum):
 
 class Utilization(Base):
     __tablename__ = 'utilization'
-    id = Column(Text, primary_key=True, nullable=False)
+    id = Column(Text, default=uuid.uuid4, primary_key=True, nullable=False)
     resource_id = Column(
         Text,
         ForeignKey('resource.id', onupdate='CASCADE', ondelete='CASCADE'),
@@ -28,7 +28,7 @@ class Utilization(Base):
     )
     title = Column(Text)
     description = Column(Text)
-    created = Column(TIMESTAMP)
+    created = Column(TIMESTAMP, default=datetime.now)
     approval = Column(BOOLEAN, default=False)
     approved = Column(TIMESTAMP)
     approval_user_id = Column(
@@ -73,7 +73,7 @@ class UtilizationSummary(Base):
         ForeignKey('resource.id', onupdate='CASCADE', ondelete='CASCADE'),
         nullable=False,
     )
-    utilization = Column(Integer, default=1)
+    utilization = Column(Integer, default=0)
     comment = Column(Integer, default=0)
     created = Column(TIMESTAMP, default=datetime.now)
     updated = Column(TIMESTAMP)

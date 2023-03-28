@@ -57,6 +57,13 @@
               </a>
             </li>
           {% endif %}
+          {% if h.is_enabled_utilizations() %}
+            <li>
+              <a href="{{ h.url_for('utilization.new', package_name=pkg.name, resource_id=res.id) }}">
+                <i class="fa fa-pencil-square-o"></i>{{ _('Create utilization application') }}
+              </a>
+            </li>
+          {% endif %}
         {% endblock %}
       </ul>
     </div>
