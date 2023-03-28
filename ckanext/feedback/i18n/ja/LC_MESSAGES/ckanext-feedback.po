@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-22 13:46+0900\n"
+"POT-Creation-Date: 2023-03-28 20:54+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -24,6 +24,12 @@ msgid ""
 "Your application is complete.<br>The utilization will not be displayed "
 "until approved by an administrator."
 msgstr "登録申請が完了しました。<br>管理者に申請が承認されるまで表示されません。"
+
+#: ckanext/feedback/controllers/utilization.py:116
+msgid ""
+"Your comment has been sent.<br>The comment will not be displayed until "
+"approved by an administrator."
+msgstr "コメント送信が完了しました。<br>管理者にコメントが承認されるまで表示されません。"
 
 #: ckanext/feedback/models/utilization.py:15
 msgid "Request"
@@ -94,7 +100,7 @@ msgid "Top"
 msgstr "Top"
 
 #: ckanext/feedback/templates/header.html:91
-#: ckanext/feedback/templates/utilization/details.html:76
+#: ckanext/feedback/templates/utilization/details.html:32
 #: ckanext/feedback/templates/utilization/new.html:6
 #: ckanext/feedback/templates/utilization/new.html:14
 #: ckanext/feedback/templates/utilization/search.html:94
@@ -110,7 +116,7 @@ msgid "Group"
 msgstr "グループ"
 
 #: ckanext/feedback/templates/header.html:95
-#: ckanext/feedback/templates/utilization/details.html:38
+#: ckanext/feedback/templates/utilization/details.html:11
 #: ckanext/feedback/templates/utilization/search.html:39
 msgid "Utilization"
 msgstr "利活用方法"
@@ -162,7 +168,7 @@ msgstr "リソースへ行く"
 msgid "Download"
 msgstr "ダウンロード"
 
-#: ckanext/feedback/templates/package/resource_read.html:46
+#: ckanext/feedback/templates/package/resource_read.html:47
 #: ckanext/feedback/templates/package/snippets/resource_item.html:63
 #: ckanext/feedback/templates/utilization/new.html:8
 msgid "Create utilization application"
@@ -259,7 +265,7 @@ msgid "More information"
 msgstr "詳細情報の表示"
 
 #: ckanext/feedback/templates/package/snippets/resource_item.html:56
-#: ckanext/feedback/templates/utilization/details.html:66
+#: ckanext/feedback/templates/utilization/details.html:22
 msgid "Edit"
 msgstr "編集"
 
@@ -314,42 +320,42 @@ msgstr "パンくずリスト"
 msgid "Details"
 msgstr "詳細"
 
-#: ckanext/feedback/templates/utilization/details.html:68
-#: ckanext/feedback/templates/utilization/details.html:122
+#: ckanext/feedback/templates/utilization/details.html:24
+#: ckanext/feedback/templates/utilization/details.html:77
 msgid "Approve"
 msgstr "承認"
 
-#: ckanext/feedback/templates/utilization/details.html:79
+#: ckanext/feedback/templates/utilization/details.html:35
 #: ckanext/feedback/templates/utilization/new.html:7
 #: ckanext/feedback/templates/utilization/new.html:17
 msgid "Resource"
 msgstr "データリソース"
 
-#: ckanext/feedback/templates/utilization/details.html:82
+#: ckanext/feedback/templates/utilization/details.html:38
 msgid "Utilization description"
 msgstr "利活用内容"
 
-#: ckanext/feedback/templates/utilization/details.html:85
+#: ckanext/feedback/templates/utilization/details.html:41
 msgid "Issue resolutions"
 msgstr "課題解決数"
 
-#: ckanext/feedback/templates/utilization/details.html:89
+#: ckanext/feedback/templates/utilization/details.html:45
 msgid "Issue resolution"
 msgstr "課題解決"
 
-#: ckanext/feedback/templates/utilization/details.html:93
+#: ckanext/feedback/templates/utilization/details.html:49
 msgid "Comments"
 msgstr "コメント数"
 
-#: ckanext/feedback/templates/utilization/details.html:97
+#: ckanext/feedback/templates/utilization/details.html:53
 msgid "Comment"
 msgstr "コメント"
 
-#: ckanext/feedback/templates/utilization/details.html:107
+#: ckanext/feedback/templates/utilization/details.html:63
 msgid "Please enter your comment"
 msgstr "コメントを入力してください"
 
-#: ckanext/feedback/templates/utilization/details.html:110
+#: ckanext/feedback/templates/utilization/details.html:66
 msgid "Send comment"
 msgstr "コメント送信"
 
