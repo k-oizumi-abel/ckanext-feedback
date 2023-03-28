@@ -112,6 +112,14 @@ class UtilizationController:
         detail_service.create_utilization_comment(utilization_id, category, content)
         session.commit()
 
+        helpers.flash_success(
+            _(
+                'Your comment has been sent.<br>The comment will not be displayed until'
+                ' approved by an administrator.'
+            ),
+            allow_html=True,
+        )
+
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
 
     # utilization/<utilization_id>/comment/<comment_id>/approve
