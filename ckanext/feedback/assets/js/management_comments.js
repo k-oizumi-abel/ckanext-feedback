@@ -58,6 +58,7 @@ function isVisible(row){
                                       .some(element => element.getAttribute('name') === categoryCell.getInnerHTML());
   return (isWaiting || isApproval) && isMatchedCategory;
 }
+
 function isVisible(row){
   const statusCell = row.getElementsByTagName('td')[7];
   const isWaiting = document.getElementById('waiting').checked && statusCell.dataset.waiting;
