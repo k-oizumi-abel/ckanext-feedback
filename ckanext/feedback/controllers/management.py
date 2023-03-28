@@ -2,6 +2,7 @@ from ckan.common import c, request
 from ckan.plugins import toolkit
 from flask import redirect, url_for
 import ckanext.feedback.services.utilization.details as detail_service
+from ckanext.feedback.models.session import session
 import logging
 
 
@@ -9,7 +10,7 @@ log = logging.getLogger(__name__)
 
 
 class ManagementController:
-    # management/comments.html
+    # management/comments
     @staticmethod
     def comments():
         categories = detail_service.get_utilization_comment_categories()
@@ -22,22 +23,31 @@ class ManagementController:
             },
         )
 
+    # management/approve_bulk_utilization_comments
     @staticmethod
-    def approve_bulk_utilization_comment():
+    def approve_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
-        detail_service.approve_utilization_comments(comments, c.userobj.id)
+        if comments:
+            detail_service.approve_utilization_comments(comments, c.userobj.id)
+            session.commit()
         return redirect(url_for('management.comments'))
 
+    # management/approve_bulk_resource_comments
     @staticmethod
-    def approve_bulk_resource_comment():
+    def approve_bulk_resource_comments():
         return redirect(url_for('management.comments'))
 
+    # management/delete_bulk_utilization_comments
     @staticmethod
-    def delete_bulk_utilization_comment():
-        log.info(request.form)
+    def delete_bulk_utilization_comments():
+        comments = request.form.getlist('utilization-comments-checkbox')
+        if comments:
+            detail_service.delete_utilization_comments(comments)
+            session.commit()
         return redirect(url_for('management.comments'))
 
+    # management/delete_bulk_resource_comments
     @staticmethod
-    def delete_bulk_resource_comment():
+    def delete_bulk_resource_comments():
         log.info(request.form)
         return redirect(url_for('management.comments'))

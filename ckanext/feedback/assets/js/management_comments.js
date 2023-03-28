@@ -1,3 +1,19 @@
+const utilizationCheckboxAll = document.getElementById("utilization-comments-checkbox-all");
+utilizationCheckboxAll.addEventListener('change', changeAllChekbox);
+
+function changeAllChekbox(e) {
+  let rows;
+  if (e.target.id === 'utilization-comments-checkbox-all') {
+    rows = document.querySelectorAll('#utilization-comments-table tbody tr');
+  } else if (e.target.id === 'resource-comments-checkbox-all') {
+    rows = document.querySelectorAll('#resource-comments-table tbody tr');
+  }
+  Array.from(rows).filter(row => isVisible(row)).forEach(row => {
+    row.querySelector('input[type="checkbox"]').checked = e.target.checked;
+  });
+}
+
+
 function runBulkAction(action) {
   const form = document.getElementById("comments-form");
   form.setAttribute("action", action);
@@ -7,16 +23,16 @@ function runBulkAction(action) {
 
 function refreshTable() {
   // Declare variables
-  const rows = document.querySelectorAll('#results-table tbody tr');
+  const rows = document.querySelectorAll('tbody tr');
   let count = 0;
 
-  // Loop through all table rows, and hide those who don't match the search query
   rows.forEach(row => {
     if (isVisible(row)) {
       row.style.display = 'table-row';
       ++count;
     } else {
       row.style.display = 'none';
+      row.querySelector('input[type="checkbox"]').checked = false;
     }
   });
   document.getElementById('data-count').innerText = `検索結果：${count}件`;
