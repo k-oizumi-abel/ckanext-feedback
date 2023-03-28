@@ -41,21 +41,25 @@ rules = [
         '/approve_bulk_utilization_comment',
         'approve_bulk_utilization_comment',
         management.ManagementController.approve_bulk_utilization_comment,
+        {'methods': ['POST']},
     ),
     (
         '/approve_bulk_resource_comment',
         'approve_bulk_resource_comment',
         management.ManagementController.approve_bulk_resource_comment,
+        {'methods': ['POST']},
     ),
     (
         '/delete_bulk_utilization_comment',
         'delete_bulk_utilization_comment',
         management.ManagementController.delete_bulk_utilization_comment,
+        {'methods': ['POST']},
     ),
     (
         '/delete_bulk_resource_comment',
         'delete_bulk_resource_comment',
         management.ManagementController.delete_bulk_resource_comment,
+        {'methods': ['POST']},
     ),
 ]
 for rule, endpoint, view_func, *others in rules:
