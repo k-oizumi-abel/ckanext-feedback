@@ -130,7 +130,7 @@
                             {% for row in utilization_comments %}
                               <tr>
                                 <td class="small-column">
-                                  <input type="checkbox" id="utilization-comments-checkbox-{{ row.id }}" name="utilization-comments-checkbox-{{ row.id }}" />
+                                  <input type="checkbox" id="utilization-comments-checkbox-{{ row.id }}" name="utilization-comments-checkbox" value="{{ row.id }}" />
                                 </td>
                                 <td class="left-aligned-text">
                                   <a href="{{ h.url_for('utilization.details', utilization_id=row.utilization_id) }}">{{ row.content }}</a>
