@@ -43,11 +43,11 @@ feedback-search-css:
   contents:
     - css/search.css
 
-feedback-comments-css:
+feedback-management-comments-css:
   filter: cssrewrite
   output: feedback/%(version)s-comments.css
   contents:
-    - css/comments.css
+    - css/management_comments.css
 
 feedback-tooltip-css:
   filter: cssrewrite
