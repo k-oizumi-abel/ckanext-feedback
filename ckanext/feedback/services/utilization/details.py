@@ -41,9 +41,8 @@ def approve_utilization(utilization_id, approval_user_id):
 
 # Get comments related to the Utilization record
 def get_utilization_comments(utilization_id=None, approval=None):
-    query = (
-        session.query(UtilizationComment)
-        .order_by(UtilizationComment.created.desc())
+    query = session.query(UtilizationComment).order_by(
+        UtilizationComment.created.desc()
     )
     if utilization_id is not None:
         query = query.filter(UtilizationComment.utilization_id == utilization_id)
@@ -73,17 +72,25 @@ def approve_utilization_comment(comment_id, approval_user_id):
 
 # Approve selected utilization comments
 def approve_utilization_comments(comment_id_list, approval_user_id):
-    session.bulk_update_mappings(UtilizationComment,
-                                 [{'id': comment_id,
-                                   'approval': True,
-                                   'approved': datetime.now(),
-                                   'approval_user_id': approval_user_id,
-                                   } for comment_id in comment_id_list])
+    session.bulk_update_mappings(
+        UtilizationComment,
+        [
+            {
+                'id': comment_id,
+                'approval': True,
+                'approved': datetime.now(),
+                'approval_user_id': approval_user_id,
+            }
+            for comment_id in comment_id_list
+        ],
+    )
 
 
 # Delete selected utilization comments
 def delete_utilization_comments(comment_id_list):
-    session.query(UtilizationComment).filter(UtilizationComment.id.in_(comment_id_list)).delete(synchronize_session='fetch')
+    session.query(UtilizationComment).filter(
+        UtilizationComment.id.in_(comment_id_list)
+    ).delete(synchronize_session='fetch')
 
 
 # Get comment category enum names and values

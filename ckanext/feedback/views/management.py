@@ -11,6 +11,7 @@ rules = [
         '/comments',
         'comments',
         management.ManagementController.comments,
+        {'methods': ['GET']},
     ),
     (
         '/approve_bulk_utilization_comments',
