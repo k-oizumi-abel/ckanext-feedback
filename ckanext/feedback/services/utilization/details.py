@@ -71,6 +71,21 @@ def approve_utilization_comment(comment_id, approval_user_id):
     comment.approval_user_id = approval_user_id
 
 
+# Approve selected utilization comments
+def approve_utilization_comments(comment_id_list, approval_user_id):
+    session.bulk_update_mappings(UtilizationComment,
+                                 [{'id': comment_id,
+                                   'approval': True,
+                                   'approved': datetime.now(),
+                                   'approval_user_id': approval_user_id,
+                                   } for comment_id in comment_id_list])
+
+
+# Delete selected utilization comments
+def delete_utilization_comments(comment_id_list):
+    session.query(UtilizationComment).filter(UtilizationComment.id.in_(comment_id_list)).delete(synchronize_session='fetch')
+
+
 # Get comment category enum names and values
 def get_utilization_comment_categories():
     return UtilizationCommentCategory
