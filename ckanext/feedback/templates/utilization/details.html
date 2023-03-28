@@ -102,9 +102,12 @@
                     </select>
                     <br>
                     <br>
-                    <textarea class="form-control" cols="20" rows="5" id="content" name="content"></textarea>
+                    <textarea class="form-control" cols="20" rows="5" id="comment-content" name="content"></textarea>
+                    <div>
+                      <p id="content-error" class="alert alert-error" style="display: none;">{{ _('Please enter your comment') }}</p>
+                    </div>
                     <br>
-                    <button class="btn btn-primary right-aligned">{{ _('Send comment') }}</button>
+                    <button class="btn btn-primary right-aligned" onclick="return checkCommentExists();">{{ _('Send comment') }}</button>
                     <br>
                     <br>
                     <br>
@@ -151,6 +154,7 @@
   {%- block scripts %}
     {% asset 'base/main' %}
     {% asset 'base/ckan' %}
+    {% asset 'feedback/feedback-detail-js' %}
     {% if g.tracking_enabled %}
       {% asset 'base/tracking' %}
     {% endif %}
