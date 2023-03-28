@@ -39,15 +39,15 @@
         {% endblock %}
       </div>
     </li>
-    {% if h.is_enabled_utilizations() %}
-      <li>
-        <div class="btn-group">
-          <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ h.url_for('utilization.new', package_name=pkg.name, resource_id=res.id, return_to_resource=true) }}">
-            <i class="fa fa-pencil-square-o"></i> {{ _('Create utilization application') }}
-          </a>
-        </div>
-      </li>
-    {% endif %}
+  {% endif %}
+  {% if h.is_enabled_utilizations() %}
+    <li>
+      <div class="btn-group">
+        <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ h.url_for('utilization.new', package_name=pkg.name, resource_id=res.id, return_to_resource=true) }}">
+          <i class="fa fa-pencil-square-o"></i> {{ _('Create utilization application') }}
+        </a>
+      </div>
+    </li>
   {% endif %}
 {% endblock %}
 
