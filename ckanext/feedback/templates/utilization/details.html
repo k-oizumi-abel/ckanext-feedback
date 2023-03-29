@@ -40,7 +40,10 @@
           <hr>
           <h4>{{ _('Issue resolutions') }}</h4>
           <a href="#issue-resolution-detail" data-toggle="modal">
-            <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">{{ issue_resolutions|length }}
+            {% if issue_resolutions|length > 0 %}
+              <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">
+            {% endif %}
+            {{ issue_resolutions|length }}
           </a>
           {% if c.userobj.sysadmin %}
             <button class="btn btn-primary right-aligned" data-toggle="modal" data-target="#issue-resolution-form">{{ _('Resolve issue') }}</button>

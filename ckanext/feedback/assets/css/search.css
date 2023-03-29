@@ -1,5 +1,5 @@
 .big-column {
-  width: 25%;
+  width: 24%;
 }
 
 .bottom-centered-content {
@@ -34,7 +34,7 @@ label:after {
 }
 
 .medium-column {
-  width: 20%;
+  width: 16%;
 }
 
 .middle-vertical-aligned {
@@ -42,7 +42,7 @@ label:after {
 }
 
 .small-column {
-  width: 15%;
+  width: 12%;
 }
 
 .spaced-left {
@@ -62,4 +62,20 @@ td, th {
 
 .wrapper {
   min-height: 500px;
+}
+
+.division-flex-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.division-flex-inner-icon {
+  width: 30px;
+}
+
+.division-flex-inner-num {
+  width: 18px;
+  text-align: right;
+  margin-left: 1px;
 }
