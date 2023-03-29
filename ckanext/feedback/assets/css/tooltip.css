@@ -1,6 +1,7 @@
 .bubble{
     position: relative;
     display:  inline-block;
+    margin-right: 5px;
 }
 .bubble img{
     width: 10px;

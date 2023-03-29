@@ -18,7 +18,8 @@
   <li>
     {% if h.is_enabled_utilizations() %}
       <div class="utilization-data bubble">
-        <i class="fa fa-pencil-square-o"></i><a href="{{ h.url_for('utilization.search', id=package.id, disable_keyword=true) }}">{{ h.get_package_utilizations(package.id) }}</a>
+        <i class="fa fa-pencil-square-o"></i>
+        <a href="{{ h.url_for('utilization.search', id=package.id, disable_keyword=true) }}">{{ h.get_package_utilizations(package.id) }}</a>
         <div class="description">{{ _('Utilizations') }}</div>
       </div>
     {% endif %}
