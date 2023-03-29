@@ -27,7 +27,7 @@ class ManagementController:
             comments_service.approve_utilization_comments(comments, c.userobj.id)
             session.commit()
             helpers.flash_success(
-                _(f'{len(comments)} bulk approval completed.'),
+                f'{len(comments)} ' + _('bulk approval completed.'),
                 allow_html=True,
             )
         return redirect(url_for('management.comments'))
@@ -44,8 +44,9 @@ class ManagementController:
         if comments:
             comments_service.delete_utilization_comments(comments)
             session.commit()
+
             helpers.flash_success(
-                _(f'{len(comments)} bulk delete completed.'),
+                f'{len(comments)} ' + _('bulk delete completed.'),
                 allow_html=True,
             )
         return redirect(url_for('management.comments'))
