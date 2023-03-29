@@ -84,6 +84,7 @@ class UtilizationController:
         utilization = detail_service.get_utilization(utilization_id)
         comments = detail_service.get_utilization_comments(utilization_id, approval)
         categories = detail_service.get_utilization_comment_categories()
+        issue_resolutions = detail_service.get_issue_resolutions(utilization_id)
 
         return toolkit.render(
             'utilization/details.html',
@@ -92,6 +93,7 @@ class UtilizationController:
                 'utilization': utilization,
                 'comments': comments,
                 'categories': categories,
+                'issue_resolutions': issue_resolutions,
             },
         )
 
@@ -178,3 +180,15 @@ class UtilizationController:
     @staticmethod
     def comment_approval():
         return toolkit.render('utilization/comment_approval.html')
+
+    # utilization/<utilization_id>/issue_resolution/new
+    @staticmethod
+    def create_issue_resolution(utilization_id):
+        description = request.form.get('description')
+        detail_service.create_issue_resolution(
+            utilization_id, description, c.userobj.id
+        )
+        summary_service.increment_issue_resolution_summary(utilization_id)
+        session.commit()
+
+        return redirect(url_for('utilization.details', utilization_id=utilization_id))

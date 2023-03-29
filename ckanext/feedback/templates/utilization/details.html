@@ -39,10 +39,11 @@
           <p>{{ row.description }}</p>
           <hr>
           <h4>{{ _('Issue resolutions') }}</h4>
-          <!-- ToDo -->
-          <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">1
+          <a href="#issue-resolution-detail" data-toggle="modal">
+            <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">{{ issue_resolutions|length }}
+          </a>
           {% if c.userobj.sysadmin %}
-            <button class="btn btn-primary right-aligned">{{ _('Issue resolution') }}</button>
+            <button class="btn btn-primary right-aligned" data-toggle="modal" data-target="#issue-resolution-form">{{ _('Resolve issue') }}</button>
           {% endif %}
           <br>
           <hr>
@@ -92,6 +93,64 @@
         </div>
       </div>
     </article>
+
+    <div id="issue-resolution-form" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form name="issue_resolution_form" class="top-centered-content" action="{{ url_for('utilization.create_issue_resolution', utilization_id=utilization_id ) }}" method="post">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h2 class="modal-title">{{ _('Issue resolution content') }}</h2>
+            </div>
+            <div class="modal-body">
+              <div class="form-group control-full">
+                <label class="control-label" for="code">{{ _('Input field') }}</label>
+                <div class="controls">
+                  <textarea id="description" name="description" cols="20" rows="3" placeholder="" class="form-control"></textarea>
+                </div>
+                <div>
+                  <p id="description-error" class="alert alert-error" style="display: none;">{{ _('Please enter your issue resolution content') }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" onclick="return checkDescriptionExists()">{{ _('Certificate') }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="issue-resolution-detail" class="modal fade" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">{{ _('Issue resolution details') }}</h>
+          </div>
+          <div id="issue-resolution-table" class="modal-body">
+            <div>
+              <table class="table table-bordered table-striped table-responsive">
+                <thead class="table-header">
+                  <tr>
+                    <th class="col-md-3">{{ _('Certification date') }}</th>
+                    <th>{{ _('Issue resolution content') }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for issue_resolution in issue_resolutions %}
+                    <tr>
+                      <td>{{ issue_resolution.created.strftime('%Y/%m/%d %H:%M:%S') }}</td>
+                      <td>{{ issue_resolution.description }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   {% endblock %}
 
   {% block secondary %}{% endblock %}
