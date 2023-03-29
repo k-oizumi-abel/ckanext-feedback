@@ -23,8 +23,8 @@ def get_utilization(utilization_id):
             Resource.id.label('resource_id'),
             Package.name.label('package_name'),
         )
-        .join(Resource, Resource.id == Utilization.resource_id)
-        .join(Package, Package.id == Resource.package_id)
+        .join(Resource, Utilization.resource)
+        .join(Package)
         .filter(Utilization.id == utilization_id)
         .first()
     )
