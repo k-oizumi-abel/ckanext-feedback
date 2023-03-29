@@ -19,6 +19,12 @@ feedback-registration-js:
   contents:
     - js/registration.js
 
+feedback-edit-js:
+  filter: rjsmin
+  output: ckanext-feedback/%(version)s-edit.js
+  contents:
+    - js/edit.js
+
 feedback-search-css:
   filter: cssrewrite
   output: feedback/%(version)s-search.css

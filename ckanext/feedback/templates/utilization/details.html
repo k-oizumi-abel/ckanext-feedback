@@ -19,7 +19,7 @@
         <div class="centered-content">
           {% if c.userobj.sysadmin %}
             <form name="admin_form" action="{{ url_for('utilization.approve', utilization_id=utilization_id ) }}" method="post">
-              <a class="btn btn-primary right-aligned spaced-left" href="#">{{ _('Edit') }}</a>
+              <a class="btn btn-primary right-aligned spaced-left" href="{{ h.url_for('utilization.edit', utilization_id=utilization_id) }}">{{ _('Edit') }}</a>
               {% if row.approval == false %}
                 <button class="btn btn-primary right-aligned">{{ _('Approve') }}</button>
               {% endif %}
