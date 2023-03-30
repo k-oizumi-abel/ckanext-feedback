@@ -3,8 +3,8 @@ from ckan.lib import helpers
 from ckan.plugins import toolkit
 from flask import redirect, url_for
 
-import ckanext.feedback.services.utilization.details as detail_service
 import ckanext.feedback.services.management.comments as comments_service
+import ckanext.feedback.services.utilization.details as detail_service
 from ckanext.feedback.models.session import session
 
 
@@ -24,7 +24,9 @@ class ManagementController:
     def approve_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
         if comments:
+            utilizations = comments_service.get_utilizations_by_comments(comments)
             comments_service.approve_utilization_comments(comments, c.userobj.id)
+            comments_service.refresh_utilizations_comments(utilizations)
             session.commit()
             helpers.flash_success(
                 f'{len(comments)} ' + _('bulk approval completed.'),
@@ -42,7 +44,9 @@ class ManagementController:
     def delete_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
         if comments:
+            utilizations = comments_service.get_utilizations_by_comments(comments)
             comments_service.delete_utilization_comments(comments)
+            comments_service.refresh_utilizations_comments(utilizations)
             session.commit()
 
             helpers.flash_success(

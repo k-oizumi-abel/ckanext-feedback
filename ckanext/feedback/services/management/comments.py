@@ -1,12 +1,39 @@
 from datetime import datetime
 
-from ckan.model.package import Package
-from ckan.model.resource import Resource
-
 from ckanext.feedback.models.session import session
-from ckanext.feedback.models.utilization import (
-    UtilizationComment,
-)
+from ckanext.feedback.models.utilization import Utilization, UtilizationComment
+
+
+def get_utilization_comments(utilization_id):
+    query = session.query(UtilizationComment).filter(
+        UtilizationComment.utilization_id == utilization_id,
+        UtilizationComment.approval,
+    )
+    return query.count()
+
+
+def get_utilizations_by_comments(comment_id_list):
+    utilizations = (
+        session.query(Utilization)
+        .join(UtilizationComment)
+        .filter(UtilizationComment.id.in_(comment_id_list))
+    ).all()
+    return utilizations
+
+
+# Recalculate total approved bulk utilizations comments
+def refresh_utilizations_comments(utilizations):
+    session.bulk_update_mappings(
+        Utilization,
+        [
+            {
+                'id': utilization.id,
+                'comment': get_utilization_comments(utilization.id),
+                'updated': datetime.now(),
+            }
+            for utilization in utilizations
+        ],
+    )
 
 
 # Approve selected utilization comments
@@ -27,6 +54,8 @@ def approve_utilization_comments(comment_id_list, approval_user_id):
 
 # Delete selected utilization comments
 def delete_utilization_comments(comment_id_list):
-    session.query(UtilizationComment).filter(
-        UtilizationComment.id.in_(comment_id_list)
-    ).delete(synchronize_session='fetch')
+    (
+        session.query(UtilizationComment)
+        .filter(UtilizationComment.id.in_(comment_id_list))
+        .delete(synchronize_session='fetch')
+    )
