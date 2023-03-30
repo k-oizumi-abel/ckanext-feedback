@@ -19,8 +19,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/feedback/controllers/resource.py:50
 #: ckanext/feedback/controllers/utilization.py:127
+#: ckanext/feedback/controllers/resource.py:46
+#: ckanext/feedback/controllers/management.py:30
+msgid "bulk approval completed."
+msgstr "一括承認完了"
+
+#: ckanext/feedback/controllers/management.py:49
+msgid "bulk delete completed."
+msgstr "一括削除完了"
+
+#: ckanext/feedback/controllers/utilization.py:64
+msgid ""
+"Your application is complete.<br>The utilization will not be displayed "
+"until approved by an administrator."
+msgstr "登録申請が完了しました。<br>管理者に申請が承認されるまで表示されません。"
+
+#: ckanext/feedback/controllers/utilization.py:119
+>>>>>>> f75e391 (modify English words and its translation)
 msgid ""
 "Your comment has been sent.<br>The comment will not be displayed until "
 "approved by an administrator."
@@ -123,6 +139,8 @@ msgstr "Top"
 #: ckanext/feedback/templates/header.html:91
 #: ckanext/feedback/templates/resource/comment.html:11
 #: ckanext/feedback/templates/resource/comment.html:19
+#: ckanext/feedback/templates/management/comments.html:64
+#: ckanext/feedback/templates/management/comments.html:120
 #: ckanext/feedback/templates/utilization/details.html:32
 #: ckanext/feedback/templates/utilization/edit.html:16
 #: ckanext/feedback/templates/utilization/new.html:6
@@ -140,6 +158,7 @@ msgid "Group"
 msgstr "グループ"
 
 #: ckanext/feedback/templates/header.html:95
+#: ckanext/feedback/templates/management/comments.html:44
 #: ckanext/feedback/templates/utilization/details.html:11
 #: ckanext/feedback/templates/utilization/edit.html:6
 #: ckanext/feedback/templates/utilization/search.html:12
@@ -147,8 +166,9 @@ msgid "Utilization"
 msgstr "利活用方法"
 
 #: ckanext/feedback/templates/header.html:98
-msgid "Feedback Comments"
-msgstr "フィードバック一覧"
+#: ckanext/feedback/templates/management/comments.html:10
+msgid "Management Comments"
+msgstr "コメント管理"
 
 #: ckanext/feedback/templates/header.html:100
 msgid "About"
@@ -171,6 +191,79 @@ msgstr "データセット検索"
 msgid "Submit"
 msgstr "検索"
 
+#: ckanext/feedback/templates/management/comments.html:21
+#: ckanext/feedback/templates/management/comments.html:66
+#: ckanext/feedback/templates/management/comments.html:122
+msgid "Category"
+msgstr "カテゴリー"
+
+#: ckanext/feedback/templates/management/comments.html:30
+#: ckanext/feedback/templates/management/comments.html:69
+#: ckanext/feedback/templates/management/comments.html:125
+#: ckanext/feedback/templates/utilization/search.html:76
+#: ckanext/feedback/templates/utilization/search.html:98
+msgid "Status"
+msgstr "ステータス"
+
+#: ckanext/feedback/templates/management/comments.html:32
+#: ckanext/feedback/templates/management/comments.html:97
+#: ckanext/feedback/templates/utilization/search.html:78
+#: ckanext/feedback/templates/utilization/search.html:116
+msgid "Waiting"
+msgstr "承認待ち"
+
+#: ckanext/feedback/templates/management/comments.html:34
+#: ckanext/feedback/templates/management/comments.html:95
+#: ckanext/feedback/templates/utilization/search.html:80
+#: ckanext/feedback/templates/utilization/search.html:114
+msgid "Approved"
+msgstr "承認済"
+
+#: ckanext/feedback/templates/management/comments.html:45
+#: ckanext/feedback/templates/management/comments.html:65
+#: ckanext/feedback/templates/management/comments.html:121
+#: ckanext/feedback/templates/utilization/details.html:35
+#: ckanext/feedback/templates/utilization/edit.html:19
+#: ckanext/feedback/templates/utilization/new.html:7
+#: ckanext/feedback/templates/utilization/new.html:17
+#: ckanext/feedback/templates/utilization/search.html:95
+msgid "Resource"
+msgstr "データリソース"
+
+#: ckanext/feedback/templates/management/comments.html:49
+#: ckanext/feedback/templates/management/comments.html:109
+#: ckanext/feedback/templates/utilization/search.html:89
+msgid "Results: "
+msgstr "検索結果: "
+
+#: ckanext/feedback/templates/management/comments.html:53
+msgid "Bulk Appproval"
+msgstr "一括承認"
+
+#: ckanext/feedback/templates/management/comments.html:54
+msgid "Bulk Delete"
+msgstr "一括削除"
+
+#: ckanext/feedback/templates/management/comments.html:62
+#: ckanext/feedback/templates/management/comments.html:118
+msgid "Comments Body"
+msgstr "本文"
+
+#: ckanext/feedback/templates/management/comments.html:63
+msgid "Utilization Title"
+msgstr "利活用方法"
+
+#: ckanext/feedback/templates/management/comments.html:67
+#: ckanext/feedback/templates/management/comments.html:123
+#: ckanext/feedback/templates/package/resource_read.html:98
+#: ckanext/feedback/templates/package/snippets/additional_info.html:74
+msgid "Created"
+msgstr "作成日"
+
+#: ckanext/feedback/templates/management/comments.html:119
+msgid "Score"
+msgstr ""
+
 #: ckanext/feedback/templates/package/resource_read.html:5
 msgid "Manage"
 msgstr "管理"
@@ -185,16 +278,19 @@ msgstr "API エンドポイント"
 
 #: ckanext/feedback/templates/package/resource_read.html:16
 #: ckanext/feedback/templates/package/snippets/resource_item.html:74
+#: ckanext/feedback/templates/package/snippets/resource_item.html:60
 msgid "Go to resource"
 msgstr "リソースへ行く"
 
 #: ckanext/feedback/templates/package/resource_read.html:18
 #: ckanext/feedback/templates/package/snippets/resource_item.html:71
+#: ckanext/feedback/templates/package/snippets/resource_item.html:57
 msgid "Download"
 msgstr "ダウンロード"
 
 #: ckanext/feedback/templates/package/resource_read.html:47
 #: ckanext/feedback/templates/package/snippets/resource_item.html:90
+#: ckanext/feedback/templates/package/snippets/resource_item.html:76
 #: ckanext/feedback/templates/utilization/new.html:8
 msgid "Create utilization application"
 msgstr "利活用方法登録申請"
@@ -259,6 +355,11 @@ msgstr "評価"
 #: ckanext/feedback/templates/package/snippets/additional_info.html:28
 #: ckanext/feedback/templates/package/snippets/resource_item.html:40
 #: ckanext/feedback/templates/snippets/package_item.html:50
+#: ckanext/feedback/templates/package/resource_read.html:85
+#: ckanext/feedback/templates/package/snippets/additional_info.html:16
+#: ckanext/feedback/templates/package/snippets/resource_item.html:26
+#: ckanext/feedback/templates/snippets/package_item.html:32
+#: ckanext/feedback/templates/utilization/details.html:41
 msgid "Issue Resolutions"
 msgstr "課題解決数"
 
@@ -283,6 +384,7 @@ msgid "Created"
 msgstr "作成日"
 
 #: ckanext/feedback/templates/package/resource_read.html:123
+#: ckanext/feedback/templates/package/resource_read.html:102
 msgid "Format"
 msgstr "フォーマット"
 
@@ -316,19 +418,20 @@ msgstr "状態"
 msgid "Last Updated"
 msgstr "最終更新"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:50
+
+#: ckanext/feedback/templates/package/snippets/resource_item.html:36
 msgid "Explore"
 msgstr "探索"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:59
+#: ckanext/feedback/templates/package/snippets/resource_item.html:45
 msgid "Preview"
 msgstr "プレビュー"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:62
+#: ckanext/feedback/templates/package/snippets/resource_item.html:48
 msgid "More information"
 msgstr "詳細情報の表示"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:83
+#: ckanext/feedback/templates/package/snippets/resource_item.html:69
 #: ckanext/feedback/templates/utilization/details.html:22
 #: ckanext/feedback/templates/utilization/edit.html:8
 msgid "Edit"
@@ -400,6 +503,11 @@ msgstr "送信"
 #: ckanext/feedback/templates/utilization/edit.html:7
 msgid "Details"
 msgstr "詳細"
+
+#: ckanext/feedback/templates/utilization/details.html:24
+#: ckanext/feedback/templates/utilization/details.html:78
+msgid "Approve"
+msgstr "承認"
 
 #: ckanext/feedback/templates/utilization/details.html:38
 msgid "Utilization description"
@@ -519,11 +627,19 @@ msgstr "承認済"
 msgid "Results: "
 msgstr "結果："
 
+<<<<<<< HEAD
 #: ckanext/feedback/templates/utilization/search.html:54
 msgid "Data resource"
 msgstr "データリソース"
 
 #: ckanext/feedback/templates/utilization/search.html:55
+=======
+#: ckanext/feedback/templates/utilization/search.html:89
+msgid "items"
+msgstr "件"
+
+#: ckanext/feedback/templates/utilization/search.html:96
+>>>>>>> 16d0767 (modify English words and its translation)
 msgid "Registration date"
 msgstr "登録日"
 
