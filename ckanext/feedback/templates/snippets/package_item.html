@@ -25,6 +25,24 @@
     {% endif %}
   </li>
   <li>
+    {% if h.is_enabled_resources() %}
+      <div class="utilization-data bubble">
+        <i class="fa fa-commenting-o"></i>
+        {{ h.get_package_comments(package.id) }}
+        <div class="description">{{ _('Comments') }}</div>
+      </div>
+    {% endif %}
+  </li>
+  <li>
+    {% if h.is_enabled_resources() %}
+      <div class="utilization-data bubble">
+        <i class="fa fa-star"></i>
+        {{ h.get_package_rating(package.id)|round(1) }}
+        <div class="description">{{ _('Rating') }}</div>
+      </div>
+    {% endif %}
+  </li>
+  <li>
     {% if h.is_enabled_utilizations() %}
       <div class="bubble">
         <img id="issue-resolution" src="/images/issue_resolution_badge.png">
@@ -33,11 +51,4 @@
       </div>
     {% endif %}
   </li>
-  <p>評価：
-    <img src="/images/rating_star.png" alt="rating star" width="16" height="16"/>
-    <img src="/images/rating_star.png" alt="rating star" width="16" height="16"/>
-    <img src="/images/rating_star.png" alt="rating star" width="16" height="16"/>
-    <img src="/images/empty_rating_star.png" alt="empty rating star" width="16" height="16"/>
-    <img src="/images/empty_rating_star.png" alt="empty rating star" width="16" height="16"/>
-  </p>
 {% endblock %}

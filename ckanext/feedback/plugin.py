@@ -5,8 +5,10 @@ from ckan.plugins import toolkit
 
 from ckanext.feedback.command import feedback
 from ckanext.feedback.services.download import summary as download_summary_service
+from ckanext.feedback.services.resource import comment as comment_service
+from ckanext.feedback.services.resource import summary as resource_summary_service
 from ckanext.feedback.services.utilization import summary as utilization_summary_service
-from ckanext.feedback.views import download, utilization
+from ckanext.feedback.views import download, resource, utilization
 
 
 class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
@@ -39,6 +41,7 @@ class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
         blueprints = []
         blueprints.append(utilization.get_utilization_blueprint())
         blueprints.append(download.get_download_blueprint())
+        blueprints.append(resource.get_resource_comment_blueprint())
         return blueprints
 
     # Check production.ini settings
@@ -75,4 +78,9 @@ class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_package_issue_resolutions': (
                 utilization_summary_service.get_package_issue_resolutions
             ),
+            'get_comment_reply': comment_service.get_comment_reply,
+            'get_resource_comments': resource_summary_service.get_resource_comments,
+            'get_package_comments': resource_summary_service.get_package_comments,
+            'get_resource_rating': resource_summary_service.get_resource_rating,
+            'get_package_rating': resource_summary_service.get_package_rating,
         }
