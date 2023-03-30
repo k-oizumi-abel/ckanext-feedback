@@ -4,8 +4,8 @@ from ckan.lib.plugins import DefaultTranslation
 from ckan.plugins import toolkit
 
 from ckanext.feedback.command import feedback
-from ckanext.feedback.services.download import summary as summary_service
-from ckanext.feedback.services.utilization import summary as summary_utilization
+from ckanext.feedback.services.download import summary as download_summary_service
+from ckanext.feedback.services.utilization import summary as utilization_summary_service
 from ckanext.feedback.views import download, utilization
 
 
@@ -61,12 +61,18 @@ class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'is_enabled_downloads': self.is_enabled_downloads,
             'is_enabled_resources': self.is_enabled_resources,
             'is_enabled_utilizations': self.is_enabled_utilizations,
-            'get_resource_downloads': summary_service.get_resource_downloads,
-            'get_package_downloads': summary_service.get_package_downloads,
+            'get_resource_downloads': download_summary_service.get_resource_downloads,
+            'get_package_downloads': download_summary_service.get_package_downloads,
+            'get_resource_utilizations': (
+                utilization_summary_service.get_resource_utilizations
+            ),
+            'get_package_utilizations': (
+                utilization_summary_service.get_package_utilizations
+            ),
             'get_resource_issue_resolutions': (
-                summary_utilization.get_resource_issue_resolutions
+                utilization_summary_service.get_resource_issue_resolutions
             ),
             'get_package_issue_resolutions': (
-                summary_utilization.get_package_issue_resolutions
+                utilization_summary_service.get_package_issue_resolutions
             ),
         }

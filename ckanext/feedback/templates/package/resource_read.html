@@ -78,8 +78,8 @@
         {% endif %}
         {% if h.is_enabled_utilizations() %}
           <tr>
-            <th scope="row">{{ _('利活用数') }}</th>
-            <td><a href="{{ h.url_for('utilization.search', id=resource.id, disable_keyword=true) }}">数字</a></td>
+            <th scope="row">{{ _('Utilizations') }}</th>
+            <td><a href="{{ h.url_for('utilization.search', id=resource.id, disable_keyword=true) }}">{{ h.get_resource_utilizations(resource.id) }}</a></td>
           </tr>
           <tr>
             <th scope="row">{{ _('Issue Resolutions') }}</th>

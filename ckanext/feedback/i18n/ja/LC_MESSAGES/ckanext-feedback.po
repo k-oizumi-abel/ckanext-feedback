@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-29 11:15+0900\n"
+"POT-Creation-Date: 2023-03-29 14:56+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -161,17 +161,17 @@ msgid "API Endpoint"
 msgstr "API エンドポイント"
 
 #: ckanext/feedback/templates/package/resource_read.html:16
-#: ckanext/feedback/templates/package/snippets/resource_item.html:54
+#: ckanext/feedback/templates/package/snippets/resource_item.html:58
 msgid "Go to resource"
 msgstr "リソースへ行く"
 
 #: ckanext/feedback/templates/package/resource_read.html:18
-#: ckanext/feedback/templates/package/snippets/resource_item.html:51
+#: ckanext/feedback/templates/package/snippets/resource_item.html:55
 msgid "Download"
 msgstr "ダウンロード"
 
 #: ckanext/feedback/templates/package/resource_read.html:47
-#: ckanext/feedback/templates/package/snippets/resource_item.html:70
+#: ckanext/feedback/templates/package/snippets/resource_item.html:74
 #: ckanext/feedback/templates/utilization/new.html:8
 msgid "Create utilization application"
 msgstr "利活用方法登録申請"
@@ -196,14 +196,21 @@ msgstr "値"
 #: ckanext/feedback/templates/package/resource_read.html:75
 #: ckanext/feedback/templates/package/snippets/additional_info.html:6
 #: ckanext/feedback/templates/package/snippets/resource_item.html:13
-#: ckanext/feedback/templates/snippets/package_item.html:88
+#: ckanext/feedback/templates/snippets/package_item.html:14
 msgid "Downloads"
 msgstr "ダウンロード数"
 
+#: ckanext/feedback/templates/package/resource_read.html:81
+#: ckanext/feedback/templates/package/snippets/additional_info.html:12
+#: ckanext/feedback/templates/package/snippets/resource_item.html:19
+#: ckanext/feedback/templates/snippets/package_item.html:22
+msgid "Utilizations"
+msgstr "利活用数"
+
 #: ckanext/feedback/templates/package/resource_read.html:85
 #: ckanext/feedback/templates/package/snippets/additional_info.html:16
-#: ckanext/feedback/templates/package/snippets/resource_item.html:20
-#: ckanext/feedback/templates/snippets/package_item.html:95
+#: ckanext/feedback/templates/package/snippets/resource_item.html:24
+#: ckanext/feedback/templates/snippets/package_item.html:31
 msgid "Issue Resolutions"
 msgstr "課題解決数"
 
@@ -261,60 +268,23 @@ msgstr "状態"
 msgid "Last Updated"
 msgstr "最終更新"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:30
+#: ckanext/feedback/templates/package/snippets/resource_item.html:34
 msgid "Explore"
 msgstr "探索"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:39
+#: ckanext/feedback/templates/package/snippets/resource_item.html:43
 msgid "Preview"
 msgstr "プレビュー"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:42
+#: ckanext/feedback/templates/package/snippets/resource_item.html:46
 msgid "More information"
 msgstr "詳細情報の表示"
 
-#: ckanext/feedback/templates/package/snippets/resource_item.html:63
+#: ckanext/feedback/templates/package/snippets/resource_item.html:67
 #: ckanext/feedback/templates/utilization/details.html:22
 #: ckanext/feedback/templates/utilization/edit.html:8
 msgid "Edit"
 msgstr "編集"
-
-#: ckanext/feedback/templates/package/snippets/resources_list.html:14
-msgid "Data and Resources"
-msgstr "データとリソース"
-
-#: ckanext/feedback/templates/package/snippets/resources_list.html:38
-#, python-format
-msgid ""
-"<p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not "
-"add some?</a></p>"
-msgstr ""
-" <p class=\"empty\">このデータセットにはデータがありませんので、 <a "
-"href=\"%(url)s\">データを追加しましょう</a>。</p> "
-
-#: ckanext/feedback/templates/package/snippets/resources_list.html:42
-msgid "This dataset has no data"
-msgstr "このデータセットにはデータがありません"
-
-#: ckanext/feedback/templates/snippets/package_item.html:34
-msgid "Private"
-msgstr "プライベート"
-
-#: ckanext/feedback/templates/snippets/package_item.html:43
-msgid "Draft"
-msgstr "下書き"
-
-#: ckanext/feedback/templates/snippets/package_item.html:45
-msgid "Deleted"
-msgstr "削除済"
-
-#: ckanext/feedback/templates/snippets/package_item.html:53
-msgid "Popular"
-msgstr "人気"
-
-#: ckanext/feedback/templates/snippets/package_item.html:60
-msgid "This dataset has no description"
-msgstr "このデータセットには説明がありません"
 
 #: ckanext/feedback/templates/utilization/details.html:12
 #: ckanext/feedback/templates/utilization/edit.html:7

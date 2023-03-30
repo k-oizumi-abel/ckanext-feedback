@@ -15,6 +15,27 @@ from ckanext.feedback.models.utilization import (
 log = logging.getLogger(__name__)
 
 
+# Get utilization summary count of the target package
+def get_package_utilizations(package_id):
+    count = (
+        session.query(func.sum(UtilizationSummary.utilization))
+        .join(Resource)
+        .filter(Resource.package_id == package_id)
+        .scalar()
+    )
+    return count or 0
+
+
+# Get utilization summary count of the target resource
+def get_resource_utilizations(resource_id):
+    count = (
+        session.query(UtilizationSummary.utilization)
+        .filter(UtilizationSummary.resource_id == resource_id)
+        .scalar()
+    )
+    return count or 0
+
+
 # Create new utilizaton summary
 def create_utilization_summary(resource_id):
     summary = (
