@@ -4,7 +4,8 @@ from ckan.plugins import toolkit
 from flask import redirect, url_for
 
 import ckanext.feedback.services.management.comments as comments_service
-import ckanext.feedback.services.utilization.details as detail_service
+import ckanext.feedback.services.utilization.details as utilization_detail_service
+import ckanext.feedback.services.resource.comment as resource_comment_service
 from ckanext.feedback.models.session import session
 
 
@@ -12,11 +13,16 @@ class ManagementController:
     # management/comments
     @staticmethod
     def comments():
-        categories = detail_service.get_utilization_comment_categories()
-        utilization_comments = detail_service.get_utilization_comments()
+        categories = utilization_detail_service.get_utilization_comment_categories()
+        utilization_comments = utilization_detail_service.get_utilization_comments()
+        resource_comments = resource_comment_service.get_resource_comments()
         return toolkit.render(
             'management/comments.html',
-            {'categories': categories, 'utilization_comments': utilization_comments},
+            {
+                'categories': categories,
+                'utilization_comments': utilization_comments,
+                'resource_comments': resource_comments,
+            },
         )
 
     # management/approve_bulk_utilization_comments

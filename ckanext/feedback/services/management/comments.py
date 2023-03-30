@@ -6,10 +6,14 @@ from ckanext.feedback.models.utilization import Utilization, UtilizationComment
 
 # Get approval utilization comment count using utilization.id
 def get_utilization_comments(utilization_id):
-    count = session.query(UtilizationComment).filter(
-        UtilizationComment.utilization_id == utilization_id,
-        UtilizationComment.approval,
-    ).count()
+    count = (
+        session.query(UtilizationComment)
+        .filter(
+            UtilizationComment.utilization_id == utilization_id,
+            UtilizationComment.approval,
+        )
+        .count()
+    )
     return count
 
 

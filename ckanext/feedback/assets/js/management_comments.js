@@ -1,6 +1,10 @@
 const utilizationCheckboxAll = document.getElementById('utilization-comments-checkbox-all');
 utilizationCheckboxAll.addEventListener('change', changeAllChekbox);
 
+const resourceCheckboxAll = document.getElementById('resource-comments-checkbox-all');
+resourceCheckboxAll.addEventListener('change', changeAllChekbox);
+
+
 function changeAllChekbox(e) {
   let rows;
   if (e.target.id === 'utilization-comments-checkbox-all') {
@@ -22,8 +26,9 @@ function runBulkAction(action) {
 
 
 function refreshTable() {
-  // Declare variables
-  const rows = document.querySelectorAll('tbody tr');
+  const tabs = document.querySelectorAll('input[name="tab-menu"]');
+  const activeTabName = Array.from(tabs).find(tab => tab.checked).value;
+  const rows = document.querySelectorAll(`#${activeTabName}-table tbody tr`);
   let count = 0;
 
   rows.forEach(row => {
@@ -35,12 +40,13 @@ function refreshTable() {
       row.querySelector('input[type="checkbox"]').checked = false;
     }
   });
-  document.getElementById('utilization-comments-results-count').innerText = count;
+  document.getElementById(`${activeTabName}-results-count`).innerText = count;
 
-  const visibleRows = Array.from(document.querySelectorAll('#utilization-comments-table tbody tr')).filter(isVisible);
-  const bulkCheckbox = document.getElementById('utilization-comments-checkbox-all');
+  const visibleRows = Array.from(document.querySelectorAll(`#${activeTabName}-table tbody tr`)).filter(isVisible);
+  const bulkCheckbox = document.getElementById(`${activeTabName}-checkbox-all`);
   bulkCheckbox.checked = visibleRows.every(row => row.querySelector('input[type="checkbox"]').checked);
 }
+
 
 function isVisible(row){
   const statusCell = row.getElementsByTagName('td')[7];
