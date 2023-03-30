@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from ckan.model.resource import Resource
+from sqlalchemy import func
 
 from ckanext.feedback.models.resource_comment import (
     ResourceComment,
@@ -48,19 +49,6 @@ def refresh_utilizations_comments(utilizations):
     )
 
 
-# Get approval resource comment count using utilization.id
-def get_resource_comments(resource_id):
-    count = (
-        session.query(ResourceComment)
-        .filter(
-            ResourceComment.resource_id == resource_id,
-            ResourceComment.approval,
-        )
-        .count()
-    )
-    return count
-
-
 # Get resource comment summaries using comment_id_list
 def get_resource_comment_summaries(comment_id_list):
     resource_comment_summaries = (
@@ -74,17 +62,28 @@ def get_resource_comment_summaries(comment_id_list):
 
 # Recalculate total approved bulk resources comments
 def refresh_resources_comments(resource_comment_summaries):
-    session.bulk_update_mappings(
-        ResourceCommentSummary,
-        [
+    mappings = []
+    for resource_comment_summary in resource_comment_summaries:
+        row = (
+            session.query(
+                func.sum(ResourceComment.rating).label('total_rating'),
+                func.count().label('total_comment'),
+            )
+            .filter(
+                ResourceComment.resource_id == resource_comment_summary.resource.id,
+                ResourceComment.approval,
+            )
+            .first()
+        )
+        mappings.append(
             {
                 'id': resource_comment_summary.id,
-                'comment': get_resource_comments(resource_comment_summary.resource.id),
+                'comment': row.total_comment,
+                'rating': row.total_rating / row.total_comment,
                 'updated': datetime.now(),
             }
-            for resource_comment_summary in resource_comment_summaries
-        ],
-    )
+        )
+    session.bulk_update_mappings(ResourceCommentSummary, mappings)
 
 
 # Approve selected utilization comments
