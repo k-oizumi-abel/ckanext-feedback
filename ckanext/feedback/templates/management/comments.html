@@ -41,8 +41,8 @@
       {% if c.userobj.sysadmin %}
         <form id="comments-form" method="post">
           <div class="tab">
-            <input id="menu1" type="radio" name="tab-menu" value="utilization-comments" checked><label class="tab-menu" for="menu1">{{ _('Utilization Commnets') }}</label>
-            <input id="menu2" type="radio" name="tab-menu" value="resource-comments"><label class="tab-menu" for="menu2">{{ _('Resource Comments') }}</label>
+            <input id="menu1" type="radio" name="tab-menu" value="utilization-comments" onclick="refreshTable()" checked><label class="tab-menu" for="menu1">{{ _('Utilization Commnets') }}</label>
+            <input id="menu2" type="radio" name="tab-menu" value="resource-comments" onclick="refreshTable()"><label class="tab-menu" for="menu2">{{ _('Resource Comments') }}</label>
             <div class="tab-contents" id="menu1">
               {% block result_utilization_comments_table %}
                 <h4 class="bottom-centered-content" id="data-count">
