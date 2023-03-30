@@ -175,16 +175,13 @@ msgid "About"
 msgstr "About"
 
 #: ckanext/feedback/templates/header.html:110
+#: ckanext/feedback/templates/header.html:111
 msgid "Search Datasets"
 msgstr "データセット検索"
 
 #: ckanext/feedback/templates/header.html:111
 msgid "Search"
 msgstr "検索"
-
-#: ckanext/feedback/templates/header.html:111
-msgid "Search datasets"
-msgstr "データセット検索"
 
 #: ckanext/feedback/templates/header.html:112
 #: ckanext/feedback/templates/utilization/search.html:24
