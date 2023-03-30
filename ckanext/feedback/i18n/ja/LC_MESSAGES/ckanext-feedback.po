@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-30 14:38+0900\n"
+"POT-Creation-Date: 2023-03-29 20:16+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -398,29 +398,43 @@ msgid "Resolve issue"
 msgstr "課題解決"
 
 #: ckanext/feedback/templates/utilization/details.html:103
-#: ckanext/feedback/templates/utilization/details.html:137
-msgid "Issue resolution content"
-msgstr "課題解決内容"
+msgid "Certification of issue resolution"
+msgstr "課題解決の認定"
 
 #: ckanext/feedback/templates/utilization/details.html:107
-msgid "Input field"
-msgstr "入力欄"
+msgid "What is certification of issue resolution?"
+msgstr "課題解決の認定とは？"
 
-#: ckanext/feedback/templates/utilization/details.html:112
+#: ckanext/feedback/templates/utilization/details.html:108
+msgid ""
+"If it is determined that the content of the utilization method leads to "
+"the solution of the problem, it can be certified as a problem solution."
+msgstr ""
+"利活用方法の内容が課題の解決につながると判断したものを課題解決として認定することができます。"
+
+#: ckanext/feedback/templates/utilization/details.html:111
+msgid "Contents of issue resolution"
+msgstr "課題解決内容"
+
+#: ckanext/feedback/templates/utilization/details.html:116
 msgid "Please enter your issue resolution content"
 msgstr "課題解決内容を入力してください"
 
-#: ckanext/feedback/templates/utilization/details.html:117
+#: ckanext/feedback/templates/utilization/details.html:121
 msgid "Certificate"
 msgstr "認定"
 
-#: ckanext/feedback/templates/utilization/details.html:129
+#: ckanext/feedback/templates/utilization/details.html:133
 msgid "Issue resolution details"
 msgstr "課題解決内容詳細"
 
-#: ckanext/feedback/templates/utilization/details.html:136
+#: ckanext/feedback/templates/utilization/details.html:140
 msgid "Certification date"
 msgstr "認定日"
+
+#: ckanext/feedback/templates/utilization/details.html:141
+msgid "Issue resolution content"
+msgstr "課題解決内容"
 
 #: ckanext/feedback/templates/utilization/edit.html:14
 msgid ""
