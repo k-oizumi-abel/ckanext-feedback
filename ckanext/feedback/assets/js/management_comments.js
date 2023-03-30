@@ -1,4 +1,4 @@
-const utilizationCheckboxAll = document.getElementById("utilization-comments-checkbox-all");
+const utilizationCheckboxAll = document.getElementById('utilization-comments-checkbox-all');
 utilizationCheckboxAll.addEventListener('change', changeAllChekbox);
 
 function changeAllChekbox(e) {
@@ -15,7 +15,7 @@ function changeAllChekbox(e) {
 
 
 function runBulkAction(action) {
-  const form = document.getElementById("comments-form");
+  const form = document.getElementById('comments-form');
   form.setAttribute("action", action);
   form.submit();
 }
