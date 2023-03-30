@@ -4,8 +4,8 @@ from ckan.plugins import toolkit
 from flask import redirect, url_for
 
 import ckanext.feedback.services.management.comments as comments_service
-import ckanext.feedback.services.utilization.details as utilization_detail_service
 import ckanext.feedback.services.resource.comment as resource_comment_service
+import ckanext.feedback.services.utilization.details as utilization_detail_service
 from ckanext.feedback.models.session import session
 
 
@@ -30,7 +30,7 @@ class ManagementController:
     def approve_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
         if comments:
-            utilizations = comments_service.get_utilizations_by_comments(comments)
+            utilizations = comments_service.get_utilizations(comments)
             comments_service.approve_utilization_comments(comments, c.userobj.id)
             comments_service.refresh_utilizations_comments(utilizations)
             session.commit()
@@ -43,6 +43,18 @@ class ManagementController:
     # management/approve_bulk_resource_comments
     @staticmethod
     def approve_bulk_resource_comments():
+        comments = request.form.getlist('resource-comments-checkbox')
+        if comments:
+            resource_comment_summaries = (
+                comments_service.get_resource_comment_summaries(comments)
+            )
+            comments_service.approve_resource_comments(comments, c.userobj.id)
+            comments_service.refresh_resources_comments(resource_comment_summaries)
+            session.commit()
+            helpers.flash_success(
+                f'{len(comments)} ' + _('bulk approval completed.'),
+                allow_html=True,
+            )
         return redirect(url_for('management.comments'))
 
     # management/delete_bulk_utilization_comments
@@ -50,7 +62,7 @@ class ManagementController:
     def delete_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
         if comments:
-            utilizations = comments_service.get_utilizations_by_comments(comments)
+            utilizations = comments_service.get_utilizations(comments)
             comments_service.delete_utilization_comments(comments)
             comments_service.refresh_utilizations_comments(utilizations)
             session.commit()
@@ -64,4 +76,17 @@ class ManagementController:
     # management/delete_bulk_resource_comments
     @staticmethod
     def delete_bulk_resource_comments():
+        comments = request.form.getlist('resource-comments-checkbox')
+        if comments:
+            resource_comment_summaries = (
+                comments_service.get_resource_comment_summaries(comments)
+            )
+            comments_service.delete_resource_comments(comments)
+            comments_service.refresh_resources_comments(resource_comment_summaries)
+            session.commit()
+
+            helpers.flash_success(
+                f'{len(comments)} ' + _('bulk delete completed.'),
+                allow_html=True,
+            )
         return redirect(url_for('management.comments'))
