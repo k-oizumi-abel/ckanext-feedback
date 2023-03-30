@@ -128,9 +128,8 @@ class UtilizationController:
     # utilization/<utilization_id>/comment/<comment_id>/approve
     @staticmethod
     def approve_comment(utilization_id, comment_id):
-        resource_id = detail_service.get_utilization(utilization_id).resource_id
         detail_service.approve_utilization_comment(comment_id, c.userobj.id)
-        summary_service.refresh_utilization_summary(resource_id)
+        detail_service.refresh_utilization_comments(utilization_id)
         session.commit()
 
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
