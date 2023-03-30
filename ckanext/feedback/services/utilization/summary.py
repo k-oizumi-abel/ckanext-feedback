@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 
 from ckan.model import Resource
@@ -6,6 +7,8 @@ from sqlalchemy import func
 from ckanext.feedback.models.issue import IssueResolutionSummary
 from ckanext.feedback.models.session import session
 from ckanext.feedback.models.utilization import Utilization, UtilizationSummary
+
+log = logging.getLogger(__name__)
 
 
 # Get utilization summary count of the target package
