@@ -44,7 +44,7 @@ function refreshTable() {
 
   const visibleRows = Array.from(document.querySelectorAll(`#${activeTabName}-table tbody tr`)).filter(isVisible);
   const bulkCheckbox = document.getElementById(`${activeTabName}-checkbox-all`);
-  bulkCheckbox.checked = visibleRows.every(row => row.querySelector('input[type="checkbox"]').checked);
+  bulkCheckbox.checked = visibleRows.every(row => row.querySelector('input[type="checkbox"]').checked) && visibleRows.length;
 }
 
 
