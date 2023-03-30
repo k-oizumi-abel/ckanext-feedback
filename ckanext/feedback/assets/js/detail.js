@@ -3,7 +3,7 @@ function checkCommentExists() {
   content = document.getElementById('comment-content').value;
 
   if (content) {
-    errorElement.style.display = 'None';
+    errorElement.style.display = 'none';
     return true;
   } else {
     errorElement.style.display = '';
@@ -16,7 +16,7 @@ function checkDescriptionExists() {
   description = document.getElementById('description').value;
 
   if (description) {
-    errorElement.style.display = 'None';
+    errorElement.style.display = 'none';
     return true;
   } else {
     errorElement.style.display = '';

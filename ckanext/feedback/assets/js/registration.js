@@ -5,8 +5,8 @@ function checkTitleAndDescriptionExists() {
   const descriptionErrorElement = document.getElementById('description-error');
 
   // Reset display settings
-  titleErrorElement.style.display = 'None';
-  descriptionErrorElement.style.display = 'None';
+  titleErrorElement.style.display = 'none';
+  descriptionErrorElement.style.display = 'none';
   
   if (!title) {
     titleErrorElement.style.display = '';
