@@ -36,6 +36,10 @@ function refreshTable() {
     }
   });
   document.getElementById('utilization-comments-results-count').innerText = count;
+
+  const visibleRows = Array.from(document.querySelectorAll('#utilization-comments-table tbody tr')).filter(isVisible);
+  const bulkCheckbox = document.getElementById('utilization-comments-checkbox-all');
+  bulkCheckbox.checked = visibleRows.every(row => row.querySelector('input[type="checkbox"]').checked);
 }
 
 function isVisible(row){
