@@ -13,6 +13,7 @@ class ManagementController:
     # management/comments
     @staticmethod
     def comments():
+        tab = request.args.get('tab', 'utilization-comments')
         categories = utilization_detail_service.get_utilization_comment_categories()
         utilization_comments = utilization_detail_service.get_utilization_comments()
         resource_comments = resource_comment_service.get_resource_comments()
@@ -22,6 +23,7 @@ class ManagementController:
                 'categories': categories,
                 'utilization_comments': utilization_comments,
                 'resource_comments': resource_comments,
+                'tab': tab,
             },
         )
 
@@ -38,7 +40,7 @@ class ManagementController:
                 f'{len(comments)} ' + _('bulk approval completed.'),
                 allow_html=True,
             )
-        return redirect(url_for('management.comments'))
+        return redirect(url_for('management.comments', tab='utilization-comments'))
 
     # management/approve_bulk_resource_comments
     @staticmethod
@@ -55,7 +57,7 @@ class ManagementController:
                 f'{len(comments)} ' + _('bulk approval completed.'),
                 allow_html=True,
             )
-        return redirect(url_for('management.comments'))
+        return redirect(url_for('management.comments', tab='resource-comments'))
 
     # management/delete_bulk_utilization_comments
     @staticmethod
@@ -71,7 +73,7 @@ class ManagementController:
                 f'{len(comments)} ' + _('bulk delete completed.'),
                 allow_html=True,
             )
-        return redirect(url_for('management.comments'))
+        return redirect(url_for('management.comments', tab='utilization-comments'))
 
     # management/delete_bulk_resource_comments
     @staticmethod
@@ -89,4 +91,4 @@ class ManagementController:
                 f'{len(comments)} ' + _('bulk delete completed.'),
                 allow_html=True,
             )
-        return redirect(url_for('management.comments'))
+        return redirect(url_for('management.comments', tab='resource-comments'))
