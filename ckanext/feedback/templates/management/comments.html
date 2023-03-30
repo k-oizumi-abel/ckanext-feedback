@@ -163,11 +163,6 @@
 {% block secondary %}{% endblock %}
 
 {%- block scripts %}
-  {% asset 'base/main' %}
-  {% asset 'base/ckan' %}
-  {% asset 'feedback/feedback-management-comments-js' %}
-  {% if g.tracking_enabled %}
-    {% asset 'base/tracking' %}
-  {% endif %}
   {{ super() }}
-{% endblock -%}
+  {% asset 'feedback/feedback-management-comments-js' %}
+{% endblock %}
