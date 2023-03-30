@@ -8,7 +8,7 @@ function changeAllChekbox(e) {
   } else if (e.target.id === 'resource-comments-checkbox-all') {
     rows = document.querySelectorAll('#resource-comments-table tbody tr');
   }
-  Array.from(rows).filter(row => isVisible(row)).forEach(row => {
+  Array.from(rows).filter(isVisible).forEach(row => {
     row.querySelector('input[type="checkbox"]').checked = e.target.checked;
   });
 }
