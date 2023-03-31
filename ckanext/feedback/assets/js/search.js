@@ -18,5 +18,5 @@ function refreshTable() {
       row.style.display = 'none';
     }
   })
-  document.getElementById('data-count').innerText = `検索結果：${count}件`;
+  document.getElementById('utilization-results-count').innerText = count;
 }
