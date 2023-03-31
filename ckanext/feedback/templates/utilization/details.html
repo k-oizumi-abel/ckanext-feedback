@@ -38,7 +38,7 @@
           <h4>{{ _('Utilization description') }}</h4>
           <p>{{ row.description }}</p>
           <hr>
-          <h4>{{ _('Issue resolutions') }}</h4>
+          <h4>{{ _('Issue Resolutions') }}</h4>
           <a href="#issue-resolution-detail" data-toggle="modal">
             {% if issue_resolutions|length > 0 %}
               <img src="/images/issue_resolution_badge.png" alt="issue resolution badge" width="28" height="28">
@@ -67,7 +67,7 @@
               <p id="content-error" class="alert alert-error" style="display: none;">{{ _('Please enter your comment') }}</p>
             </div>
             <br>
-            <button class="btn btn-primary right-aligned" onclick="return checkCommentExists();">{{ _('Send comment') }}</button>
+            <button class="btn btn-primary right-aligned" onclick="return checkCommentExists();">{{ _('Send') }}</button>
             <br>
             <br>
             <br>
@@ -111,7 +111,7 @@
                 <p><small>{{ _('If it is determined that the content of the utilization method leads to the solution of the problem, it can be certified as a problem solution.') }}</small></p>
               </div>
               <div class="form-group control-full">
-                <label class="control-label" for="code">{{ _('Contents of issue resolution') }}</label>
+                <label class="control-label" for="code">{{ _('Resolved Issue') }}</label>
                 <div class="controls">
                   <textarea id="description" name="description" cols="20" rows="3" placeholder="" class="form-control"></textarea>
                 </div>
@@ -133,15 +133,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h2 class="modal-title">{{ _('Issue resolution details') }}</h>
+            <h2 class="modal-title">{{ _('Resolved Issue details') }}</h>
           </div>
           <div id="issue-resolution-table" class="modal-body">
             <div>
               <table class="table table-bordered table-striped table-responsive">
                 <thead class="table-header">
                   <tr>
-                    <th class="col-md-3">{{ _('Certification date') }}</th>
-                    <th>{{ _('Issue resolution content') }}</th>
+                    <th class="col-md-3">{{ _('Certificated') }}</th>
+                    <th>{{ _('Resolved Issue') }}</th>
                   </tr>
                 </thead>
                 <tbody>
