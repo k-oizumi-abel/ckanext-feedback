@@ -6,6 +6,7 @@ from flask import make_response, redirect, url_for
 import ckanext.feedback.services.resource.comment as comment_service
 import ckanext.feedback.services.resource.summary as summary_service
 from ckanext.feedback.models.session import session
+from ckanext.feedback.services.common.check import check_administrator
 
 
 class ResourceController:
@@ -38,6 +39,9 @@ class ResourceController:
         category = request.form.get('category', '')
         content = request.form.get('comment_content', '')
         rating = int(request.form.get('rating', 0))
+        if not (category and content and 1 <= rating <= 5):
+            toolkit.abort(400)
+
         comment_service.create_resource_comment(resource_id, category, content, rating)
         summary_service.create_resource_summary(resource_id)
         session.commit()
@@ -59,8 +63,12 @@ class ResourceController:
 
     # resource_comment/<resource_id>/comment/approve
     @staticmethod
+    @check_administrator
     def approve_comment(resource_id):
         resource_comment_id = request.form.get('resource_comment_id')
+        if not resource_comment_id:
+            toolkit.abort(400)
+
         comment_service.approve_resource_comment(resource_comment_id, c.userobj.id)
         summary_service.refresh_resource_summary(resource_id)
         session.commit()
@@ -69,9 +77,13 @@ class ResourceController:
 
     # resource_comment/<resource_id>/comment/reply
     @staticmethod
+    @check_administrator
     def reply(resource_id):
         resource_comment_id = request.form.get('resource_comment_id', '')
         content = request.form.get('reply_content', '')
+        if not (resource_comment_id and content):
+            toolkit.abort(400)
+
         comment_service.create_reply(resource_comment_id, content, c.userobj.id)
         session.commit()
 

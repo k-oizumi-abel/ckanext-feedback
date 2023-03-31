@@ -39,9 +39,12 @@ class FeedbackPlugin(plugins.SingletonPlugin, DefaultTranslation):
     # Return a flask Blueprint object to be registered by the extension
     def get_blueprint(self):
         blueprints = []
-        blueprints.append(utilization.get_utilization_blueprint())
-        blueprints.append(download.get_download_blueprint())
-        blueprints.append(resource.get_resource_comment_blueprint())
+        if self.is_enabled_downloads():
+            blueprints.append(download.get_download_blueprint())
+        if self.is_enabled_resources():
+            blueprints.append(resource.get_resource_comment_blueprint())
+        if self.is_enabled_utilizations():
+            blueprints.append(utilization.get_utilization_blueprint())
         return blueprints
 
     # Check production.ini settings
