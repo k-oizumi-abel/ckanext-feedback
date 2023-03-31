@@ -14,6 +14,7 @@ from sqlalchemy import (
     Integer,
     Numeric,
     Text,
+    null,
 )
 from sqlalchemy.orm import relationship
 
@@ -37,7 +38,7 @@ class ResourceComment(Base):
     )
     category = Column(Enum(ResourceCommentCategory), nullable=False)
     content = Column(Text)
-    rating = Column(Integer)
+    rating = Column(Integer, default=null)
     created = Column(TIMESTAMP, default=datetime.now)
     approval = Column(BOOLEAN, default=False)
     approved = Column(TIMESTAMP)

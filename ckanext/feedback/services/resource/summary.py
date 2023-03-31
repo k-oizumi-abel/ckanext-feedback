@@ -76,9 +76,19 @@ def create_resource_summary(resource_id):
 
 # Recalculate approved ratings and comments related to the resource summary
 def refresh_resource_summary(resource_id):
-    row = (
+    ratings = (
         session.query(
             func.sum(ResourceComment.rating).label('total_rating'),
+        )
+        .filter(
+            ResourceComment.resource_id == resource_id,
+            ResourceComment.approval,
+            ResourceComment.rating != 0,
+        )
+        .first()
+    )
+    comments = (
+        session.query(
             func.count().label('total_comment'),
         )
         .filter(
@@ -95,11 +105,11 @@ def refresh_resource_summary(resource_id):
     if summary is None:
         summary = ResourceCommentSummary(
             resource_id=resource_id,
-            rating=row.total_rating / row.total_comment,
-            comment=row.total_comment,
+            rating=ratings.total_rating / comments.total_comment,
+            comment=comments.total_comment,
         )
         session.add(summary)
     else:
-        summary.rating = row.total_rating / row.total_comment
-        summary.comment = row.total_comment
+        summary.rating = ratings.total_rating / comments.total_comment
+        summary.comment = comments.total_comment
         summary.updated = datetime.now()

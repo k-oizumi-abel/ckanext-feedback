@@ -38,8 +38,12 @@ class ResourceController:
     def create_comment(resource_id):
         category = request.form.get('category', '')
         content = request.form.get('comment_content', '')
-        rating = int(request.form.get('rating', 0))
-        if not (category and content and 1 <= rating <= 5):
+        rating = 0
+        if request.form.get('rating'):
+            rating = int(request.form.get('rating'))
+        if not category:
+            toolkit.abort(400)
+        if not (content or (1 <= rating <= 5)):
             toolkit.abort(400)
 
         comment_service.create_resource_comment(resource_id, category, content, rating)
