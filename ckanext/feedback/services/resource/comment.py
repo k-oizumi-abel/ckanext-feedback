@@ -23,12 +23,10 @@ def get_resource(resource_id):
 
 
 # Get comments related to the dataset or resource
-def get_resource_comments(resource_id, approval=None):
-    query = (
-        session.query(ResourceComment)
-        .filter(ResourceComment.resource_id == resource_id)
-        .order_by(ResourceComment.created.desc())
-    )
+def get_resource_comments(resource_id=None, approval=None):
+    query = session.query(ResourceComment).order_by(ResourceComment.created.desc())
+    if resource_id is not None:
+        query = query.filter(ResourceComment.resource_id == resource_id)
     if approval is not None:
         query = query.filter(ResourceComment.approval == approval)
 
