@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-feedback 0.0.1\n"
 "Report-Msgid-Bugs-To: info.c3lab@gmail.com\n"
-"POT-Creation-Date: 2023-03-30 22:44+0900\n"
+"POT-Creation-Date: 2023-03-31 14:54+0900\n"
 "PO-Revision-Date: 2023-03-01 14:16+0900\n"
 "Last-Translator: c3Lab <info.c3lab@gmail.com>\n"
 "Language: ja\n"
@@ -31,6 +31,14 @@ msgid ""
 "Your application is complete.<br>The utilization will not be displayed "
 "until approved by an administrator."
 msgstr "登録申請が完了しました。<br>管理者に申請が承認されるまで表示されません。"
+
+#: ckanext/feedback/controllers/utilization.py:176
+msgid "The utilization has been successfully updated."
+msgstr "利活用方法の更新に成功しました。"
+
+#: ckanext/feedback/controllers/utilization.py:192
+msgid "The utilization has been successfully deleted."
+msgstr "利活用方法の削除に成功しました。"
 
 #: ckanext/feedback/models/resource_comment.py:24
 #: ckanext/feedback/models/utilization.py:15
@@ -119,7 +127,7 @@ msgstr "Top"
 #: ckanext/feedback/templates/utilization/edit.html:16
 #: ckanext/feedback/templates/utilization/new.html:6
 #: ckanext/feedback/templates/utilization/new.html:14
-#: ckanext/feedback/templates/utilization/search.html:94
+#: ckanext/feedback/templates/utilization/search.html:53
 msgid "Dataset"
 msgstr "データセット"
 
@@ -134,7 +142,7 @@ msgstr "グループ"
 #: ckanext/feedback/templates/header.html:95
 #: ckanext/feedback/templates/utilization/details.html:11
 #: ckanext/feedback/templates/utilization/edit.html:6
-#: ckanext/feedback/templates/utilization/search.html:39
+#: ckanext/feedback/templates/utilization/search.html:12
 msgid "Utilization"
 msgstr "利活用方法"
 
@@ -159,7 +167,7 @@ msgid "Search datasets"
 msgstr "データセット検索"
 
 #: ckanext/feedback/templates/header.html:112
-#: ckanext/feedback/templates/utilization/search.html:69
+#: ckanext/feedback/templates/utilization/search.html:24
 msgid "Submit"
 msgstr "検索"
 
@@ -195,7 +203,7 @@ msgstr "利活用方法登録申請"
 #: ckanext/feedback/templates/package/snippets/resource_item.html:98
 #: ckanext/feedback/templates/resource/comment.html:12
 #: ckanext/feedback/templates/resource/comment.html:28
-#: ckanext/feedback/templates/utilization/details.html:54
+#: ckanext/feedback/templates/utilization/details.html:57
 msgid "Comment"
 msgstr "コメント"
 
@@ -235,7 +243,7 @@ msgstr "利活用数"
 #: ckanext/feedback/templates/package/snippets/resource_item.html:28
 #: ckanext/feedback/templates/resource/comment.html:25
 #: ckanext/feedback/templates/snippets/package_item.html:32
-#: ckanext/feedback/templates/utilization/details.html:50
+#: ckanext/feedback/templates/utilization/details.html:53
 msgid "Comments"
 msgstr "コメント数"
 
@@ -339,52 +347,52 @@ msgid "Please select your rating"
 msgstr "評価を選択してください。"
 
 #: ckanext/feedback/templates/resource/comment.html:51
-#: ckanext/feedback/templates/utilization/details.html:64
+#: ckanext/feedback/templates/utilization/details.html:67
 msgid "Please enter your comment"
 msgstr "コメントを入力してください。"
 
-#: ckanext/feedback/templates/resource/comment.html:53
-#: ckanext/feedback/templates/resource/comment.html:63
+#: ckanext/feedback/templates/resource/comment.html:54
+#: ckanext/feedback/templates/resource/comment.html:65
 msgid ""
 "(In order to prevent potential spam, only a single comment is allowed per"
 " data resouce)"
 msgstr "(不正な投稿を防ぐため、データリソースに対するコメントは1回だけ送信することができます)"
 
-#: ckanext/feedback/templates/resource/comment.html:56
-#: ckanext/feedback/templates/utilization/details.html:67
+#: ckanext/feedback/templates/resource/comment.html:58
+#: ckanext/feedback/templates/utilization/details.html:70
 msgid "Send comment"
 msgstr "コメント送信"
 
-#: ckanext/feedback/templates/resource/comment.html:62
+#: ckanext/feedback/templates/resource/comment.html:64
 msgid "* You have already commented on this data resource"
 msgstr "※ 既にコメント送信済みです"
 
-#: ckanext/feedback/templates/resource/comment.html:75
 #: ckanext/feedback/templates/resource/comment.html:77
+#: ckanext/feedback/templates/resource/comment.html:79
 msgid "Reply"
 msgstr "返信"
 
-#: ckanext/feedback/templates/resource/comment.html:81
+#: ckanext/feedback/templates/resource/comment.html:83
 #: ckanext/feedback/templates/utilization/details.html:24
-#: ckanext/feedback/templates/utilization/details.html:78
+#: ckanext/feedback/templates/utilization/details.html:81
 msgid "Approve"
 msgstr "承認"
 
-#: ckanext/feedback/templates/resource/comment.html:101
-#: ckanext/feedback/templates/utilization/search.html:78
-#: ckanext/feedback/templates/utilization/search.html:116
+#: ckanext/feedback/templates/resource/comment.html:103
+#: ckanext/feedback/templates/utilization/search.html:33
+#: ckanext/feedback/templates/utilization/search.html:82
 msgid "Unapproved"
 msgstr "未承認"
 
-#: ckanext/feedback/templates/resource/comment.html:130
+#: ckanext/feedback/templates/resource/comment.html:132
 msgid "Input"
 msgstr "入力欄"
 
-#: ckanext/feedback/templates/resource/comment.html:135
+#: ckanext/feedback/templates/resource/comment.html:137
 msgid "Please enter your reply"
 msgstr "返信を入力してください。"
 
-#: ckanext/feedback/templates/resource/comment.html:140
+#: ckanext/feedback/templates/resource/comment.html:142
 msgid "Send"
 msgstr "送信"
 
@@ -398,48 +406,49 @@ msgid "Utilization description"
 msgstr "利活用内容"
 
 #: ckanext/feedback/templates/utilization/details.html:41
+#: ckanext/feedback/templates/utilization/search.html:52
 msgid "Issue resolutions"
 msgstr "課題解決数"
 
-#: ckanext/feedback/templates/utilization/details.html:46
+#: ckanext/feedback/templates/utilization/details.html:49
 msgid "Resolve issue"
 msgstr "課題解決"
 
-#: ckanext/feedback/templates/utilization/details.html:103
+#: ckanext/feedback/templates/utilization/details.html:106
 msgid "Certification of issue resolution"
 msgstr "課題解決の認定"
 
-#: ckanext/feedback/templates/utilization/details.html:107
+#: ckanext/feedback/templates/utilization/details.html:110
 msgid "What is certification of issue resolution?"
 msgstr "課題解決の認定とは？"
 
-#: ckanext/feedback/templates/utilization/details.html:108
+#: ckanext/feedback/templates/utilization/details.html:111
 msgid ""
 "If it is determined that the content of the utilization method leads to "
 "the solution of the problem, it can be certified as a problem solution."
 msgstr "利活用方法の内容が課題の解決につながると判断したものを課題解決として認定することができます。"
 
-#: ckanext/feedback/templates/utilization/details.html:111
+#: ckanext/feedback/templates/utilization/details.html:114
 msgid "Contents of issue resolution"
 msgstr "課題解決内容"
 
-#: ckanext/feedback/templates/utilization/details.html:116
+#: ckanext/feedback/templates/utilization/details.html:119
 msgid "Please enter your issue resolution content"
 msgstr "課題解決内容を入力してください"
 
-#: ckanext/feedback/templates/utilization/details.html:121
+#: ckanext/feedback/templates/utilization/details.html:124
 msgid "Certificate"
 msgstr "認定"
 
-#: ckanext/feedback/templates/utilization/details.html:133
+#: ckanext/feedback/templates/utilization/details.html:136
 msgid "Issue resolution details"
 msgstr "課題解決内容詳細"
 
-#: ckanext/feedback/templates/utilization/details.html:140
+#: ckanext/feedback/templates/utilization/details.html:143
 msgid "Certification date"
 msgstr "認定日"
 
-#: ckanext/feedback/templates/utilization/details.html:141
+#: ckanext/feedback/templates/utilization/details.html:144
 msgid "Issue resolution content"
 msgstr "課題解決内容"
 
@@ -453,7 +462,7 @@ msgstr ""
 
 #: ckanext/feedback/templates/utilization/edit.html:23
 #: ckanext/feedback/templates/utilization/new.html:24
-#: ckanext/feedback/templates/utilization/search.html:93
+#: ckanext/feedback/templates/utilization/search.html:51
 msgid "Title"
 msgstr "タイトル"
 
@@ -484,49 +493,37 @@ msgstr "削除"
 msgid "Create"
 msgstr "登録"
 
-#: ckanext/feedback/templates/utilization/search.html:8
-msgid "Skip to content"
-msgstr "コンテンツへスキップ"
-
-#: ckanext/feedback/templates/utilization/search.html:32
-msgid "Breadcrumb"
-msgstr "パンくずリスト"
-
-#: ckanext/feedback/templates/utilization/search.html:65
+#: ckanext/feedback/templates/utilization/search.html:20
 msgid "Keyword Search"
 msgstr "キーワード検索"
 
-#: ckanext/feedback/templates/utilization/search.html:67
+#: ckanext/feedback/templates/utilization/search.html:22
 msgid "Keyword Search..."
 msgstr "キーワード検索..."
 
-#: ckanext/feedback/templates/utilization/search.html:67
+#: ckanext/feedback/templates/utilization/search.html:22
 msgid "Search utilization data"
 msgstr "利活用方法を検索"
 
-#: ckanext/feedback/templates/utilization/search.html:76
-#: ckanext/feedback/templates/utilization/search.html:98
+#: ckanext/feedback/templates/utilization/search.html:31
+#: ckanext/feedback/templates/utilization/search.html:57
 msgid "Status"
 msgstr "ステータス"
 
+#: ckanext/feedback/templates/utilization/search.html:35
 #: ckanext/feedback/templates/utilization/search.html:80
-#: ckanext/feedback/templates/utilization/search.html:114
 msgid "Approved"
 msgstr "承認済"
 
-#: ckanext/feedback/templates/utilization/search.html:89
-msgid "Search result："
-msgstr "検索結果："
+#: ckanext/feedback/templates/utilization/search.html:45
+msgid "Results: "
+msgstr "結果："
 
-#: ckanext/feedback/templates/utilization/search.html:89
-msgid "items"
-msgstr "件"
-
-#: ckanext/feedback/templates/utilization/search.html:95
+#: ckanext/feedback/templates/utilization/search.html:54
 msgid "Data resource"
 msgstr "データリソース"
 
-#: ckanext/feedback/templates/utilization/search.html:96
+#: ckanext/feedback/templates/utilization/search.html:55
 msgid "Registration date"
 msgstr "登録日"
 

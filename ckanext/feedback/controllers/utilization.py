@@ -177,6 +177,11 @@ class UtilizationController:
         edit_service.update_utilization(utilization_id, title, description)
         session.commit()
 
+        helpers.flash_success(
+            _('The utilization has been successfully updated.'),
+            allow_html=True,
+        )
+
         return redirect(url_for('utilization.details', utilization_id=utilization_id))
 
     # utilization/<utilization_id>/delete
@@ -187,6 +192,11 @@ class UtilizationController:
         edit_service.delete_utilization(utilization_id)
         summary_service.refresh_utilization_summary(resource_id)
         session.commit()
+
+        helpers.flash_success(
+            _('The utilization has been successfully deleted.'),
+            allow_html=True,
+        )
 
         return redirect(url_for('utilization.search'))
 
