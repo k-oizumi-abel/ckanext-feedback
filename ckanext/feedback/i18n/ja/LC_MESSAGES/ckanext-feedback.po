@@ -254,8 +254,13 @@ msgid "Created"
 msgstr "作成日"
 
 #: ckanext/feedback/templates/management/comments.html:119
-msgid "Score"
-msgstr ""
+#: ckanext/feedback/templates/package/resource_read.html:100
+#: ckanext/feedback/templates/package/snippets/additional_info.html:22
+#: ckanext/feedback/templates/package/snippets/resource_item.html:33
+#: ckanext/feedback/templates/resource/comment.html:30
+#: ckanext/feedback/templates/snippets/package_item.html:41
+msgid "Rating"
+msgstr "評価"
 
 #: ckanext/feedback/templates/package/resource_read.html:5
 msgid "Manage"
@@ -332,14 +337,6 @@ msgstr "利活用数"
 #: ckanext/feedback/templates/utilization/details.html:53
 msgid "Comments"
 msgstr "コメント数"
-
-#: ckanext/feedback/templates/package/resource_read.html:100
-#: ckanext/feedback/templates/package/snippets/additional_info.html:22
-#: ckanext/feedback/templates/package/snippets/resource_item.html:33
-#: ckanext/feedback/templates/resource/comment.html:30
-#: ckanext/feedback/templates/snippets/package_item.html:41
-msgid "Rating"
-msgstr "評価"
 
 #: ckanext/feedback/templates/package/resource_read.html:106
 #: ckanext/feedback/templates/package/snippets/additional_info.html:28
