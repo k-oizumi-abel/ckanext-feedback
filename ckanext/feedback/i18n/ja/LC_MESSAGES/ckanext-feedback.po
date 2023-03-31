@@ -580,7 +580,6 @@ msgstr "キーワード検索..."
 msgid "Search utilization data"
 msgstr "利活用方法を検索"
 
-<<<<<<< HEAD
 #: ckanext/feedback/templates/utilization/search.html:31
 #: ckanext/feedback/templates/utilization/search.html:57
 msgid "Status"
@@ -595,29 +594,11 @@ msgstr "承認済"
 msgid "Results: "
 msgstr "結果："
 
-<<<<<<< HEAD
 #: ckanext/feedback/templates/utilization/search.html:54
 msgid "Data resource"
 msgstr "データリソース"
 
-#: ckanext/feedback/templates/utilization/search.html:55
-=======
-=======
->>>>>>> d16c110 (delete the same sentences)
-#: ckanext/feedback/templates/utilization/search.html:89
-msgid "items"
-msgstr "件"
-
-<<<<<<< HEAD
-#: ckanext/feedback/templates/utilization/search.html:96
->>>>>>> 16d0767 (modify English words and its translation)
-=======
 #: ckanext/feedback/templates/utilization/search.html:97
-<<<<<<< HEAD
->>>>>>> e026dd3 (rename in English about issue resolution)
-msgid "Registration date"
-=======
 msgid "Registered"
->>>>>>> 9d2ae82 (modify .po file with rebasing)
 msgstr "登録日"
 
