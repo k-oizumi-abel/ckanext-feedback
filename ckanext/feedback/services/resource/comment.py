@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from ckan.model.package import Package
 from ckan.model.resource import Resource
 from flask import request
 

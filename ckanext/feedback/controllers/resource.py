@@ -1,9 +1,9 @@
+import ckan.model as model
 from ckan.common import _, c, request
 from ckan.lib import helpers
+from ckan.logic import get_action
 from ckan.plugins import toolkit
 from flask import make_response, redirect, url_for
-from ckan.logic import get_action
-import ckan.model as model
 
 import ckanext.feedback.services.resource.comment as comment_service
 import ckanext.feedback.services.resource.summary as summary_service
@@ -22,11 +22,7 @@ class ResourceController:
         comments = comment_service.get_resource_comments(resource_id, approval)
         categories = comment_service.get_resource_comment_categories()
         cookie = comment_service.get_cookie(resource_id)
-        context = {
-                'model': model,
-                'session': session,
-                'for_view': True
-            }
+        context = {'model': model, 'session': session, 'for_view': True}
         package = get_action('package_show')(context, {'id': resource.package_id})
 
         return toolkit.render(
