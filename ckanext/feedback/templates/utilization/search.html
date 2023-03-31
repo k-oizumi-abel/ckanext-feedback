@@ -86,7 +86,10 @@
                   <hr>
                 {% endif %}
                 {% block result_table %}
-                  <h4 class="bottom-centered-content" id="data-count">{{ _('Search result：') }}{{ utilizations|length }}{{ _('items') }}</h4>
+                  <h4 class="bottom-centered-content" id="data-count">
+                    {{ _('Results: ') }}
+                    <span id="utilization-results-count">{{ utilizations|length }}</span>
+                  </h4>
                   <table class="table table-striped table-bordered table-condensed table-toggle-more bottom-centered-content" id="results-table">
                     <thead class="table-header">
                       <tr>
