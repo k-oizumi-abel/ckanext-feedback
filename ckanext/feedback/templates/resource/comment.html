@@ -1,14 +1,17 @@
 {% if h.is_enabled_resources() %}
 
-  {% extends "page.html" %}
+  {% extends "package/base.html" %}
 
   {% block styles %}
     {{ super() }}
     {% asset 'feedback/feedback-comment-css' %}
   {% endblock %}
 
+  {% block breadcrumb_content_selected %} class="inactive"{% endblock %}
+
   {% block breadcrumb_content %}
-    <li class="inactive"><a href="{{ h.url_for('dataset.search') }}{{ details.package_name }}">{{ _('Dataset') }}</a></li>
+    {{ super() }}
+    <li class="inactive"><a href="{{ h.url_for('dataset.search') }}{{ pkg_dict.name }}/resource/{{ resource.id }}">{{ resource.name|truncate(30) }}</a></li>
     <li class="active"><a href="#">{{ _('Comment') }}</a></li>
   {% endblock %}
 
@@ -17,13 +20,13 @@
       <div class="module-content">
         <div class="centered-content">
           <h4>{{ _('Dataset') }}</h4>
-          <a href="{{ h.url_for('dataset.search') }}{{ details.package_name }}">{{ details.package_name }}</a>
+          <a href="{{ h.url_for('dataset.search') }}{{ pkg_dict.name }}">{{ pkg_dict.name }}</a>
           <hr>
           <h4>{{ _('Resource') }}</h4>
-          <a href="{{ h.url_for('dataset.search') }}{{ details.package_name }}/resource/{{ details.resource_id }}">{{ details.resource_name }}</a>
+          <a href="{{ h.url_for('dataset.search') }}{{ pkg_dict.name }}/resource/{{ resource.id }}">{{ resource.name }}</a>
           <hr>
           <h4>{{ _('Comments') }}</h4>
-          <p>{{ h.get_resource_comments(details.resource_id) }}</p>
+          <p>{{ h.get_resource_comments(resource.id) }}</p>
           <hr>
           <h4>{{ _('Comment') }}</h4>
           {% if not cookie %}
@@ -37,7 +40,7 @@
               <p id="rating-error" class="alert alert-error" style="display: none;">{{ _('Please select your rating') }}</p>
             </div>
             <br>
-            <form name="comment_form" action="{{ url_for('resource_comment.create_comment', resource_id=details.resource_id ) }}" method="post">
+            <form name="comment_form" action="{{ url_for('resource_comment.create_comment', resource_id=resource.id ) }}" method="post">
               <input type="hidden" id="rating" name="rating" value=""/>
               <select name="category" id="category">
                 {% for category in categories %}
@@ -77,7 +80,7 @@
                   <input type="button" class="btn btn-primary pull-right" value="{{ _('Reply') }}" disabled/>
                 {% endif %}
               {% else %}
-                <form name="approval_form" action="{{ url_for('resource_comment.approve_comment', resource_id=details.resource_id ) }}" method="post">
+                <form name="approval_form" action="{{ url_for('resource_comment.approve_comment', resource_id=resource.id ) }}" method="post">
                     <button class="btn btn-primary pull-right" id="resource_comment_id" name="resource_comment_id" value="{{ comment.id }}">{{ _('Approve') }}</button>
                 </form>
               {% endif %}

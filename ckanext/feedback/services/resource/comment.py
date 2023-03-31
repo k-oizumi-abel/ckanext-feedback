@@ -12,15 +12,12 @@ from ckanext.feedback.models.resource_comment import (
 from ckanext.feedback.models.session import session
 
 
-# Get details from the selected dataset or resource
+# Get resource from the selected resource_id
 def get_resource(resource_id):
     return (
         session.query(
-            Resource.name.label('resource_name'),
-            Resource.id.label('resource_id'),
-            Package.name.label('package_name'),
+            Resource,
         )
-        .join(Package)
         .filter(Resource.id == resource_id)
         .first()
     )
