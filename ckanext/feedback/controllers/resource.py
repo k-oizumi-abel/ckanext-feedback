@@ -1,5 +1,7 @@
+import ckan.model as model
 from ckan.common import _, c, request
 from ckan.lib import helpers
+from ckan.logic import get_action
 from ckan.plugins import toolkit
 from flask import make_response, redirect, url_for
 
@@ -17,16 +19,18 @@ class ResourceController:
         approval = None
         if c.userobj is None or c.userobj.sysadmin is None:
             approval = True
-        details = comment_service.get_resource(resource_id)
+        resource = comment_service.get_resource(resource_id)
         comments = comment_service.get_resource_comments(resource_id, approval)
         categories = comment_service.get_resource_comment_categories()
         cookie = comment_service.get_cookie(resource_id)
+        context = {'model': model, 'session': session, 'for_view': True}
+        package = get_action('package_show')(context, {'id': resource.package_id})
 
         return toolkit.render(
             'resource/comment.html',
             {
-                'resource_id': resource_id,
-                'details': details,
+                'resource': resource,
+                'pkg_dict': package,
                 'comments': comments,
                 'categories': categories,
                 'cookie': cookie,

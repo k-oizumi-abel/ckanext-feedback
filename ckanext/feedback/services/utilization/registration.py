@@ -1,22 +1,12 @@
-from ckan.model.package import Package
 from ckan.model.resource import Resource
 
 from ckanext.feedback.models.session import session
 from ckanext.feedback.models.utilization import Utilization
 
 
-# Get details from the Resource record
-def get_resource_details(resource_id):
-    return (
-        session.query(
-            Resource.name.label('resource_name'),
-            Resource.id.label('resource_id'),
-            Package.name.label('package_name'),
-        )
-        .join(Package)
-        .filter(Resource.id == resource_id)
-        .first()
-    )
+# Get resource from the Resource id
+def get_resource(resource_id):
+    return session.query(Resource).filter(Resource.id == resource_id).first()
 
 
 # Create new utilization

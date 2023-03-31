@@ -1,5 +1,7 @@
+import ckan.model as model
 from ckan.common import _, c, request
 from ckan.lib import helpers
+from ckan.logic import get_action
 from ckan.plugins import toolkit
 from flask import redirect, url_for
 
@@ -39,13 +41,16 @@ class UtilizationController:
     def new():
         resource_id = request.args.get('resource_id', '')
         return_to_resource = request.args.get('return_to_resource', False)
-        resource_details = registration_service.get_resource_details(resource_id)
+        resource = registration_service.get_resource(resource_id)
+        context = {'model': model, 'session': session, 'for_view': True}
+        package = get_action('package_show')(context, {'id': resource.package.id})
 
         return toolkit.render(
             'utilization/new.html',
             {
+                'pkg_dict': package,
                 'return_to_resource': return_to_resource,
-                'resource_details': resource_details,
+                'resource': resource,
             },
         )
 
