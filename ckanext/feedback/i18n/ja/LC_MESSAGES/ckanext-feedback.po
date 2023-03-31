@@ -193,21 +193,21 @@ msgstr "カテゴリー"
 #: ckanext/feedback/templates/management/comments.html:69
 #: ckanext/feedback/templates/management/comments.html:125
 #: ckanext/feedback/templates/utilization/search.html:76
-#: ckanext/feedback/templates/utilization/search.html:99
+#: ckanext/feedback/templates/utilization/search.html:102
 msgid "Status"
 msgstr "ステータス"
 
 #: ckanext/feedback/templates/management/comments.html:32
 #: ckanext/feedback/templates/management/comments.html:97
 #: ckanext/feedback/templates/utilization/search.html:78
-#: ckanext/feedback/templates/utilization/search.html:124
+#: ckanext/feedback/templates/utilization/search.html:127
 msgid "Waiting"
 msgstr "承認待ち"
 
 #: ckanext/feedback/templates/management/comments.html:34
 #: ckanext/feedback/templates/management/comments.html:95
 #: ckanext/feedback/templates/utilization/search.html:80
-#: ckanext/feedback/templates/utilization/search.html:122
+#: ckanext/feedback/templates/utilization/search.html:125
 msgid "Approved"
 msgstr "承認済"
 
@@ -219,13 +219,13 @@ msgstr "承認済"
 #: ckanext/feedback/templates/utilization/edit.html:19
 #: ckanext/feedback/templates/utilization/new.html:7
 #: ckanext/feedback/templates/utilization/new.html:17
-#: ckanext/feedback/templates/utilization/search.html:96
+#: ckanext/feedback/templates/utilization/search.html:99
 msgid "Resource"
 msgstr "データリソース"
 
 #: ckanext/feedback/templates/management/comments.html:49
 #: ckanext/feedback/templates/management/comments.html:109
-#: ckanext/feedback/templates/utilization/search.html:89
+#: ckanext/feedback/templates/utilization/search.html:90
 msgid "Results: "
 msgstr "検索結果: "
 
@@ -346,7 +346,7 @@ msgstr "評価"
 #: ckanext/feedback/templates/package/snippets/resource_item.html:40
 #: ckanext/feedback/templates/snippets/package_item.html:50
 #: ckanext/feedback/templates/utilization/details.html:41
-#: ckanext/feedback/templates/utilization/search.html:94
+#: ckanext/feedback/templates/utilization/search.html:97
 msgid "Issue Resolutions"
 msgstr "課題解決数"
 
