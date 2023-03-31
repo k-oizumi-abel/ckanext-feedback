@@ -26,7 +26,7 @@
           <p>{{ h.get_resource_comments(details.resource_id) }}</p>
           <hr>
           <h4>{{ _('Comment') }}</h4>
-          {% if not cookie %}
+          {% if not cookie or not h.is_disabled_repeated_post_on_resource() %}
             {{ _('Rating') }}
             <span class="group-stars" id="rateable" name="rateable">
               {% for i in range(5) %}
@@ -50,7 +50,9 @@
               <div>
                 <p id="comment-error" class="alert alert-error" style="display: none;">{{ _('Please enter your comment') }}</p>
               </div>
-              <p class="comment-explanation">{{ _('(In order to prevent potential spam, only a single comment is allowed per data resouce)') }}</p>
+              {% if h.is_disabled_repeated_post_on_resource() %}
+                <p class="comment-explanation">{{ _('(In order to prevent potential spam, only a single comment is allowed per data resouce)') }}</p>
+              {% endif %}
               <br>
               <div class="form-actions">
                 <button class="btn btn-primary" onclick="return checkRatingAndCommentExists();">{{ _('Send comment') }}</button>
