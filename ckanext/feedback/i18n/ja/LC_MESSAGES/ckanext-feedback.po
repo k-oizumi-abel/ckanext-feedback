@@ -19,8 +19,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/feedback/controllers/utilization.py:127
-#: ckanext/feedback/controllers/resource.py:46
 #: ckanext/feedback/controllers/management.py:30
 msgid "bulk approval completed."
 msgstr "一括承認完了"
@@ -29,9 +27,8 @@ msgstr "一括承認完了"
 msgid "bulk delete completed."
 msgstr "一括削除完了"
 
-#: ckanext/feedback/controllers/resource.py:46
-#: ckanext/feedback/controllers/utilization.py:119
->>>>>>> f75e391 (modify English words and its translation)
+#: ckanext/feedback/controllers/resource.py:50
+#: ckanext/feedback/controllers/utilization.py:127
 msgid ""
 "Your comment has been sent.<br>The comment will not be displayed until "
 "approved by an administrator."
@@ -75,9 +72,7 @@ msgstr "感謝"
 msgid ""
 "The requested URL was not found on the server. If you entered the URL "
 "manually please check your spelling and try again."
-msgstr ""
-"要求された URL がサーバー上に見つかりませんでした。"
-"URL を手動で入力した場合は、綴りを確認してからもう一度お試しください。"
+msgstr "要求された URL がサーバー上に見つかりませんでした。URL を手動で入力した場合は、綴りを確認してからもう一度お試しください。"
 
 #: ckanext/feedback/templates/header.html:9
 msgid "Sysadmin settings"
@@ -161,9 +156,8 @@ msgid "Utilization"
 msgstr "利活用方法"
 
 #: ckanext/feedback/templates/header.html:98
-#: ckanext/feedback/templates/management/comments.html:10
-msgid "Management Comments"
-msgstr "コメント管理"
+msgid "Feedback Comments"
+msgstr "フィードバックコメント一覧"
 
 #: ckanext/feedback/templates/header.html:100
 msgid "About"
@@ -182,6 +176,10 @@ msgstr "検索"
 #: ckanext/feedback/templates/utilization/search.html:24
 msgid "Submit"
 msgstr "検索"
+
+#: ckanext/feedback/templates/management/comments.html:10
+msgid "Management Comments"
+msgstr "コメント管理"
 
 #: ckanext/feedback/templates/management/comments.html:21
 #: ckanext/feedback/templates/management/comments.html:66
