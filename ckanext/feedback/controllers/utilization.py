@@ -64,7 +64,7 @@ class UtilizationController:
         if not (resource_id and title and description):
             toolkit.abort(400)
 
-        return_to_resource = eval(request.form.get('return_to_resource'))
+        return_to_resource = toolkit.asbool(request.form.get('return_to_resource'))
         registration_service.create_utilization(resource_id, title, description)
         summary_service.create_utilization_summary(resource_id)
         session.commit()
