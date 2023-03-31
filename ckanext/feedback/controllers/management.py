@@ -7,11 +7,13 @@ import ckanext.feedback.services.management.comments as comments_service
 import ckanext.feedback.services.resource.comment as resource_comment_service
 import ckanext.feedback.services.utilization.details as utilization_detail_service
 from ckanext.feedback.models.session import session
+from ckanext.feedback.services.common.check import check_administrator
 
 
 class ManagementController:
     # management/comments
     @staticmethod
+    @check_administrator
     def comments():
         tab = request.args.get('tab', 'utilization-comments')
         categories = utilization_detail_service.get_utilization_comment_categories()
@@ -29,6 +31,7 @@ class ManagementController:
 
     # management/approve_bulk_utilization_comments
     @staticmethod
+    @check_administrator
     def approve_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
         if comments:
@@ -44,6 +47,7 @@ class ManagementController:
 
     # management/approve_bulk_resource_comments
     @staticmethod
+    @check_administrator
     def approve_bulk_resource_comments():
         comments = request.form.getlist('resource-comments-checkbox')
         if comments:
@@ -61,6 +65,7 @@ class ManagementController:
 
     # management/delete_bulk_utilization_comments
     @staticmethod
+    @check_administrator
     def delete_bulk_utilization_comments():
         comments = request.form.getlist('utilization-comments-checkbox')
         if comments:
@@ -77,6 +82,7 @@ class ManagementController:
 
     # management/delete_bulk_resource_comments
     @staticmethod
+    @check_administrator
     def delete_bulk_resource_comments():
         comments = request.form.getlist('resource-comments-checkbox')
         if comments:
