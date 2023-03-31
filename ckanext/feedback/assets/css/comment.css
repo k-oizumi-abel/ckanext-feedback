@@ -3,9 +3,6 @@
   padding-top: 5px;
 }
 
-.comment-content {
-  word-wrap: break-word;
-}
 .comment-content > p {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -26,6 +23,10 @@
   display: inline-table;
 }
 
+.prevent-overflow {
+  overflow: hidden;
+}
+
 #rateable .rating-star {
   cursor: pointer;
   margin-bottom: 2px;
@@ -44,4 +45,8 @@
 .unapproved {
   color: #808080;
   background-color: #EEEEEE;
+}
+
+.wrap-text {
+  word-wrap: break-word;
 }

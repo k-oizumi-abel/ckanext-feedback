@@ -4,13 +4,13 @@
   width: 90%
 }
 
-.comment-content {
-  word-wrap: break-word;
-}
-
 .divider {
   background: #000000;
   height: 1px;
+}
+
+.prevent-overflow {
+  overflow: hidden;
 }
 
 .right-aligned {
@@ -23,6 +23,10 @@
 
 .unapproved {
   color: #808080;
+}
+
+.wrap-text {
+  word-wrap: break-word;
 }
 
 #issue-resolution-table {

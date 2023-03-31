@@ -61,7 +61,7 @@
         <tbody>
           {% for row in utilizations %}
             <tr>
-              <td class="left-aligned-text"><a href="{{ h.url_for('utilization.details', utilization_id=row.id) }}">{{ row.title }}</a></td>
+              <td class="left-aligned-text"><a href="{{ h.url_for('utilization.details', utilization_id=row.id) }}">{{ row.title|truncate(30) }}</a></td>
               <td>
                 <div class="division-flex-outer">
                   <div class="division-flex-inner-icon">
@@ -72,8 +72,8 @@
                   <div class="division-flex-inner-num">{{ row.issue_resolution }}</div>
                 </div>
               </td>
-              <td>{{ row.package_name }}</td>
-              <td>{{ row.resource_name }}</td>
+              <td>{{ row.package_name|truncate(30) }}</td>
+              <td>{{ row.resource_name|truncate(30) }}</td>
               <td>{{ row.created.strftime('%Y/%m/%d') }}</td>
               {% if c.userobj.sysadmin %}
                 {% if row.approval == True %}
