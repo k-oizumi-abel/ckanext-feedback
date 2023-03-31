@@ -37,30 +37,6 @@ rules = [
         management.ManagementController.delete_bulk_resource_comments,
         {'methods': ['POST']},
     ),
-    (
-        '/approve_bulk_utilization_comments',
-        'approve_bulk_utilization_comments',
-        management.ManagementController.approve_bulk_utilization_comments,
-        {'methods': ['POST']},
-    ),
-    (
-        '/approve_bulk_resource_comments',
-        'approve_bulk_resource_comments',
-        management.ManagementController.approve_bulk_resource_comments,
-        {'methods': ['POST']},
-    ),
-    (
-        '/delete_bulk_utilization_comments',
-        'delete_bulk_utilization_comments',
-        management.ManagementController.delete_bulk_utilization_comments,
-        {'methods': ['POST']},
-    ),
-    (
-        '/delete_bulk_resource_comments',
-        'delete_bulk_resource_comments',
-        management.ManagementController.delete_bulk_resource_comments,
-        {'methods': ['POST']},
-    ),
 ]
 for rule, endpoint, view_func, *others in rules:
     options = next(iter(others), {})
