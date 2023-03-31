@@ -193,21 +193,21 @@ msgstr "カテゴリー"
 #: ckanext/feedback/templates/management/comments.html:69
 #: ckanext/feedback/templates/management/comments.html:125
 #: ckanext/feedback/templates/utilization/search.html:76
-#: ckanext/feedback/templates/utilization/search.html:98
+#: ckanext/feedback/templates/utilization/search.html:99
 msgid "Status"
 msgstr "ステータス"
 
 #: ckanext/feedback/templates/management/comments.html:32
 #: ckanext/feedback/templates/management/comments.html:97
 #: ckanext/feedback/templates/utilization/search.html:78
-#: ckanext/feedback/templates/utilization/search.html:116
+#: ckanext/feedback/templates/utilization/search.html:124
 msgid "Waiting"
 msgstr "承認待ち"
 
 #: ckanext/feedback/templates/management/comments.html:34
 #: ckanext/feedback/templates/management/comments.html:95
 #: ckanext/feedback/templates/utilization/search.html:80
-#: ckanext/feedback/templates/utilization/search.html:114
+#: ckanext/feedback/templates/utilization/search.html:122
 msgid "Approved"
 msgstr "承認済"
 
@@ -219,7 +219,7 @@ msgstr "承認済"
 #: ckanext/feedback/templates/utilization/edit.html:19
 #: ckanext/feedback/templates/utilization/new.html:7
 #: ckanext/feedback/templates/utilization/new.html:17
-#: ckanext/feedback/templates/utilization/search.html:95
+#: ckanext/feedback/templates/utilization/search.html:96
 msgid "Resource"
 msgstr "データリソース"
 
@@ -346,6 +346,7 @@ msgstr "評価"
 #: ckanext/feedback/templates/package/snippets/resource_item.html:40
 #: ckanext/feedback/templates/snippets/package_item.html:50
 #: ckanext/feedback/templates/utilization/details.html:41
+#: ckanext/feedback/templates/utilization/search.html:94
 msgid "Issue Resolutions"
 msgstr "課題解決数"
 
@@ -607,8 +608,12 @@ msgstr "データリソース"
 msgid "items"
 msgstr "件"
 
+<<<<<<< HEAD
 #: ckanext/feedback/templates/utilization/search.html:96
 >>>>>>> 16d0767 (modify English words and its translation)
+=======
+#: ckanext/feedback/templates/utilization/search.html:97
+>>>>>>> e026dd3 (rename in English about issue resolution)
 msgid "Registration date"
 msgstr "登録日"
 
